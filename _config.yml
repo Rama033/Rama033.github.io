@@ -10,7 +10,7 @@ exclude:
 
 # Site settings
 title: 내 블로그
-subtitle: "ㅎㅎ"
+subtitle: "공부"
 email: vfjdg12@gmail.com
 name: Jo
 description: >
@@ -53,9 +53,9 @@ jekyll-archives:
 # ga_tracking_id: "UA-XXXX-1"
 
 # Category descriptions (for archive pages)
-#descriptions:
-#  - cat: test
-#    desc: "For tests."
+descriptions:
+  - cat: mac_os_x
+    desc: "Mac OS X 에 관한 내용들"
 
 # Social icons and sharing options
 #
