@@ -7,4 +7,4 @@ main_nav: true
 
 ![alt text]({{ site.baseurl }}/assets/profile-placeholder.gif "Profile Picture"){:.profile}
 
-귀찮음ㅋㅋZZ
+공부ㅠ

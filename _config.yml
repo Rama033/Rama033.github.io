@@ -14,7 +14,7 @@ subtitle: "ㅎㅎ"
 email: vfjdg12@gmail.com
 name: Jo
 description: >
-  귀찮다
+  공부...
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
 # root of your server.
@@ -32,7 +32,7 @@ highlightjs_theme: "monokai-sublime"
 # https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md#site-configuration
 pagination:
   enabled: true
-  per_page: 1
+  per_page: 5
   permalink: "/page/:num/"
   sort_reverse: true
 
@@ -54,11 +54,11 @@ jekyll-archives:
 
 # Category descriptions (for archive pages)
 descriptions:
-  - cat: jekyll
+  - cat: test
     desc: "For tests."
     
-  - cat: mac_os_x
-    desc: "Posts aboud Mac OS X."
+  - cat: Mac_OS_X
+    desc: "Posts about Mac OS X."
 
 # Social icons and sharing options
 #
