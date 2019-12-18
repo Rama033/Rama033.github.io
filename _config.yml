@@ -53,9 +53,9 @@ jekyll-archives:
 # ga_tracking_id: "UA-XXXX-1"
 
 # Category descriptions (for archive pages)
-descriptions:
-  - cat: mac_os_x
-    desc: "Mac OS X 에 관한 내용들"
+#descriptions:
+#  - cat: mac_os_x
+#    desc: "Mac OS X 에 관한 내용들"
 
 # Social icons and sharing options
 #
