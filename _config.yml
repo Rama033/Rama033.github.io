@@ -55,10 +55,10 @@ jekyll-archives:
 # Category descriptions (for archive pages)
 descriptions:
   - cat: jekyll
-    desc: "Posts describing Jekyll setup techniques."
-
-  - cat: dummy
-    desc: "Just some placeholder posts, lorem ipsum and the rest."
+    desc: "For tests."
+    
+  - cat: mac_os_x
+    desc: "Posts aboud Mac OS X."
 
 # Social icons and sharing options
 #
