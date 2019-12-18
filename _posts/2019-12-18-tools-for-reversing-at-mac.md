@@ -4,7 +4,7 @@ title:  "Mac OS X 에서 malware 분석시 사용할만한 툴들"
 date:   2019-12-18T15:51:32+09:00
 author: Jo
 categories: Mac_OS_X
-tags:	MacOSX reversing tools malware
+tags:	mac reversing tools
 cover:  "/assets/instacode.png"
 ---
 
