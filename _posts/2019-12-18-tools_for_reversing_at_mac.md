@@ -45,3 +45,7 @@ ls -al~과 유사한 역할을 한다.
 mdls [file_name]
 ~~~
 Spotlight 및 Finder가 보유한 메타 데이터를 나열해 준다. 
+
+
+### 참조
+<https://www.sentinelone.com/blog/how-to-reverse-macos-malware-part-one/>
