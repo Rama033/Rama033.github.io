@@ -11,7 +11,7 @@ exclude:
 # Site settings
 title: 내 블로그
 subtitle: "공부"
-email: vfjdg12@gmail.com
+email: sungunjo.dev@gmail.com
 name: Jo
 description: >
   공부...
@@ -89,8 +89,8 @@ social:
 
   - name: GitHub
     icon: github
-    username: Rama033
-    url: https://github.com/Rama033
+    username: sungunjo 
+    url: https://github.com/sungunjo
     desc: Fork me on GitHub
     share: false
 
