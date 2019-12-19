@@ -7,7 +7,7 @@ require "jekyll"
 
 # Change your GitHub reponame
 GITHUB_REPONAME = "sungunjo/sungunjo.github.io"
-
+KST = 9*60*60
 
 desc "Generate blog files"
 task :generate do
@@ -28,8 +28,7 @@ task :publish => [:generate] do
 
     system "git init"
     system "git add ."
-    message = "Site updated at #{Time.now.utc}"
-    message.in_time_zone("Seoul")
+    message = "Site updated at #{Time.now.utc + KST}"
     system "git commit -m #{message.inspect}"
     system "git remote add origin https://github.com/#{GITHUB_REPONAME}.git"
     system "git push origin master --force"
