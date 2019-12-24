@@ -39,11 +39,12 @@ bar();
 
 위의 코드의 결과는 다음과 같다.
 
-~~~bash
-foo
-foofoo
-bar
 ~~~
+> foo
+> foofoo
+> bar
+~~~
+
 
 비동기적인 처리 없이 순차적으로 수행된다.
 
@@ -70,10 +71,10 @@ bar();
 
 아까 전 코드처럼 callback() 을 바로 호출하는 대신, queueMicrotask() 를 호출하여 callback 함수를 microtask queue 에 enqueue 하면 다음과 같은 결과가 나온다.
 
-~~~tex
-foo
-bar
-foofoo
+~~~
+> foo
+> bar
+> foofoo
 ~~~
 
 먼저 foo 함수가 call stack 에 올라가 수행되어 "foo" 가 출력된다. 
@@ -104,12 +105,12 @@ bar();
 
 이 코드를 실행하면
 
-~~~text
-foo
-bar
-foofoo
-foofoofoo
-event queue
+~~~
+> foo
+> bar
+> foofoo
+> foofoofoo
+> event queue
 ~~~
 
 이처럼 microtask queue 에 있는 작업들이 모두 다 수행된 다음에 event queue 에 있는 작업(setTimeout 의 콜백 함수)이 call stack 에 올라가 수행되는 것을 볼 수 있다.
