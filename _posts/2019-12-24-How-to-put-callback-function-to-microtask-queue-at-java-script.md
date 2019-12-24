@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "Java Script 콜백 함수 api 만들기"
+title: "Java Script 비동기 콜백 함수 api 만들기"
 date: 2019-12-24T13:56:00+09:00
 author: Jo
 categories: java_script
@@ -8,7 +8,7 @@ tags: javascript java script callback microtask queue function
 cover: "/assets/instacode.png"
 ---
 
-Java script 는 싱글 스레드로 작동한다고 하였는데 대체 어떻게 콜백 함수들은 비동기로 처리되는지 너무 궁금해져서 좀 찾아봤다.
+Java script 는 싱글 스레드로 작동한다고 하였는데 대체 어떻게 콜백 함수들은 비동기적으로 처리되는지 너무 궁금해져서 좀 찾아봤다.
 
 callback 함수는 setTimeout() 같은 비동기 함수 에 의해 event queue(또는 callback queue, task queue 라고도 함) 에 enqueue 되어 대기하다가 call stack 이 완전히 비었을 때 dequeue 되어 call stack 에 올라가 수행된다. 
 call stack 이 비었을 때 queue 에서 꺼내와 call stack 에 올리는 것은 이벤트 루프에 의해서 수행된다.(event queue 외에도 microtask queue, job queue 등이 있어서 이벤트 루프가 실행하는 순서가 다르다고 한다.)
