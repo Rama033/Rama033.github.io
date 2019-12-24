@@ -39,7 +39,7 @@ bar();
 
 위의 코드의 결과는 다음과 같다.
 
-~~~bash
+~~~text
 foo
 foofoo
 bar
@@ -57,7 +57,7 @@ function foo(callback) {
 }
 
 function bar() {
-	console.log("bar);
+	console.log("bar");
 }
 
 
@@ -70,7 +70,7 @@ bar();
 
 아까 전 코드처럼 callback() 을 바로 호출하는 대신, queueMicrotask() 를 호출하여 callback 함수를 microtask queue 에 enqueue 하면 다음과 같은 결과가 나온다.
 
-~~~no-highlight
+~~~text
 foo
 bar
 foofoo
@@ -104,7 +104,7 @@ bar();
 
 이 코드를 실행하면
 
-~~~no-highlight
+~~~text
 foo
 bar
 foofoo
