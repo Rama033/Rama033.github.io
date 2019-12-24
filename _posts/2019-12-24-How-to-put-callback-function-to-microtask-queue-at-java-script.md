@@ -39,7 +39,7 @@ bar();
 
 위의 코드의 결과는 다음과 같다.
 
-~~~no-highlight
+~~~bash
 foo
 foofoo
 bar
