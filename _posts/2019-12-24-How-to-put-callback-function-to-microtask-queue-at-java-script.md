@@ -3,7 +3,7 @@ layout: post
 title: "Java Script 콜백 함수 api 만들기"
 date: 2019-12-24T13:56:00+09:00
 author: Jo
-categories: java-script
+categories: java_script
 tags: javascript java script callback microtask queue function
 cover: "/assets/instacode.png"
 ---
