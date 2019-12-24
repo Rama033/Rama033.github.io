@@ -119,4 +119,5 @@ event queue
 
 
 ps. <http://latentflip.com/loupe>
+
 위의 사이트에 들어가면 call stack 과 web api, callback queue 가 어떻게 동작하는지 시각적으로 확인할 수 있다.
