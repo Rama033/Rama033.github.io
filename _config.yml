@@ -1,4 +1,4 @@
-# External plugins
+﻿# External plugins
 # See http://ixti.net/software/2013/01/28/using-jekyll-plugins-on-github-pages.html for making `jekyll archives` work.
 plugins:
   - jekyll-archives # Sorry, not GitHub pages friendly!
@@ -13,7 +13,7 @@ title: 감자는 맛있다
 subtitle: "튀기면 더 맛있다"
 email: sungunjo.dev@gmail.com
 name: Jo
-description: 공부한거 기록하는 블로그
+description: v 0.3.6
   
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
