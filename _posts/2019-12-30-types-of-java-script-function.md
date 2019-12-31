@@ -1,10 +1,10 @@
----
+﻿---
 layout: post
 title: "자바 스크립트 함수 선언식, 함수 표현식, 익명 함수, 람다"
 date: 2019-12-30T11:59:00+09:00
 author: Jo
 categories: java_script 
-tags: javascript function_declarations function_expressions anonymous_function lambda labda_expression arrow_function
+tags: java_script function_declarations function_expressions anonymous_function lambda labda_expression arrow_function
 cover: "/assets/instacode.png"
 ---
 
@@ -31,7 +31,7 @@ bar("Good", "Bye");
 ~~~  
 
 일반적인 스타일의 함수.  
-함수 선언시 매개변수를 따로 명시하지 않아도 `arguments[]` 배열을 써서 매개변수 다룰 수 있다.  
+함수 선언시 매개변수를 따로 명시하지 않아도 arguments[] 배열을 써서 매개변수 다룰 수 있다.  
   
 # 2. 익명 함수
 ~~~javascript
@@ -67,7 +67,7 @@ foo("Hello", "Everyone");
 # 4. 화살표 함수 (람다 표현식)
 ~~~javascript
 // 매개변수 없음
-var foo = (_) => console.log('foo');  
+var foo = () => console.log('foo');  
 
 // 매개변수 하나
 var foo1 = arg => console.log(arg);  
@@ -86,7 +86,7 @@ ES6 부터 추가된 화살표 함수를 이용하여 람다 표현식을 나타
 기본적으로 `()=>{}` 형태이며, 매개변수가 하나일 경우 () 를 생략할 수 있고 함수 내용이 한줄로 끝나면 {} 를 생략해도 된다.  
 함수 선언, 표현식과는 다르게 arguments[] 배열을 사용할 수 없다.  
 
-# 함수 선언식과 호이스팅
+# + 함수 선언식과 호이스팅
 
 자바스크립트에서 모든 변수 선언은 호이스팅 된다.  
 여기서 호이스팅이란 코드에 선언된 변수 및 함수가 그 위치와는 상관없이 코드 상단으로 끌어올려지는 것을 말한다.  
