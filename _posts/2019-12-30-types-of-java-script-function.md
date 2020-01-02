@@ -3,8 +3,8 @@ layout: post
 title: "자바 스크립트 함수 선언식, 함수 표현식, 익명 함수, 람다"
 date: 2019-12-30T11:59:00+09:00
 author: Jo
-categories: java_script 
-tags: java_script function_declarations function_expressions anonymous_function lambda labda_expression arrow_function
+categories: JavaScript
+tags: JavaScript FunctionDeclarations FunctionExpressions AnonymousFunction Lambda LambdaExpression ArrowFunction
 cover: "/assets/instacode.png"
 ---
 
