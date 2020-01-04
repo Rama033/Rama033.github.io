@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "React Native 기본적인거 몇가지 -(작성중)"
+title: "React Native 기본적인거 몇가지 - (작성중)"
 date: 2020-01-04T16:12:00+09:00
 author: Jo
 categories: react-native
