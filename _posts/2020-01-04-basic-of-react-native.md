@@ -22,20 +22,30 @@ React Native 에는
 컴포넌트는 다음과 같이 클래스형, 함수형 두 가지가 존재한다.  
 * 클래스형 컴포넌트
 ~~~typescript
-const classComp = () => {
-	return (
-		<h1>Hello, {props}</h1>
-	);
+class classComp extends React.Component<Props, State> {
+	render() {
+    	return (
+      	<h1>Hello {props.name}</h1>
+    	);
+  	}
 }
-~~~   
+~~~  
 컴포넌트 라이프사이클 API 를 사용하거나 state, props 를 사용할 수 있다.  
   
 * 함수형 컴포넌트
 ~~~typescript
+// 함수 선언식으로 만들 수도 있고
 function funcComp(props) {
 	return (
-		<h1>Hello, {props}</h1>		
+		<h1>Hello, {props.name}</h1>		
 	)
+}
+
+// 또는 화살표 함수 사용해서 만들수도 있다.
+const arrowFuncComp = (props) => {
+	return (
+		<h1>Hello, {props.anme}</h1>
+	);
 }
 ~~~  
 클래스형 컴포넌트보다 상대적으로 가벼워 첫 마운팅 속도가 7~11% 빠르다고 한다.  
