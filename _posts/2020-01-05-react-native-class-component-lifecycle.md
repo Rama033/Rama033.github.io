@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: "React Native 클래스 컴포넌트 라이프사이클 API - with TypeScript"
 date: 2020-01-05T17:43:00+09:00
@@ -221,7 +221,7 @@ getSnapshotBeforeUpdate 함수는 Props 또는 State 가 변경되어 화면을 
 이 함수의 반환 값은 다음으로 호출되는 componentDidUpdate 함수의 세 번째 매개변수인 snapshot 으로 전달된다.  
 잘 사용되지는 않으며, 주로 화면을 갱신하는 동안 수동으로 스크롤의 위치를 고정하는 경우 등에 사용한다고 한다.  
 
-### 6. componentDidUpdate()
+### 7. componentDidUpdate()
 ~~~typescript
   componentDidUpdate(nextProps: Props, prevState: State, snapshot: null) {
     console.log('componentDidUpdate');
@@ -233,7 +233,7 @@ getSnapshotBeforeUpdate 함수는 Props 또는 State 가 변경되어 화면을 
   이 함수도 getSnapshotBeforeUpdate 와 마찬가지로 잘 사용되지는 않으며, getSnapshotBeforeUpdate 와 함께 사용해서 스크롤을 수동으로 고정시키거나 할 때 사용된다고 한다.  
   또한 render 와 마찬가지로 this.setState 를 이 안에서 호출했다가는 무한 루프에 빠질 수 있다.
 
-### 7. componentWillUnmount()
+### 8. componentWillUnmount()
 ~~~typescript
   componentWillUnmount() {
     console.log('componentWillUnmount');
@@ -243,7 +243,7 @@ componentWillUnmount 함수는 component 가 화면에서 완전히 사라진 �
 component 가 해제되는 과정에서 호출되기 때문에 보통 componentDidMount 에서 연동한 자바스크립트 라이브러리르 해제하거나 setTimeout, setInterval 등의 타이머를 각각 clearTimeout, clearInterval 로 해제할 때 사용된다.  
 이 함수는 컴포넌트가 화면상에서 사라진 후 호출되기 때문에 여기서 this.setState 를 호출하면 갱신하려는 컴포넌트가 사라진 상태에서 리렌더링을 시도하게 되므로 메모리 leak 등의 문제가 발생할 수 있다.  
 
-### 8. componentDidCatch()
+### 9. componentDidCatch()
   ~~~typescript
   componentDidCatch(error: Error, info: React.ErrorInfo) {
     this.setState({
