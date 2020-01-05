@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reacta Native Styled Components 정리 - with TypeScript - (작성중)"
+title: "Reacta Native Styled Components 정리 - with TypeScript"
 date: 2020-01-05T14:45:00+09:00
 author: Jo
 categories: react-native

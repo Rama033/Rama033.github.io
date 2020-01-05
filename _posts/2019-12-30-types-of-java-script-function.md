@@ -8,16 +8,16 @@ tags: java-script function-declarations function-expressions anonymous-function 
 cover: "/assets/instacode.png"
 ---
 
-# 1. 함수 선언식
+### 1. 함수 선언식
 ~~~javascript
 // 매개변수 명시
 function foo(arg1, arg2) {
-	console.log(arg1 + arg2);
+  console.log(arg1 + arg2);
 }  
 
 // arguments[] 배열 사용
 function bar() {
-	console.log(arguments[0] + arguments[1]);
+  console.log(arguments[0] + arguments[1]);
 }
 
 foo("Hello", "World");
@@ -32,11 +32,11 @@ bar("Good", "Bye");
 일반적인 스타일의 함수.  
 함수 선언시 매개변수를 따로 명시하지 않아도 arguments[] 배열을 써서 매개변수 다룰 수 있다.  
   
-# 2. 익명 함수
+### 2. 익명 함수
 ~~~javascript
 // 콜백으로 전달
 setTimeout(function() {
-		console.log("Hello World!");
+  console.log("Hello World!");
 }, 0);
 ~~~
 
@@ -47,10 +47,10 @@ setTimeout(function() {
 이름 없는 함수.  
 위에서와 같이 콜백으로 넘겨줄 때나 즉시 실행이 필요할 때 사용한다.  
 
-# 3. 함수 표현식
+### 3. 함수 표현식
 ~~~javascript
 var foo = function(arg1, arg2) {
-	console.log(arg1 + arg2);
+  console.log(arg1 + arg2);
 }  
 
 foo("Hello", "Everyone");
@@ -63,7 +63,7 @@ foo("Hello", "Everyone");
 함수 리터럴로 생성한 함수를 변수에 할당하는 방식.  
 익명함수인 `function(arg1, arg2) { console.log(arg1 + arg2); }` 를 변수 foo 를 통해서 호출한다.  
 
-# 4. 화살표 함수 (람다 표현식)
+### 4. 화살표 함수 (람다 표현식)
 ~~~javascript
 // 매개변수 없음
 var foo = () => console.log('foo');  
@@ -76,8 +76,8 @@ var foo2 = (arg1, arg2) => console.log(arg1 + arg2);
 
 // 함수 여러줄
 var foo3 = () => {
-	console.log("Hello, World!");
-	return "Good Bye!";
+  console.log("Hello, World!");
+  return "Good Bye!";
 }
 ~~~  
 
@@ -85,7 +85,7 @@ ES6 부터 추가된 화살표 함수를 이용하여 람다 표현식을 나타
 기본적으로 `()=>{}` 형태이며, 매개변수가 하나일 경우 () 를 생략할 수 있고 함수 내용이 한줄로 끝나면 {} 를 생략해도 된다.  
 함수 선언, 표현식과는 다르게 arguments[] 배열을 사용할 수 없다.  
 
-# + 함수 선언식과 호이스팅
+### + 함수 선언식과 호이스팅
 
 자바스크립트에서 모든 변수 선언은 호이스팅 된다.  
 여기서 호이스팅이란 코드에 선언된 변수 및 함수가 그 위치와는 상관없이 코드 상단으로 끌어올려지는 것을 말한다.  
