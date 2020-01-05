@@ -31,9 +31,10 @@ class classComp extends React.Component<Props, State> {
   }
 }
 ~~~  
-컴포넌트 라이프사이클 API ([React Native 클래스 컴포넌트 라이프사이클 API - with TypeScript](http://127.0.0.1:4000//react-native/2020/01/05/react-native-class-component-lifecycle.html) 참조) 를 사용하거나 state, props 를 사용할 수 있다.  
+컴포넌트 라이프사이클 API ([React Native 클래스 컴포넌트 라이프사이클 API - with TypeScript](https://sungunjo.github.io/react-native/2020/01/05/react-native-class-component-lifecycle.html) 참조) 를 사용하거나 state, props 를 사용할 수 있다.  
   
-* 함수형 컴포넌트
+* 함수형 컴포넌트  
+
 ~~~typescript
 // 함수 선언식으로 만들 수도 있고
 function funcComp(props) {
@@ -49,6 +50,7 @@ const arrowFuncComp = (props) => {
   );
 }
 ~~~  
+
 클래스형 컴포넌트보다 상대적으로 가벼워 첫 마운팅 속도가 7~11% 빠르다고 한다.  
 대신 클래스형과는 다르게 라이프사이클 API 나 state 를 사용할 수 없다.  
 따라서 간단하게 props 만 넘겨줘서 처리할 수 있을 때 등의 경우에 사용하면 된다.  
