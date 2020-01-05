@@ -20,7 +20,8 @@ React Native 에는
 
 와 같은 basic component 들이 있으며, 이 외에도 custom component 를 만들어 사용할 수 있다.  
 컴포넌트는 다음과 같이 클래스형, 함수형 두 가지가 존재한다.  
-* 클래스형 컴포넌트
+* 클래스형 컴포넌트  
+
 ~~~typescript
 // <Props, State> 는 생략해도 됨
 class classComp extends React.Component<Props, State> {
