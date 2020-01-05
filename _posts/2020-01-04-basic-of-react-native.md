@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "React Native 기본적인거 몇가지 - (작성중)"
+title: "React Native 컴포넌트, Props, State, Context - (작성중)"
 date: 2020-01-04T16:12:00+09:00
 author: Jo
 categories: react-native
@@ -33,8 +33,8 @@ function funcComp(props) {
 대신 클래스형과는 다르게 라이프사이클 API 나 state 를 사용할 수 없다.  
 따라서 간단하게 props 만 넘겨줘서 처리할 수 있을 때 등의 경우에 사용하면 된다.  
   
-+ react-native 의 경우 리액트 훅의 useState 를 사용하면 함수형 컴포넌트에서도 State 를 사용할 수 있다.  
-useState 의 형식은 다음과 같다.  
+> react-native 의 경우 리액트 훅의 useState 를 사용하면 함수형 컴포넌트에서도 State 를 사용할 수 있다.  
+`import { useState } from 'react'` 로 import 하며, 형식은 다음과 같다.  
 ~~~typescript
 // const [변수명, 변수를 변경할 set 함수] = useState<State의 타입>(초기값);
 const [x, setX] = useState<Any>(initX);
