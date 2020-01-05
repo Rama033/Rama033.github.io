@@ -25,8 +25,8 @@ bar("Good", "Bye");
 ~~~  
 
 ~~~
-$ HelloWorld
-$ GoodBye
+> HelloWorld
+> GoodBye
 ~~~  
 
 일반적인 스타일의 함수.  
@@ -41,7 +41,7 @@ setTimeout(function() {
 ~~~
 
 ~~~
-$ Hello World!
+> Hello World!
 ~~~  
 
 이름 없는 함수.  
@@ -57,7 +57,7 @@ foo("Hello", "Everyone");
 ~~~  
 
 ~~~
-$ HelloEveryone
+> HelloEveryone
 ~~~  
 
 함수 리터럴로 생성한 함수를 변수에 할당하는 방식.  
