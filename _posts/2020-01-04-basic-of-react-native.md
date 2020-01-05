@@ -25,7 +25,7 @@ React Native 에는
 class classComp extends React.Component<Props, State> {
 	render() {
     	return (
-      	<h1>Hello {props.name}</h1>
+      	<h1>Hello {this.props.name}</h1>
     	);
   	}
 }
