@@ -31,7 +31,7 @@ class classComp extends React.Component<Props, State> {
   }
 }
 ~~~  
-컴포넌트 라이프사이클 API 를 사용하거나 state, props 를 사용할 수 있다.  
+컴포넌트 라이프사이클 API ([React Native 클래스 컴포넌트 라이프사이클 API - with TypeScript](http://127.0.0.1:4000//react-native/2020/01/05/react-native-class-component-lifecycle.html) 참조) 를 사용하거나 state, props 를 사용할 수 있다.  
   
 * 함수형 컴포넌트
 ~~~typescript

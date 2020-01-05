@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reacta Native Styled Components 정리 - with TypeScript"
+title: "Reacat Native Styled Components 정리 - with TypeScript"
 date: 2020-01-05T14:45:00+09:00
 author: Jo
 categories: react-native
@@ -14,7 +14,7 @@ cover: "/assets/instacode.png"
 Styled Components 는 리액트와 리액트 네이티브의 스타일링 적용을 도와주는 오픈 소스 라이브러리로, 인라인 또는 StyleSheet 를 사용하여 스타일을 적용하는 방법에 비해 다음과 같은 장점들이 있다.
 * 리액트 및 리액트 네이티브 양 쪽에서 동일한 스타일 코드를 사용할 수 있다.
 * 리액트 네이티브에서 기본적으로 스타일은 오브젝트 형식을 사용하기 때문에 text-align 을 textAlign 으로 사용하지만 Styled Components 에서는 웹과 동일하게 text-align 포맷을 사용할 수 있다.
-* Styled Componts 는 자체적으로 Props 를 사용할 수 있기 때문에 동적으로 변경하는 스타일을 관리하기 쉽게 해준다.
+* Styled Components 는 자체적으로 Props 를 사용할 수 있기 때문에 동적으로 변경하는 스타일을 관리하기 쉽게 해준다.
   
 위와 같은 장점들이 존재하는 반면, 배포 파일 용량이 커진다는 등의 단점 또한 존재한다.  
 

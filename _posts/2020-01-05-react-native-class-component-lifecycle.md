@@ -164,12 +164,6 @@ render 함수는 부모로 부터 받은 Props 값이 변경되거나 this.setSt
 
 ### 3. getDerivedStateFromProps()
   ~~~typescript
-
-  // 부모로 부터 받은 Props 와 State 를 동기화할 때 사용된다. 
-  // 부모로부터 받은 Props 로 State 에 값을 설정하거나, Props 에 의존하여 State 값을 결정할 때 사용한다.
-  // State 에 설정하고 싶은 값을 이 함수에서 반환하면 된다. 
-  // 동기화 할 State 가 없을 경우 null 을 반환한다.
-  // 컴포넌트 생성시 한번 호출되고, Props 와 State 의 동기화를 위해 Props 변경시마다 호출된다.
   static getDerivedStateFromProps(nextProps: Props, prevState: State) {
     console.log('getDerivedStateFromProps');
     if (nextProps.greetings === 'Hello') {
@@ -251,13 +245,6 @@ component 가 해제되는 과정에서 호출되기 때문에 보통 componentD
 
 ### 8. componentDidCatch()
   ~~~typescript
-
-  // 컴포넌트 렌더링에서의 예외 처리를 해주는 함수이다.
-  // render 함수의 return 부분에서 에러가 발생하면 componentDidCatch 함수가 실행된다.
-  // render 함수에서 {!error && (
-  //                  ...
-  //               )}
-  // 와 같이 해두고 componentDidCatch 에서 error 를 true 로 바꾸면 자식 컴포넌트를 표시하지 않게 되어 비정상 종료를 막을 수 있다.
   componentDidCatch(error: Error, info: React.ErrorInfo) {
     this.setState({
       error: true,
