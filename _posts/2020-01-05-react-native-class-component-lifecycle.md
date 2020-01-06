@@ -13,7 +13,7 @@ cover: "/assets/instacode.png"
 간단한 예제를 통해 어떤 API 들이 있고, 각각 어떠한 역할을 하는지 알아볼 것이다.  
 다음은 인삿말, 이름을 Props 로 받아서 인삿말이 'Hello' 이면 "Hello, World! count is {count}" 를 출력하고 아닌 경우엔 "{인삿말}, {이름}! count is {count}" 를 출력하는 예제이다.  
 텍스트를 터치하면 count 가 올라가며, count 가 5가 되면 터치를 해도 더이상 숫자가 올라가지 않는다.  
-~~~TypeScript
+~~~typescript
 import React from 'react';
 import  { Text, SafeAreaView, TouchableOpacity } from 'react-native';
 
