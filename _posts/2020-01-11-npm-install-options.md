@@ -12,14 +12,16 @@ cover: "/assets/instacode.png"
 ~~~
 $ npm install
 ~~~  
-* -P, --save-prod: package.json 의 dependencies 에 패키지를 등록한다. default 설정  
+* -g, --global: 패키지를 전역에 설치하여 모든 곳에서 참조할 수 있다. 모든 프로젝트가 공통으로 사용하는 패키지의 경우 -g 옵션으로 전역에 설치하여야 한다.  
+  
+* -P, --save-prod: default 설정. package.json 의 dependencies 에 패키지를 등록한다.  
 * -D, --save-dev: package.json 의 devDependencies 에 패키지를 등록한다.  
 * -O, --save-optional: pacakge.json 의 optionalDependencies 에 패키지를 등록한다.  
 * --no-save: dependencies 에 패키지를 등록하지 않는다.
   
 > dependencies, devDependencies, optionalDependencies 의 차이?:  
-> * dependencies: 기술 스펙으로 사용되어야 할 모듈들로 런타임에도 계속 쓰이는 경우.  
-> * devDependencies: 개발 시에 필요한 모듈들로 프로젝트 컴파일 타임에만 필요한 경우.  
-> * optionalDependencies: 사용을 원하는 모듈이지만 없거나 설치에 실패하더라도 전체 npm 패키지 설치 과정이 중단되지 않길 원하는 경우.  
+* dependencies: 기술 스펙으로 사용되어야 할 모듈들로 런타임에도 계속 쓰이는 경우.  
+* devDependencies: 개발 시에 필요한 모듈들로 프로젝트 컴파일 타임에만 필요한 경우.  
+* optionalDependencies: 사용을 원하는 모듈이지만 없거나 설치에 실패하더라도 전체 npm 패키지 설치 과정이 중단되지 않길 원하는 경우.  
   
 *추가 예정*
