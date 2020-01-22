@@ -1,6 +1,6 @@
 ---
 layout: post
-comments: true
+disqus_disabled: false
 title: "React Native 컴포넌트, Props, State, Context - with TypeScript"
 date: 2020-01-04T16:12:00+09:00
 author: Jo

@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-comments: true
+disqus_disabled: false
 title: "React Native 클래스 컴포넌트 라이프사이클 API - with TypeScript"
 date: 2020-01-05T17:43:00+09:00
 author: Jo

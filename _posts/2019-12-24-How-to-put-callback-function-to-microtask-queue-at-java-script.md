@@ -1,6 +1,6 @@
 ---
 layout: post
-comments: true
+disqus_disabled: false
 title: "자바 스크립트 비동기 콜백 함수 api 만들기"
 date: 2019-12-24T13:56:00+09:00
 author: Jo
