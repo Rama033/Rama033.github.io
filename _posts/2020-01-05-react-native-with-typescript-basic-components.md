@@ -1,5 +1,6 @@
 ﻿---
 layout: post
+comments: true
 title: "React Native Styled Components 정리 - with TypeScript"
 date: 2020-01-05T14:45:00+09:00
 author: Jo
