@@ -5,7 +5,7 @@ title: "Xcode 언어별 기본 생성 파일 템플릿 수정 방법"
 date: 2020-01-28T14:53:00+09:00
 author: Jo
 categories: mac-os-x
-tags: mac-os-x xcode file template hpp
+tags: mac osx xcode file template hpp
 cover: "/assets/instacode.png"
 ---
 
