@@ -9,7 +9,7 @@ tags: mac osx xcode file template hpp
 cover: "/assets/instacode.png"
 ---
 
-~~~
+~~~bash
 $ cd /Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/File\ Templates/Source/
 ~~~
 위 경로로 이동하면 C\ File.xctemplate, Objective-C\ File.xctemplate 등 Xcode 상에 존재하는 다양한 기본 템플릿 파일들이 존재한다.  
@@ -20,11 +20,11 @@ $ cd /Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/File\ Te
 예를들어, Xcode 에서 C++ 파일을 새로 생성할 경우 헤더 파일 자동생성 옵션을 켜면 .hpp 파일로 생성이 된다.  
 .hpp 대신 .h 파일이 만들어지게 하려면 /Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/File\ Templates/Source/C++\ File.xctemplate/WithHeader 경로로 이동하여 \_\_\_FILBASENAME\_\_\_.hpp 파일을 수정해야 한다.  
 먼저 super user 권한으로 파일을 열어 .hpp 로 되어있는 부분을 모두 .h 로 수정한다.
-
+  
 ~~~cpp
 //___FILEHEADER___
 
-#ifdef ___FILEBASENAMEASIDENTIFIER___h
+#ifndef ___FILEBASENAMEASIDENTIFIER___h
 #define ___fILEBASENAMEASIDENTIFIER___h
 
 #include <stdio.h>
