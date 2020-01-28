@@ -10,7 +10,7 @@ cover: "/assets/instacode.png"
 ---
 
 ~~~
-$ cd /Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/File\ Templates/Source/
+$ cd /Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/File Templates/Source/
 ~~~
 위 경로로 이동하면 C\ File.xctemplate, Objective-C\ File.xctemplate 등 Xcode 상에 존재하는 다양한 기본 템플릿 파일들이 존재한다.  
   
