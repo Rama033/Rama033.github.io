@@ -1,3 +1,15 @@
+테스트용 로컬 빌드  
+~~~
+$ bundle exec jekyll serve
+~~~  
+  
+
+블로그 갱신하려면
+~~~
+$ sh update.sh
+~~~
+
+
 # Centrarium [![Circle CI](https://circleci.com/gh/bencentra/centrarium/tree/master.svg?style=svg)](https://circleci.com/gh/bencentra/centrarium/tree/master)
 
 A simple yet classy theme for your Jekyll website or blog. Customizable to fit your style or brand.
