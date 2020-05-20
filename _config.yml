@@ -13,7 +13,7 @@ title: 감자는 맛있다
 subtitle: "튀기면 더 맛있다"
 email: sungunjo.dev@gmail.com
 name: Jo
-description: v 1.1.4
+description: v 1.2.0
   
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
@@ -92,12 +92,12 @@ social:
     username: sungunjo 
     url: https://github.com/sungunjo
     desc: Fork me on GitHub
-    share: false
+    share: true
 
   - name: LinkedIn
     icon: linkedin
-    username: ""
-    url: ""
+    username: SungUn Jo
+    url: https://www.linkedin.com/in/sungunjo
     desc: Connect with me on LinkedIn
     share: true
 
