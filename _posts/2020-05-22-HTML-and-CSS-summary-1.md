@@ -2,7 +2,7 @@
 layout: post
 disqus_disabled: false
 title: "[HTML5 & CSS3] 웹 공부 내용 정리 1 - HTML 의 기초"
-date: 2020-05-22T03:53:00+09:00
+date: 2020-05-22T15:53:00+09:00
 author: Jo
 categories: html-css-summary
 tags: html html5 css css3 web
