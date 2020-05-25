@@ -18,9 +18,9 @@ cover: "/assets/instacode.png"
 
 ### 1. \<img\> 태그 - 이미지 삽입
 ~~~html
-<img src="/img/road_image.jpg" alt="도로 사진" width="50%">
+<img src="/assets/img/road_image.jpg" alt="도로 사진" width="50%">
 ~~~
-<img src="/img/road_image.jpg" alt="도로 사진" width="50%">
+<img src="/assets/img/road_image.jpg" alt="도로 사진" width="50%">
 
 \<img\> 태그를 사용해서 웹 페이지에 이미지 파일을 삽입할 수 있다.  
 다음과 같이 속성값을 지정해서 이미지 파일 경로, 대체 텍스트, 이미지 크기 지정을 할 수 있다.  
@@ -41,12 +41,12 @@ cover: "/assets/instacode.png"
 ### 2. \<figure\>, \<figcaption\> - 이미지 캡션(설명글) 추가
 ~~~html
 <figure>
-  <img src="/img/road_image.jpg" alt="도로 사진" width="50%">
+  <img src="/assets/img/road_image.jpg" alt="도로 사진" width="50%">
   <figcaption>도로 사진입니다.</figcaption>
 </figure>
 ~~~
 <figure>
-  <img src="/img/road_image.jpg" alt="도로 사진" width="50%">
+  <img src="/assets/img/road_image.jpg" alt="도로 사진" width="50%">
   <figcaption>도로 사진입니다.</figcaption>
 </figure>
 

@@ -556,7 +556,9 @@ HTML 에서 따로 칼럼을 만들어 주는 태그는 없고, \<td\> 태그를
   </tbody>
   <tfoot>
     <tr>
-      <td rowspan="3">요약</td>
+      <td>1열 요약</td>
+      <td>2열 요약</td>
+      <td>3열 요약</td>
     </tr>
   </tfoot>
 </table>
@@ -588,7 +590,9 @@ HTML 에서 따로 칼럼을 만들어 주는 태그는 없고, \<td\> 태그를
   </tbody>
   <tfoot>
     <tr>
-      <td rowspan="3">요약</td>
+      <td>1열 요약</td>
+      <td>2열 요약</td>
+      <td>3열 요약</td>
     </tr>
   </tfoot>
 </table>
@@ -604,7 +608,7 @@ HTML 에서 따로 칼럼을 만들어 주는 태그는 없고, \<td\> 태그를
   <colgroup>
     <col>
     <col style="background-color:yellow" span="2">
-    <col style="background-color:blue">
+    <col style="background-color:brown">
   </colgroup>
   
   <tr>
@@ -637,7 +641,7 @@ HTML 에서 따로 칼럼을 만들어 주는 태그는 없고, \<td\> 태그를
   <colgroup>
     <col>
     <col style="background-color:yellow" span="2">
-    <col style="background-color:blue">
+    <col style="background-color:brown">
   </colgroup>
   
   <tr>
@@ -674,7 +678,8 @@ HTML 에서 따로 칼럼을 만들어 주는 태그는 없고, \<td\> 태그를
 <br>
 
 ### 5. ETC
-> **태그의 의미와 웹 접근성** \<h\> 과 \<p\>, \<strong\> 과 \<b\>, \<em\> 과 \<i\> 처럼 화면상 표현은 같지만 웹 브라우저가 인식하는 것이 다른 태그들은 텍스트 낭독기나 기타 웹 브라우저, 기기별 기능 등의 경우 태그의 사용 목적에 따라 다르게 표현될 수 있다.  
+> **태그의 의미와 웹 접근성**<br>
+\<h\> 과 \<p\>, \<strong\> 과 \<b\>, \<em\> 과 \<i\> 처럼 화면상 표현은 같지만 웹 브라우저가 인식하는 것이 다른 태그들은 텍스트 낭독기나 기타 웹 브라우저, 기기별 기능 등의 경우 태그의 사용 목적에 따라 다르게 표현될 수 있다.  
 예를 들면 스크린 리더를 사용하는 경우 음성 합성 도구가 페이지를 읽을 때 \<strong\> 태그는 중요한 내용이므로 강조해서 읽고, \<b\> 태그는 평범하게 읽는 등 시각 장애인 들도 그 의미를 이해할 수 있도록 해주어 웹 접근성을 높인다.  
-\<hr\> 태그가 HTML5 에서 단순 수평선 긋는 용도가 아닌 분위기 전환용으로 바뀐 것도 마찬가지 맥락이다.  
+\<hr\> 태그가 HTML5 에서 단순 수평선 긋기가 아닌 분위기 전환용으로 바뀐 것도 마찬가지 맥락이다.  
   
