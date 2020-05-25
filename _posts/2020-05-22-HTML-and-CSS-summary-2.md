@@ -291,8 +291,386 @@ type 속성을 이용해서 항목 앞의 기호를 지정해줄 수 있다.
 <br>
 <br>
   
-### 4. 표 Tag
-작성 예정
+### 4. 테이블 Tag
+HTML 로 테이블을 만들 때 사용하는 태그들  
+표 예시는 다음과 같다.
+
+~~~html
+<table>
+  <figure>
+    <figcaption>제목</figcaption>
+  </figure>
+  <colgroup>
+    <col>
+    <col style="background-color:yellow">
+  </colgroup>
+  <col style="background-color:yellow">
+  
+  <tr>
+    <th>1열</th>
+    <th>2열</th>
+    <th>3열</th>
+    <th>4열</th>
+  </tr>
+  <tr>
+    <td>1, 1</td>
+    <td>1, 2</td>
+    <td>1, 3</td>
+    <td>1, 4</td>
+  </tr>
+  <tr>
+    <td>2, 1</td>
+    <td>2, 2</td>
+    <td>2, 3</td>
+    <td>2, 4</td>
+  </tr>
+  <tr>
+    <td>3, 1</td>
+    <td>3, 2</td>
+    <td>3, 3</td>
+    <td>3, 4</td>
+  </tr>
+</table>
+~~~
+<table>
+  <colgroup>
+    <col>
+    <col style="background-color:yellow">
+  </colgroup>
+  <col style="background-color:yellow">
+  
+  <tr>
+    <th>1열</th>
+    <th>2열</th>
+    <th>3열</th>
+    <th>4열</th>
+  </tr>
+  <tr>
+    <td>1, 1</td>
+    <td>1, 2</td>
+    <td>1, 3</td>
+    <td>1, 4</td>
+  </tr>
+  <tr>
+    <td>2, 1</td>
+    <td>2, 2</td>
+    <td>2, 3</td>
+    <td>2, 4</td>
+  </tr>
+  <tr>
+    <td>3, 1</td>
+    <td>3, 2</td>
+    <td>3, 3</td>
+    <td>3, 4</td>
+  </tr>
+</table>
+<br>
+
+### \<table\> - 테이블 생성
+~~~html
+<table border="1">
+  ...
+</table>
+~~~  
+테이블의 시작과 끝을 나타내는 태그이다.  
+이 안에 \<tr\>, \<td\> 태그 등을 넣어서 표를 만든다.  
+기본적으로 HTML 테이블은 테두리가 표시되지 않기 때문에 \<table\> 태그에 border 속성을 줘서 표현할 수 있다.  
+보통은 border 속성 대신 CSS 이용해서 테두리나 기타 테이블 스타일을 표현해준다.
+<br>
+
+### \<tr\> - 행
+~~~html
+<table border="1">
+  <tr height=100>
+    ...
+  </tr>
+  <tr width=50%>
+    ...
+  </tr>
+</table>
+~~~
+**t**able **r**ow 의 약자로, 가로 행 하나의 시작과 끝을 나타내는 태그이다.  
+이 안에 \<td\> 태그 등을 넣어서 셀들을 만들 수 있다.  
+width, height 속성을 사용해서 행의 너비, 높이를 지정해줄 수 있다.  (pixel 단위 또는 % 단위)  
+<br>
+
+### \<td\> - 열
+~~~html
+<table border="1">
+  <tr>
+    <td rowspan="3">1, 2, 3행 1열</td>
+    <td>1행 2열</td>
+    <td>1행 3열</td>
+  </tr>
+  <tr>
+    <td colspan="2">2행 2, 3열</td>
+  </tr>
+  <tr>
+    <td>3행 2열</td>
+    <td>3행 3열</td>
+  </tr>
+</table>
+~~~  
+<table border="1">
+  <tr>
+    <td rowspan="3">1, 2, 3행 1열</td>
+    <td>1행 2열</td>
+    <td>1행 3열</td>
+  </tr>
+  <tr>
+    <td colspan="2">2행 2, 3열</td>
+  </tr>
+  <tr>
+    <td>3행 2열</td>
+    <td>3행 3열</td>
+  </tr>
+</table>
+
+**t**able **d**ata 의 약자로, 셀을 만들어주는 태그이다.  
+HTML 에서 따로 칼럼을 만들어 주는 태그는 없고, \<td\> 태그를 이용해서 셀을 만들어서 사용한다.  
+\<tr\> 태그와 마찬가지로 width, height 속성으로 셀의 크기를 지정할 수 있으며, rowspan, colspan 속성으로 각각 행, 열을 합칠 수 있다.  
+<br>
+
+### \<caption\> - 테이블 제목
+~~~html
+<caption>표 제목</caption>
+<table border="1">
+  <tr>
+    <td>1행 1열</td>
+    <td>1행 2열</td>
+    <td>1행 3열</td>
+  </tr>
+  <tr>
+    <td>2행 1열</td>
+    <td>2행 2열</td>
+    <td>2행 3열</td>
+  </tr>
+  <tr>
+    <td>3행 1열</td>
+    <td>3행 2열</td>
+    <td>3행 3열</td>
+  </tr>
+</table>
+~~~
+<caption>표 제목</caption>
+<table border="1">
+  <tr>
+    <td>1행 1열</td>
+    <td>1행 2열</td>
+    <td>1행 3열</td>
+  </tr>
+  <tr>
+    <td>2행 1열</td>
+    <td>2행 2열</td>
+    <td>2행 3열</td>
+  </tr>
+  <tr>
+    <td>3행 1열</td>
+    <td>3행 2열</td>
+    <td>3행 3열</td>
+  </tr>
+</table>
+
+\<table\> 태그 위에 \<caption\>표제목\<caption\> 을 넣어서 테이블의 제목을 표시해줄 수 있다.  
+\<caption\> 태그는 테이블당 하나밖에 달 수 없다.  
+<br>
+
+### \<figcaption\> - \<figure\> 태그 이용한 테이블 제목
+~~~html
+<figure>
+  <figcaption>표 제목1</figcaption>
+  <table border="1">
+    <tr>
+      <td>1행 1열</td>
+      <td>1행 2열</td>
+      <td>1행 3열</td>
+    </tr>
+    <tr>
+      <td>2행 1열</td>
+      <td>2행 2열</td>
+      <td>2행 3열</td>
+    </tr>
+    <tr>
+      <td>3행 1열</td>
+      <td>3행 2열</td>
+      <td>3행 3열</td>
+    </tr>
+  </table>
+  <figcaption>표 제목2</figcaption>
+</figure>
+~~~
+<figure>
+  <figcaption>표 제목1</figcaption>
+  <table border="1">
+    <tr>
+      <td>1행 1열</td>
+      <td>1행 2열</td>
+      <td>1행 3열</td>
+    </tr>
+    <tr>
+      <td>2행 1열</td>
+      <td>2행 2열</td>
+      <td>2행 3열</td>
+    </tr>
+    <tr>
+      <td>3행 1열</td>
+      <td>3행 2열</td>
+      <td>3행 3열</td>
+    </tr>
+  </table>
+  <figcaption>표 제목2</figcaption>
+</figure>
+
+\<caption\> 태그 말고 \<figure\> 와 \<figcaption\> 태그를 이용해 표의 제목을 표시해줄 수도 있다.  
+\<figure\> 태그는 표나 동영상, 이미지 등 특정한 캡션을 부틸 수 있는 영역을 만들어주는 태그인데, 테이블 전체를 \<figure\> ~ \</figure\> 태그로 묶어준 다음 캡션을 붙이고 싶은 위치에 \<figcaption\> 태그를 넣어서 캡션을 달아줄 수 있다.  
+\<caption\> 과 다르게 여러군데에 캡션을 달아줄 수 있다.  
+<br>
+
+### \<thead\>, \<tbody\>, \<tfoot\> - 제목, 본문, 요약 영역
+~~~html
+<table border="1">
+  <thead>
+    <tr>
+      <td>1열</td>
+      <td>2열</td>
+      <td>3열</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1행 1열</td>
+      <td>1행 2열</td>
+      <td>1행 3열</td>
+    </tr>
+    <tr>
+      <td>2행 1열</td>
+      <td>2행 2열</td>
+      <td>2행 3열</td>
+    </tr>
+    <tr>
+      <td>3행 1열</td>
+      <td>3행 2열</td>
+      <td>3행 3열</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td rowspan="3">요약</td>
+    </tr>
+  </tfoot>
+</table>
+~~~
+<table border="1">
+  <thead>
+    <tr>
+      <td>1열</td>
+      <td>2열</td>
+      <td>3열</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1행 1열</td>
+      <td>1행 2열</td>
+      <td>1행 3열</td>
+    </tr>
+    <tr>
+      <td>2행 1열</td>
+      <td>2행 2열</td>
+      <td>2행 3열</td>
+    </tr>
+    <tr>
+      <td>3행 1열</td>
+      <td>3행 2열</td>
+      <td>3행 3열</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td rowspan="3">요약</td>
+    </tr>
+  </tfoot>
+</table>
+
+\<thead\> 는 제목 셀, \<tbody\> 는 본문 셀, \<tfoot\> 은 요약 셀 부분을 의미하는 영역으로 묶어주는 태그들이다.  
+이렇게 묶는 것은 화면 판독기로 화면을 읽을 때 표의 어떤 부분인지 알 수 있어 시각장애인의 이해를 도와 웹 접근석을 높일 수 있으며, 또한 이렇게 나눠두면 각각 다르게 스타일링 할 때 편리하다.  
+예를들어 본문 부분이 길어지면 자바스크립트를 이용해서 제목, 요약 부분은 고정하고 \<tbody\> ~ \</tbody\> 로 둘러쌓인 본문 부분만 스크롤링 되게 할 수 있다.
+<br>
+
+### \<col\>, \<colgroup\> - 칼럼 묶기
+~~~html
+<table border="1">
+  <colgroup>
+    <col>
+    <col style="background-color:yellow" span="2">
+    <col style="background-color:blue">
+  </colgroup>
+  
+  <tr>
+    <th>1열</th>
+    <th>2열</th>
+    <th>3열</th>
+    <th>4열</th>
+  </tr>
+  <tr>
+    <td>1, 1</td>
+    <td>1, 2</td>
+    <td>1, 3</td>
+    <td>1, 4</td>
+  </tr>
+  <tr>
+    <td>2, 1</td>
+    <td>2, 2</td>
+    <td>2, 3</td>
+    <td>2, 4</td>
+  </tr>
+  <tr>
+    <td>3, 1</td>
+    <td>3, 2</td>
+    <td>3, 3</td>
+    <td>3, 4</td>
+  </tr>
+</table>
+~~~  
+<table border="1">
+  <colgroup>
+    <col>
+    <col style="background-color:yellow" span="2">
+    <col style="background-color:blue">
+  </colgroup>
+  
+  <tr>
+    <th>1열</th>
+    <th>2열</th>
+    <th>3열</th>
+    <th>4열</th>
+  </tr>
+  <tr>
+    <td>1, 1</td>
+    <td>1, 2</td>
+    <td>1, 3</td>
+    <td>1, 4</td>
+  </tr>
+  <tr>
+    <td>2, 1</td>
+    <td>2, 2</td>
+    <td>2, 3</td>
+    <td>2, 4</td>
+  </tr>
+  <tr>
+    <td>3, 1</td>
+    <td>3, 2</td>
+    <td>3, 3</td>
+    <td>3, 4</td>
+  </tr>
+</table>
+
+\<col\> 은 한 칼럼에 있는 모든 셀에 같은 스타일을 적용하려고 할 때 사용하는 태그이며, 닫는 태그 없이 단독으로 사용된다.  
+\<colgroup\> ~ \</colgroup\> 태그 안에 \<col\> 태그들을 넣어서 사용할 수도 있으며, 이렇게 \<colgroup\> 태그 안에서, 혹은 독립적으로 쓰인 \<col\> 태그들의 개수는 테이블의 칼럼의 개수와 같아야 한다.  
+또한 \<col\>, \<colgroup\> 태그들은 \<caption\> 뒤, \<tr\>, \<td\> 앞에서 사용되어야 한다.
+\<col\> 태그에 span 속성을 사용해서 여러 칼럼을 묶을 수도 있다.
+
+
 <br>
 <br>
 
