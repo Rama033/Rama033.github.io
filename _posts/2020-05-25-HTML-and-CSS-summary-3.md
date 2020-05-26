@@ -66,11 +66,11 @@ cover: "/assets/instacode.png"
 ### 1. \<a\> 태그 - 하이퍼링크 생성
 ~~~html
 <!-- 텍스트에 링크 생성 -->
-<a href="https://www.google.com">텍스트 링크</a>
+<a href="https://www.google.com">텍스트 링크 (현재 창에 표시)</a>
 <!-- 이미지에 링크 생성 -->
 <a href="https://www.google.com" target="_blank"><img src="/assets/img/road_image.jpg"></a>
 ~~~
-<a href="https://www.google.com">텍스트 링크</a>
+<a href="https://www.google.com">텍스트 링크 (현재 창에 표시)</a>
 
 <a href="https://www.google.com" target="_blank"><img src="/assets/img/road_image.jpg"></a>
 
@@ -114,13 +114,13 @@ cover: "/assets/instacode.png"
 
 ### 2. \<map\>, \<area\> 태그, usemap 속성 - 이미지맵
 ~~~html
-<img src="/assets/img/road_image.jpg" usemap="#my_map">
+<img src="/assets/img/imagemap.jpg" usemap="#my_map">
 <map name="my_map">
-  <area shape="rect" coords="10, 10, 100, 100" href="https://www.google.com" target="_blank">
-  <area shape="circle" coords="100, 100, 200, 200" href="https://www.naver.com" target="_blank">
+  <area shape="rect" coords="50, 0, 350, 300" href="https://www.google.com" target="_blank">
+  <area shape="circle" coords="500, 150, 150" href="https://www.naver.com" target="_blank">
 </map>
 ~~~
-<img src="/assets/img/road_image.jpg" usemap="#my_map">
+<img src="/assets/img/imagemap.jpg" usemap="#my_map">
 <map name="my_map">
   <area shape="rect" coords="50, 0, 350, 300" href="https://www.google.com" target="_blank">
   <area shape="circle" coords="500, 150, 150" href="https://www.naver.com" target="_blank">
