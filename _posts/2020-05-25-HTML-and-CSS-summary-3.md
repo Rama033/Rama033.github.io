@@ -20,7 +20,7 @@ cover: "/assets/instacode.png"
 ~~~html
 <img src="/assets/img/road_image.jpg" alt="도로 사진" width="50%" id="road_img">
 ~~~
-<img src="/assets/img/road_image.jpg" alt="도로 사진" width="50%">
+<img src="/assets/img/road_image.jpg" alt="도로 사진" width="50%" id="road_img">
 
 \<img\> 태그를 사용해서 웹 페이지에 이미지 파일을 삽입할 수 있다.  
 다음과 같이 속성값을 지정해서 이미지 파일 경로, 대체 텍스트, 이미지 크기 지정을 할 수 있다.  
@@ -66,62 +66,64 @@ cover: "/assets/instacode.png"
 ### 1. \<a\> 태그 - 하이퍼링크 생성
 ~~~html
 <!-- 텍스트에 링크 생성 -->
-<a href="https://www.google.com" target="_blank"><p>텍스트 링크</p></a>
+<a href="https://www.google.com">텍스트 링크</a>
 <!-- 이미지에 링크 생성 -->
-<a href="https://www.google.com" target="_top"><img src="/assets/img/road_image.jpg"></a>
+<a href="https://www.google.com" target="_blank"><img src="/assets/img/road_image.jpg"></a>
 ~~~
-<a href="https://www.google.com" target="_blank"><p>텍스트 링크</p></a>
+<a href="https://www.google.com">텍스트 링크</a>
 
-<a href="https://www.google.com" target="_top"><img src="/assets/img/road_image.jpg"></a>
+<a href="https://www.google.com" target="_blank"><img src="/assets/img/road_image.jpg"></a>
 
-**A**nchor 의 약자로, 다른 요소에 하이퍼링크를 만들어줄 수 있다.  
-\<a href="링크 주소"\> ~ \</a\> 사이에 텍스트나 이미지등 다른 요소를 넣으면 href 속성에 넣은 주소의 하이퍼링크가 생긴다.  
+**A**nchor 의 약자로, 텍스트나 이미지에 하이퍼링크를 만들어줄 수 있다.  
+\<a href="링크 주소"\> ~ \</a\> 사이에 이미지 태그나 텍스트를 넣으면 href 속성값 주소에 대한 하이퍼링크가 생긴다.  
 \<a\> 태그에서 사용할 수 있는 속성은 다음과 같다.  
 
 * **href**: **h**yper **r**eference. 링크할 문서나 사이트 주소 지정
 - \<a\> 태그를 사용할 때 href 속성을 꼭 넣어줘야 링크를 사용할 수 있다.  
 
-* **target**: 링크한 내용이 표시될 위치(현재 창 또는 새 창 등) 지정
-- 다음과 같은 속성값을 사용할 수 있다. 
-  **_self**: target 속성의 기본값으로, 링크가 있는 화면 (현재 창) 에서 열림
-  **_blank**: 링크 내용이 새 창이나 새 탭에서 열림
-  **_parent**: 프레임을 사용했을 때 링크 내용을 부모 프레임에 표시
+* **target**: 링크한 내용이 표시될 위치(현재 창 또는 새 창 등) 지정  
+- 다음과 같은 속성값을 사용할 수 있다.   
+  **_self**: target 속성의 기본값으로, 링크가 있는 화면 (현재 창) 에서 열림  
+  **_blank**: 링크 내용이 새 창이나 새 탭에서 열림  
+  **_parent**: 프레임을 사용했을 때 링크 내용을 부모 프레임에 표시  
   **_top**: 프레임을 사용했을 때 링크가 있는 프레임을 벗어나 링크 내용을 전체화면에 표시
 
 - _blank, _parent, _self, _top, 프레임 이름
 * **download**: 링크한 내용을 화면에 표시하는 대신에 다운로드
 
-* **rel**: **rel**ationship. 현재 문서와 링크한 문서의 관계를 알려줌
-- 다음과 같은 속성값 사용 가능
+* **rel**: **rel**ationship. 현재 문서와 링크한 문서의 관계를 알려줌  
+- 다음과 같은 속성값 사용 가능  
   **iternate, bookmark, help, license, next, nofollow, noreferer, prefetch, prev, search, tag**  
 
 * **hreflang**: **h**yper **ref**erence **lang**uage. 링크한 문서의 언어를 지정
 
-* **type**: 링크한 문서의 파일 유형을 알려줌
+* **type**: 링크한 문서의 미디어 유형을 알려줌
+- ex) type="image/gif"
 
 * **media**: 링크 문서를 어떤 미디어에 최적화시킬지 지정
+- ex) media="screen and (min-color-index:256)"
 
-> 한 페이지 안에서 점프하기 - 앵커  
+> **한 페이지 안에서 점프하기 - 앵커**  
 \<a\> 를 이용한 링크는 외부 문서뿐만 아니라 같은 문서 내의 다른 태그로도 이동할 수 있다.  
 이러한 경우에는 주소 대신 이동하고 싶은 태그의 id 속성값을 넣어주는데, id 값 앞에 # 을 붙여줘야 한다.  
 ~~~html
-<a href="#road_img"><p>도로 사진으로 이동</p></a>
+<a href="#road_img">도로 사진으로 이동</a>  
 ~~~
-<a href="#road_img"><p>도로 사진으로 이동</p></a>  
+<a href="#road_img">도로 사진으로 이동</a>  
 <br>
 
 ### 2. \<map\>, \<area\> 태그, usemap 속성 - 이미지맵
 ~~~html
 <img src="/assets/img/road_image.jpg" usemap="#my_map">
-<map name="my_usemap">
+<map name="my_map">
   <area shape="rect" coords="10, 10, 100, 100" href="https://www.google.com" target="_blank">
   <area shape="circle" coords="100, 100, 200, 200" href="https://www.naver.com" target="_blank">
 </map>
 ~~~
-<img src="/assets/img/road_image.jpg" usemap="#my_usemap">
+<img src="/assets/img/road_image.jpg" usemap="#my_map">
 <map name="my_map">
-  <area shape="rect" coords="10, 10, 100, 100" href="https://www.google.com" target="_blank">
-  <area shape="circle" coords="100, 100, 200, 200" href="https://www.naver.com" target="_blank">
+  <area shape="rect" coords="50, 0, 350, 300" href="https://www.google.com" target="_blank">
+  <area shape="circle" coords="500, 150, 150" href="https://www.naver.com" target="_blank">
 </map>
 
 \<map\>, \<area\> 태그와 usemap 속성을 이용하여 이미지맵 (한 이미지상에 링크 있는 것) 을 만들 수 있다.  
@@ -130,10 +132,15 @@ cover: "/assets/instacode.png"
 
 * **alt**: **alt**ernative. 대체 텍스트 지정
 
-* **coords**: **coord**inate**s**. 링크로 사용할 영역의 시작 좌표, 끝 좌표 지정
-
 * **shape**: 링크로 사용할 영역의 형태를 지정 
-- 속성값으로 **default, rect, circle, poly** 사용 가능  
+- 속성값으로 **default, rect, circle, poly** 사용 가능 
+
+* **coords**: **coord**inate**s**. 링크로 사용할 영역의 좌표를 지정
+- shape 속성으로 지정한 모양에 따라 좌표 지정 방식이 다르다  
+  **rect**: x1, y1, x2, y2 (좌상단 x, 좌상단 y, 우하단 x, 우하단 y)  
+  **circle**: x, y, radius (원의 중심, 반지름)  
+  **poly**: x1, y1, x2, y2, ... , xn, yn (다각형 꼭지점 좌표들. (x1, y1) 과 (xn, yn) 은 같아야 함. 그렇지 않은 경우 자동으로 마지막 좌표쌍이 추가.)
+ 
 
 이 외에도 href, type 등 \<a\> 태그의 속성 사용해서 하이퍼링크의 속성을 지정해줄 수 있다.  
 다음으로 \<img\> 에 속성으로 usemap="#맵이름" 을 넣어주면 해당 이름을 가진 맵을 이미지맵으로 사용한다.  
