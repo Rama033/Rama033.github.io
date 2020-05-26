@@ -1,7 +1,7 @@
 ---
 layout: post
 disqus_disabled: false
-title: "Active Directory란?"
+title: "Active Directory"
 date: 2020-05-26T14:52:00+09:00
 author: Jo
 categories: micro-soft
