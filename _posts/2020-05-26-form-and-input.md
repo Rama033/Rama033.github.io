@@ -19,7 +19,6 @@ cover: "/assets/instacode.png"
 * 아이디를 입력하는 text field, button 같은 form 의 형태를 만드는 것은 HTML tag,<br>
 form 에 입력한 사용자 정보를 처리하는 것은 ASP, PHP 등의 서버<br>
 <br>
-<br>
 
 ### 1. \<form\> 태그 - 폼 생성
 ~~~html
@@ -50,7 +49,11 @@ form을 만드는 기본 태그.<br>
 * **action**: \<form\> 태그 안의 내용들을 처리해줄 서버 상의 프로그램을 지정<br>
 
 * **target**: \<action\> 태그에서 지정한 스크립트 파일을 열 위치를 지정<br>
-속성값은 \<a\> 의 target 옵션과 동일<br>
+  * 다음과 같은 속성값을 사용할 수 있다.   
+  **_self**: target 속성의 기본값으로, 현재 창 에서 열림  
+  **_blank**: 새 창이나 새 탭에서 열림  
+  **_parent**: 부모 프레임에 표시  
+  **_top**: 프레임을 벗어나 전체화면에 표시
 <br>
 
 위의 텍스트 입력창 예시의 경우<br>
@@ -59,7 +62,7 @@ form을 만드는 기본 태그.<br>
 3. 실행 결과를 웹브라우저로 전달<br>
 4. 결과를 화면에 표시<br>
 
-와 같은 과정을 거치게 된다
+와 같은 과정을 거치게 된다.<br>
 <br>
 <br>
 
@@ -269,8 +272,8 @@ checked 속성을 사용하면 해당 항목은 기본적으로 선택된 상태
   * 지역 기준 시간(시, 분, 초, 분할 초) 을 입력하는 창이 뜸
 <br>
 
-#### e. 전송
-입력한 내용 전송, 삭제 관련 타입들
+#### e. 버튼
+버튼 타입들
 * **submit**: 서버로 전송하는 버튼<br>
   ~~~html
   <form action="/assets/etc/input_test.php" method="post">
@@ -308,6 +311,12 @@ checked 속성을 사용하면 해당 항목은 기본적으로 선택된 상태
     <input type="image" src="/assets/img/img_btn_submit.png" width="80" height="40">
   </form>
   * submit 버튼으로 src 속성값으로 지정한 이미지를 사용
+* **button**: 일반 버튼<br>
+  ~~~html
+  <input type="button" value="그냥 버튼">
+  ~~~
+  <input type="button" value="그냥 버튼">
+  * 형태만 있는 그냥 버튼
 <br>
 
 #### f. 기타
@@ -317,12 +326,6 @@ checked 속성을 사용하면 해당 항목은 기본적으로 선택된 상태
   ~~~
   <input type="file">
   * 첨부파일 선택하는 창 뜸
-* **button**: 일반 버튼<br>
-  ~~~html
-  <input type="button" value="그냥 버튼">
-  ~~~
-  <input type="button" value="그냥 버튼">
-  * 일반 버튼
 * **hidden**: 사용자에게는 보이지 않지만 서버로 넘겨지는 값<br>
   ~~~html
   <input type="hidden" name="my-hidden" value="서버로 전송할 값">
@@ -381,3 +384,189 @@ required 속성을 사용한 폼 요소는 필수적으로 내용을 입력해�
 * 텍스트 관련 타입인 경우에 사용
 * size: 화면에 몇 글자 보이게 할 지 지정
 * maxlength, minlength: 최대 입력 가능 문자 길이를 지정
+<br>
+<br>
+<br>
+
+## 4. 그 외의 Form 요소들
+\<input\> 외에도 다양한 Form 요소들이 존재한다.<br>
+<br>
+
+### 1. 여러 데이터 나열
+나열된 데이터 중 원하는 값을 선택하거나, 여러줄의 데이터를 입력할 수 있도록 해주는 form 요소들<br>
+
+#### a. \<select\>, \<optgroup\>, <option> - 드롭다운 목록
+~~~html
+<label for="select-food">음식</label>
+<select id="select-food">
+  <option value="apple">사과</option>
+  <option value="grape">포도</option>
+  <option value="peach">복숭아</option>
+  <option value="strawberry">딸기</option>
+  <option value="watermelon" selected>수박</option>
+</select>
+~~~
+<label for="select-food">음식</label>
+<select id="select-food">
+  <option value="apple">사과</option>
+  <option value="grape">포도</option>
+  <option value="peach">복숭아</option>
+  <option value="strawberry">딸기</option>
+  <option value="watermelon" selected>수박</option>
+</select>
+
+여러 옵션 중에서 선택할 수 있는 드롭다운 목록을 구성하는 태그들<br>
+공간을 최소한으로 사용하며 여러 옵션을 표시할 수 있다.<br>
+\<select\> ~ \</select\> 사이에 각 옵션 항목들을 \<option\> 태그로  넣으면 된다.<br>
+\<select\> 태그의 속성은 다음과 같다.
+* **size**: 화면에 표시될 드롭다운 메뉴의 항목 개수를 지정
+* **multiple**: 브라우저 화면에 여러 개의 옵션이 함꼐 표시되면서 Ctrl 키를 누른 상태로 드롭다운 메뉴에 있는 여러 항목을 선택할 수 있음
+<br>
+
+\<option\> 태그의 속성은 다음과 같다.<br>
+* **value**: 옵션 선택시 서버로 넘겨질 값을 지정
+* **selected**: 화면에 표시될 때 기본으로 선택되어 있는 옵션을 지정
+<br>
+
+~~~html
+<select>
+  <optgroup label="1번 그룹">
+    <option>...</option>
+    <option>...</option>
+    <option>...</option>
+  </optgroup>
+  <optgroup label="2번 그룹">
+    <option>...</option>
+    <option>...</option>
+    <option>...</option>
+  </optgroup>
+</select>
+~~~
+\<optgroup\> 태그는 여러 항목을 그룹으로 묶을 때 사용하며, label 속성을 사용해서 그룹 제목을 붙인다.<br>
+<br>
+
+#### b. \<datalist\>, \<option\> - 선택한 값을 입력
+~~~html
+<label>음식<input type="text" list="datalist-food"></label>
+<datalist id="datalist-food">
+  <option value="apple">사과</option>
+  <option value="grape">포도</option>
+  <option value="peach">복숭아</option>
+  <option value="strawberry">딸기</option>
+  <option value="watermelon">수박</option>
+  <option value="pork">돼지고기</option>
+  <option value="beef">소고기</option>
+  <option value="lamb">양고기</option>
+  <option value="chicken">닭고기</option>
+</datalist>
+~~~
+<label>음식<input type="text" list="datalist-food"></label>
+<datalist id="datalist-food">
+  <option value="apple">사과</option>
+  <option value="grape">포도</option>
+  <option value="peach">복숭아</option>
+  <option value="strawberry">딸기</option>
+  <option value="watermelon">수박</option>
+  <option value="pork">돼지고기</option>
+  <option value="beef">소고기</option>
+  <option value="lamb">양고기</option>
+  <option value="chicken">닭고기</option>
+</datalist>
+
+데이터 목록에서 선택한 값이 자동으로 연결된 텍스트 필드에 입력된다.<br>
+\<datalist\> 에 id 속성값을 지정해주고, \<input\> 태그의 list 속성값으로 \<datalist\> 의 id 값을 지정해서 연결해줘야 한다.<br>
+\<select\> 와 유사해 보이지만 텍스트 필드를 따로 연결해 줘야한다는 점이나, 값을 직접 입력하고 선택된 값도 수정할 수 있다는 점에서 차이가 있다.<br>
+\<option\> 태그에서는 다음과 같은 속성을 사용할 수 있다.<br>
+* **value**: 항목 선택시 서버로 넘겨질 값을 지정
+* **label**: 브라우저에 표시할 레이블. 따로 지정하지 않을 경우 value 값을 레이블로 사용함
+<br>
+
+#### c. \<textarea\> - 텍스트 영역
+~~~html
+<textarea name="my-textarea" cols="10" rows="50"></textarea>
+~~~
+<textarea name="my-textarea" cols="10" rows="50"></textarea>
+
+여러줄의 텍스트를 입력할 수 있는 텍스트 영역을 만들어주는 태그<br>
+게시물 입력 창, 회원 가입 양식의 약관 등에 사용한다.<br>
+\<textarea\> 에서 사용할 수 있는 속성은 다음과 같다.<br>
+* **cols**: 텍스트 영역의 가로 너비를 문자 단위로 지정
+* **rows**: 텍스트 영역의 세로 길이를 줄 단위로 지정. 지정한 길이 넘어가면 스크롤 막대 생김
+<br>
+
+#### d. \<button\> - 버튼
+~~~html
+<form action="/assets/etc/input_test.php" method="post">
+  <input type="text">
+  <button type="submit">버튼</button>
+  <button type="reset">버튼</button>
+  <button type="button">버튼</button>
+</form>
+~~~
+<form action="/assets/etc/input_test.php" method="post">
+  <input type="text">
+  <button type="submit">버튼</button>
+  <button type="reset">버튼</button>
+  <button type="button">버튼</button>
+</form>
+
+\<input\> 태그에서 type 지정해서 만들 수 있는 버튼 (submit, reset, button) 과 동일한 기능을 한다.<br>
+대신 \<button\> 을 사용해서 만든 버튼은 화면 낭독기에서 버튼임을 정확히 전달할 수 있고, CSS 를 사용해서 다양한 형태로 꾸밀 수도 있다.<br>
+\<button\> 태그에 type 속성으로 다음과 같은 값들을 지정해서 원하는 기능의 버튼을 만들 수 있다.<br>
+* **submit**: form 을 서버로 전송
+* **reset**: form 에 입력한 모든 내용을 초기화
+* **button**: 버튼 형태만 만듬
+<br>
+
+#### e. \<output\> - 계산 결과
+~~~html
+<form oninput="result.value=parseInt(num1.value)+parseInt(num2.value)">
+  <input type="number" name="num1" value="0">
+  +<input type="number" name="num2" value="0">
+  =<output name="result" for="num"></output>
+</form>
+~~~
+<form oninput="result.value=parseInt(num1.value)+parseInt(num2.value)">
+  <input type="number" name="num1" value="0">
+  +<input type="number" name="num2" value="0">
+  =<output name="result" for="num"></output>
+</form>
+
+계산 결과를 브라우저에 표시해주는 태그<br>
+표시되는 형태가 \<input\> 태그를 사용한 것과 차이점은 없지만 이 값이 계산 결과값이라는 점을 웹 브라우저에게 정확히 인식시킬 수 있다.<br>
+<br>
+
+#### f.\<progress\> - 프로그레스 바
+~~~html
+<label>진행 상황: <progress value="55" max="100"></progress></label>
+~~~
+<label>진행 상황: <progress value="55" max="100"></progress></label>
+
+작업 진행 상태를 브라우저에 표시하는 태그<br>
+넣어줄 수 있는 값에는 특별한 단위가 없고, 표시하지도 않는다.<br>
+max 값 대비 value 값의 비율을 프로그레스 바 형태로 표시해준다.<br>
+* **value**: 현재 작업 진행 상태를 나타내며 부동 소수점으로 표현 (0 <= value <= max(max 없으면 1.0))
+* **max**: 작업을 완료하기 위해 필요한 양을 나타냄 (0 < max)
+<br>
+
+#### g. \<meter\> - 비율 바
+~~~html
+<label>점유율 0.8<meter value="0.8"></meter></label>
+<label>투표율 37%<meter value="37" min="0" max="100"></meter></label>
+<label>트래픽 초과<meter value="90" min="0" max="100" low="20" optimum="50" high="80"></meter></label>
+<label>트래픽 적절<meter value="50" min="0" max="100" low="20" optimum="50" high="80"></meter></label>
+<label>잔액 부족<meter value="20" min="0" max="100" low="20" optimum="50" high="80"></meter></label>
+~~~
+<label>점유율 0.8: <meter value="0.8"></meter></label>
+<label>투표율 37%: <meter value="37" min="0" max="100"></meter></label>
+<label>트래픽 초과: <meter value="90" min="0" max="100" low="20" optimum="50" high="80"></meter></label>
+<label>트래픽 적절: <meter value="50" min="0" max="100" low="20" optimum="50" high="80"></meter></label>
+<label>잔액 부족: <meter value="20" min="0" max="100" low="20" optimum="50" high="80"></meter></label>
+
+전체 크기 중에서 얼마나 차지하는지를 표현할 때 사용하는 태그<br>
+다음과 같은 속성들을 사용할 수 있다.<br>
+* **max, min**: 범위의 최대, 최소값 (디폴트 min = 0, max = 1)
+* **value**: 범위 내에서 차지하는 값
+* **low**: 하한선
+* **high**: 상한선
+* **optimum**: 적정선. optimum 이 high 보다 크면 value 값이 클수록 좋고, 반대로 low 보다 작으면 value 가 작을수록 좋다.
