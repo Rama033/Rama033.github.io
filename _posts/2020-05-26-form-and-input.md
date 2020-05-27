@@ -33,7 +33,7 @@ form 에 입력한 사용자 정보를 처리하는 것은 ASP, PHP 등의 서�
 </form>
 ~~~
 <form action="/assets/etc/input_test.php" method="post" name="input">
-  <input type="text" title="입력" name="input">
+  <input type="text" title="입력" name="input" id="autofocus-textbox" autofocus>
   <input type="submit" value="입력" name="input">
 </form>
 
@@ -123,7 +123,12 @@ form을 만드는 기본 태그.<br>
 <br>
 <br>
 
-### 4. \<input\> 태그 - 사용자 입력
+## 2. Input
+입력과 관련한 태그 및 속성들
+<br>
+<br>
+
+### 1. \<input\> 태그 - 사용자 입력
 라디오 버튼, 체크 박스, 입력창 등 사용자가 입력하는 부분은 거의 다 \<input\> 태그를 사용한다.<br>
 다음과 같이 type 속성값을 지정해서 원하는 형태의 입력을 받을 수 있다.<br>
 
@@ -325,3 +330,54 @@ checked 속성을 사용하면 해당 항목은 기본적으로 선택된 상태
   * 화면 상의 form 에서는 보이지 않음
   * form 을 서버로 전송할 때 서버로 함께 전송됨
 <br>
+<br>
+
+### 2. \<input\> 태그 속성들
+#### a. autofocus
+~~~html
+<label type="text" autofocus>
+~~~
+
+페이지를 불러오자마자 autofocus 속성 가진 form 요소에 마우스 커서가 표시됨<br>
+이 글의 <a href="#autofocus-textbox">첫 번째 텍스트 박스</a>가 autofocus 사용된 예시
+<br>
+
+#### b. placeholder
+~~~html
+<input type="email" placeholder="id@email.com">
+~~~
+<input type="email" placeholder="id@email.com">
+
+입력란에 어떤 걸 입력해야 하는지에 대한 힌트를 표시
+<br>
+
+#### c. readonly
+~~~html
+<input type="text" value="입력 불가 텍스트 박스" readonly>
+~~~
+<input type="text" value="입력 불가 텍스트 박스" readonly>
+
+readonly 속성 사용한 폼 요소는 내용을 볼 수만 있고 입력할 수 없음
+<br>
+
+#### d. required
+~~~html
+<input type="tel" required>
+~~~
+<form action="/assets/etc/input_test.php" method="post">
+  <input type="tel" name="my-tel-input" required>
+  <input type="submit" value="전송">
+</form>
+
+required 속성을 사용한 폼 요소는 필수적으로 내용을 입력해야 submit 할 수 있음<br>
+입력 안하고 전송하려고 하면 에러 메시지가 뜸
+
+#### e. min, max, step
+* 날짜 관련(date, datetime, datetime-local, month, week, time) 또는 숫자 관련(range, number) 타입인 경우에 사용
+* max, min: 해당 필드의 최대, 최소값
+* step: 허용된 범위 내의 숫자 간격
+
+#### f. size, minlength, maxlength
+* 텍스트 관련 타입인 경우에 사용
+* size: 화면에 몇 글자 보이게 할 지 지정
+* maxlength, minlength: 최대 입력 가능 문자 길이를 지정
