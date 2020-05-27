@@ -498,15 +498,15 @@ required 속성을 사용한 폼 요소는 필수적으로 내용을 입력해�
 ~~~html
 <form action="/assets/etc/input_test.php" method="post">
   <input type="text">
-  <button type="submit">버튼</button>
-  <button type="reset">버튼</button>
+  <button type="submit">제출</button>
+  <button type="reset">다시 입력</button>
   <button type="button">버튼</button>
 </form>
 ~~~
 <form action="/assets/etc/input_test.php" method="post">
   <input type="text">
-  <button type="submit">버튼</button>
-  <button type="reset">버튼</button>
+  <button type="submit">제출</button>
+  <button type="reset">다시 입력</button>
   <button type="button">버튼</button>
 </form>
 
