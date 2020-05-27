@@ -35,7 +35,7 @@ p { text-align: center; }
 <br>
 <br>
 
-### 4. 내부/외부 스타일 시트
+### 4. 스타일 시트
 스타일 시트는 HTML 문서 안에 함께 포함할 수도 있고 (내부 스타일 시트), 별도 CSS 파일로 분리되어 있을 수도 있다 (외부 스타일 시트).<br>
 
 #### a. 내부 스타일 시트
@@ -91,8 +91,121 @@ p { text-align: center; }
 #### b. 외부 스타일 시트
 ~~~css
 /* stylesheet_test.css*/
+ul {
+  color:blue;
+  list-style-type:square;
+}
 ~~~
 ~~~html
 <!-- test.html -->
+<head>
+  <meta charset="utf-8">
+  <title>내부 스타일 시트</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <ul>
+    <li>내부</li>
+    <li>스타일</li>
+    <li>시트</li>
+  </ul>
+</body>
 ~~~
-universal selector
+
+여러 웹 문서에서 사용할 스타일을 별도 파일로 저장해 놓고 필요할 때마다 파일에서 링크해서 사용하는 방법이다.<br>
+\<style\> 태그 없이 \<link\> 태그를 사용해 미리 만들어둔 외부 스타일 시트 파일을 연결해서 해당 파일 내의 스타일들을 사용한다.<br>
+<br>
+<br>
+
+### 5. 인라인 스타일
+~~~html
+<body>
+  <h1>인라인 스타일</h1>
+  <p style="color:red;">인라인 스타일 이용한 빨간색 글씨</p>
+  <p>일반 글씨</p>
+</body>
+~~~
+
+인라인 스타일을 사용하면 스타일 시트 없이 적용할 대상에 직접 표시해줄 수 있다.<br>
+스타일을 적용할 태그에 style 속성을 사용해 
+~~~html
+<태그 style="속성: 속성 값;">
+~~~
+형태로 값을 줘서 적용할 수 있다.<br>
+<br>
+<br>
+
+## 2. 주요 selector
+### 1. Universal Selector - 전체 선택자
+~~~css
+* {
+  margin:0;
+  padding:0;
+}
+~~~
+
+Universal selector 는 모든 HTML 요소를 선택해서 스타일을 적용시킨다.<br>
+주로 다른 selector 와 함께 모든 하위 요소에 한꺼번에 스타일을 적용하려 할 때 사용한다.<br>
+<br>
+
+### 2. Type Selector - 태그 선택자
+~~~css
+h2 {
+  color:blue;
+}
+p {
+  font-size:12px;
+  margin-left:20px;
+  color:red;
+}
+~~~
+
+Type selector 는 특정 태그를 사용한 모든 요소에 스타일을 적용시킨다.<br>
+위의 예시 같은 경우 \<h2\> 요소들은 전부 파란색이 되고, \<p\> 요소들은 12포인트, 좌측 마진 20, 빨간색이 된다.<br>
+<br>
+
+### 3. Class Selector - 클래스 선택자
+~~~html
+<head>
+  <title>클래스 선택자</title>
+  <style>
+    h1.class1 {
+      color:blue;
+    }
+    .class2 {
+      color:red;
+    }
+  </style>
+</head>
+<body>
+  <h1>그냥 h1</h1>
+  <h1 class="class1">h1 class1</h1>
+  <h1 class="class2">h1 class2</h1>
+  <p>그냥 p</h1>
+  <p class="class1">p class1</p>
+  <p class="class2">p class2</p>
+</body>
+~~~
+<head>
+  <title>클래스 선택자</title>
+  <style>
+    h1.class1 {
+      color:blue;
+    }
+    .class2 {
+      color:red;
+    }
+  </style>
+</head>
+<body>
+  <h1>h1</h1>
+  <h1 class="class1">h1 class1</h1>
+  <h1 class="class2">h1 class2</h1>
+  <p>p</h1>
+  <p class="class1">p class1</p>
+  <p class="class2">p class2</p>
+</body>
+
+
+
+    9강 12:40
