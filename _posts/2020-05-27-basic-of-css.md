@@ -100,12 +100,12 @@ ul {
 <!-- test.html -->
 <head>
   <meta charset="utf-8">
-  <title>내부 스타일 시트</title>
+  <title>외부 스타일 시트</title>
   <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <ul>
-    <li>내부</li>
+    <li>외부</li>
     <li>스타일</li>
     <li>시트</li>
   </ul>
