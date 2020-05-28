@@ -48,7 +48,7 @@ p { text-align: center; }
     h1 { /* header 1 */
       color:red; /* 글자색: 빨강 */
     }
-    ul { /* unordered list */
+    ul.myUl { /* unordered list */
       color:blue; /* 글자색: 파랑 */
       list-style-type:squre; /* 불릿 형태: square */
     }
@@ -70,7 +70,7 @@ p { text-align: center; }
     h1 { /* header 1 */
       color:red; /* 글자색: 빨강 */
     }
-    ul { /* unordered list */
+    ul.myUl { /* unordered list */
       color:blue; /* 글자색: 파랑 */
       list-style-type:squre; /* 불릿 형태: square */
     }
@@ -181,7 +181,7 @@ Type selector 는 특정 태그를 사용한 모든 요소에 스타일을 적�
   <h1>그냥 h1</h1>
   <h1 class="class1">h1 class1</h1>
   <h1 class="class2">h1 class2</h1>
-  <p>그냥 p</h1>
+  <p>그냥 p</p>
   <p class="class1">p class1</p>
   <p class="class2">p class2</p>
 </body>
@@ -189,7 +189,7 @@ Type selector 는 특정 태그를 사용한 모든 요소에 스타일을 적�
 <head>
   <title>클래스 선택자</title>
   <style>
-    h1.class1 {
+    h2.class1 {
       color:blue;
     }
     .class2 {
@@ -198,14 +198,87 @@ Type selector 는 특정 태그를 사용한 모든 요소에 스타일을 적�
   </style>
 </head>
 <body>
-  <h1>h1</h1>
-  <h1 class="class1">h1 class1</h1>
-  <h1 class="class2">h1 class2</h1>
-  <p>p</h1>
+  <h2>h2</h2>
+  <h2 class="class1">h2 class1</h2>
+  <h2 class="class2">h2 class2</h2>
+  <p>p</p>
   <p class="class1">p class1</p>
   <p class="class2">p class2</p>
 </body>
 
+class selector 는 특정 태그 중에서도 일부에만 스타일을 적용할 수 있다.<br>
+태그."클래스 이름" 형식으로 사용하며, 해당 태그 중에서도 class 속성이 "클래스 이름" 인 요소들에만 스타일을 적용하겠다는 뜻이다.<br>
+태그를 쓰지 않고 ."클래스 이름" 만 쓰는 경우에는 모든 태그 타입 중에서 "클래스 이름" 을 class 속성 값으로 가지는 요소들에 적용할 수 있다.<br>
+<br>
 
+### 4. id Selector - 아이디 선택자
+~~~html
+<head>
+  <title>아이디 선택자</title>
+  <style>
+    #hello {
+      color:yellow;
+    }
+    #world {
+      color:brown;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="hello">Hello</h1>
+  <h2 id="world">World!</h2>
+</body>
+~~~
+<head>
+  <title>아이디 선택자</title>
+  <style>
+    #hello {
+      color:yellow;
+    }
+    #world {
+      color:brown;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="hello">Hello</h1>
+  <h2 id="world">World!</h2>
+</body>
 
-    9강 12:40
+id selector 는 요소의 id 속성값을 가지고 선택적으로 스타일을 적용해준다.<br>
+#"id 값" 을 selector 로 사용하면 되며, 이렇게 만든 스타일은 해당 "id 값" 을 id 속성값으로 가지는 요소에 대해서만 스타일을 적용한다.<br>
+만약 동일한 id 값 가지는 요소가 여러개라면 해당 요소들 전부에 스타일이 적용되겠지만, 서로 다른 요소에 대해 동일한 id 값을 사용하는것은 좋지 않기 때문에 보통 문서 내에서 한 번만 사용되는 스타일에 대해서 id selector 를 쓴다.<br>
+<br>
+
+### 4. Group Selector - 그룹 선택자
+~~~html
+<head>
+  <title>그룹 선택자</title>
+  <style>
+    h5, h6, h4.myH4 {
+      color:yellow;
+    }
+  </style>
+</head>
+<body>
+  <h4 class="myH4">Group Selector Test</h4>
+  <h5 id="hello">Hello</h1>
+  <h6 id="world">World!</h2>
+</body>
+~~~
+<head>
+  <title>그룹 선택자</title>
+  <style>
+    h5, h6, h4.myH4 {
+      color:cyan;
+    }
+  </style>
+</head>
+<body>
+  <h4 class="myH4">Group Selector Test</h4>
+  <h5>Hello</h5>
+  <h6>World!</h6>
+</body>
+
+여러개의 selector 들에 대해 동일한 스타일을 적용해 주고 싶다면 group selector 를 사용하면 된다.<br>
+위 예시와 같이 selector 들을 콤마(,) 로 구분해서 나열해주면 되며, 서로 다른 selector 타입을 섞어서 사용해도 된다.<br>
