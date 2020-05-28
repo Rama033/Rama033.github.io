@@ -4,7 +4,7 @@ disqus_disabled: false
 title: "[HTML5 & CSS3] 이미지와 하이퍼링크"
 date: 2020-05-25T16:58:00+09:00
 author: Jo
-categories: html-css-summary
+categories: html-css
 tags: html html5 css css3 web image image-tag img hyperlink hyperlink-tag tag
 cover: "/assets/instacode.png"
 ---
@@ -18,9 +18,9 @@ cover: "/assets/instacode.png"
 
 ### 1. \<img\> 태그 - 이미지 삽입
 ~~~html
-<img src="/assets/img/road_image.jpg" alt="도로 사진" width="50%" id="road_img">
+<img src="/assets/img/image_and_hyperlink/road_image.jpg" alt="도로 사진" width="50%" id="road_img">
 ~~~
-<img src="/assets/img/road_image.jpg" alt="도로 사진" width="50%" id="road_img">
+<img src="/assets/img/image_and_hyperlink/road_image.jpg" alt="도로 사진" width="50%" id="road_img">
 
 \<img\> 태그를 사용해서 웹 페이지에 이미지 파일을 삽입할 수 있다.  
 다음과 같이 속성값을 지정해서 이미지 파일 경로, 대체 텍스트, 이미지 크기 지정을 할 수 있다.  
@@ -41,12 +41,12 @@ cover: "/assets/instacode.png"
 ### 2. \<figure\>, \<figcaption\> - 이미지 캡션(설명글) 추가
 ~~~html
 <figure>
-  <img src="/assets/img/road_image.jpg" alt="도로 사진" width="50%">
+  <img src="/assets/img/image_and_hyperlink/road_image.jpg" alt="도로 사진" width="50%">
   <figcaption>도로 사진입니다.</figcaption>
 </figure>
 ~~~
 <figure>
-  <img src="/assets/img/road_image.jpg" alt="도로 사진" width="50%">
+  <img src="/assets/img/image_and_hyperlink/road_image.jpg" alt="도로 사진" width="50%">
   <figcaption>도로 사진입니다.</figcaption>
 </figure>
 
@@ -69,11 +69,11 @@ cover: "/assets/instacode.png"
 <a href="https://www.google.com">텍스트 링크 (현재 창에 표시)</a>
 
 <!-- 이미지에 링크 생성 -->
-<a href="https://www.google.com" target="_blank"><img src="/assets/img/road_image.jpg"></a>
+<a href="https://www.google.com" target="_blank"><img src="/assets/img/image_and_hyperlink/road_image.jpg"></a>
 ~~~
 <a href="https://www.google.com">텍스트 링크 (현재 창에 표시)</a>
 
-<a href="https://www.google.com" target="_blank"><img src="/assets/img/road_image.jpg"></a>
+<a href="https://www.google.com" target="_blank"><img src="/assets/img/image_and_hyperlink/road_image.jpg"></a>
 
 **A**nchor 의 약자로, 텍스트나 이미지에 하이퍼링크를 만들어줄 수 있다.  
 \<a href="링크 주소"\> ~ \</a\> 사이에 이미지 태그나 텍스트를 넣으면 href 속성값 주소에 대한 하이퍼링크가 생긴다.  
@@ -115,13 +115,13 @@ cover: "/assets/instacode.png"
 
 ### 2. \<map\>, \<area\> 태그, usemap 속성 - 이미지맵
 ~~~html
-<img src="/assets/img/imagemap.jpg" usemap="#my_map">
+<img src="/assets/img/image_and_hyperlink/imagemap.jpg" usemap="#my_map">
 <map name="my_map">
   <area shape="rect" coords="50, 0, 350, 300" href="https://www.google.com" target="_blank">
   <area shape="circle" coords="500, 150, 150" href="https://www.naver.com" target="_blank">
 </map>
 ~~~
-<img src="/assets/img/imagemap.jpg" usemap="#my_map">
+<img src="/assets/img/image_and_hyperlink/imagemap.jpg" usemap="#my_map">
 <map name="my_map">
   <area shape="rect" coords="50, 0, 350, 300" href="https://www.google.com" target="_blank">
   <area shape="circle" coords="500, 150, 150" href="https://www.naver.com" target="_blank">

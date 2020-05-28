@@ -4,7 +4,7 @@ disqus_disabled: false
 title: "[HTML5 & CSS3] Form 과 input"
 date: 2020-05-25T16:58:00+09:00
 author: Jo
-categories: html-css-summary
+categories: html-css
 tags: html html5 css css3 web form input tag
 cover: "/assets/instacode.png"
 ---
@@ -303,12 +303,12 @@ checked 속성을 사용하면 해당 항목은 기본적으로 선택된 상태
   ~~~html
   <form action="/assets/etc/input_test.php" method="post">
     <label>입력창<input type="text"></label>
-    <input type="image" src="/assets/img/img_btn_submit.png">
+    <input type="image" src="/assets/img/form_and_input/img_btn_submit.png">
   </form>
   ~~~
   <form action="/assets/etc/input_test.php" method="post">
     <label>입력창<input type="text"></label>
-    <input type="image" src="/assets/img/img_btn_submit.png" width="80" height="40">
+    <input type="image" src="/assets/img/form_and_input/img_btn_submit.png" width="80" height="40">
   </form>
   * submit 버튼으로 src 속성값으로 지정한 이미지를 사용
 * **button**: 일반 버튼<br>

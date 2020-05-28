@@ -4,8 +4,8 @@ disqus_disabled: false
 title: "Active Directory"
 date: 2020-05-26T14:52:00+09:00
 author: Jo
-categories: micro-soft
-tags: micro-soft ms solution groupware active-directory ldap windows 
+categories: microsoft
+tags: microsoft ms solution groupware active-directory ldap windows 
 cover: "/assets/instacode.png"
 ---
 

@@ -4,7 +4,7 @@ disqus_disabled: false
 title: "[HTML5 & CSS3] CSS 기초 및 주요 선택자"
 date: 2020-05-25T16:58:00+09:00
 author: Jo
-categories: html-css-summary
+categories: html-css
 tags: html html5 css css3 web design css style style-sheet selector 
 cover: "/assets/instacode.png"
 ---
