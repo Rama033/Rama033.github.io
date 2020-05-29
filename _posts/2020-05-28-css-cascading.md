@@ -17,9 +17,10 @@ cover: "/assets/instacode.png"
 
 ### 2. 캐스캐이딩의 원칙
   1. **스타일 우선순위**<br>
-  스타일 규칙의 중요도, 적용 범위에 따라 우선순위가 결정되고, 그 우선순위에 따라 위에서 아래로 스타일이 적용된다.
+  스타일 규칙의 중요도, 적용 범위에 따라 우선순위가 결정되고, 그 우선순위에 따라 위에서 아래로 스타일이 적용된다.<br>
   2. **스타일 상속**<br>
-  태그들의 포함 관계에 따라 부모 요소의 스타일을 자식 요소로, 위에서 아래로 전달
+  태그들의 포함 관계에 따라 부모 요소의 스타일을 자식 요소로, 위에서 아래로 전달<br>
+<br>
 <br>
 
 #### 1. 스타일 우선 순위
@@ -59,18 +60,28 @@ cover: "/assets/instacode.png"
 ~~~html
 <head>
   <style>
-    body {
+    #style-inherit {
       font-family:"궁서";
       color:yellow;
+      background-color:brown;
+    }
+    p.no-inherited {
+      font-family:"돋움";
+      background-color:black;
     }
   </style>
 </head>
 <body>
-  <h1>자식 header</h1>
-  <ul>
-    <li>자식 리스트 1</li>
-    <li>자식 리스트 2</li>
-  </ul>
+  <div id="style-inherit">
+    <p>스타일 지정 안된 자식</p>
+    <p class="no-inherited">스타일 지정된 자식</p>
+    <div>
+      <ul>
+        <li>자식 리스트 1</li>
+        <li>자식 리스트 2</li>
+      </ul>
+    </div>
+  </div>
 </body>
 ~~~
 <head>
@@ -90,10 +101,12 @@ cover: "/assets/instacode.png"
   <div id="style-inherit">
     <p>스타일 지정 안된 자식</p>
     <p class="no-inherited">스타일 지정된 자식</p>
-    <ul>
-      <li>자식 리스트 1</li>
-      <li>자식 리스트 2</li>
-    </ul>
+    <div>
+      <ul>
+        <li>하위 리스트 1</li>
+        <li>하위 리스트 2</li>
+      </ul>
+    </div>
   </div>
 </body>
 
@@ -109,6 +122,7 @@ cover: "/assets/instacode.png"
 CSS3 는 CSS2 를 기본으로 하여 새로운 규약들을 추가한 것이다.<br>
 CSS2 까지는 모든 스타일 규약이 하나에 담겨있어서 굉장히 복잡했고, 업데이트 하기 어려운 단점이 있었다.<br>
 따라서 CSS3 에서는 배경, 글꼴, 박스 모델 등 수십 개의 기능을 주제로 별도 규약을 따로 만들어 개별적으로 개발하였으며, 이 별도 규약들을 **CSS 모듈** 이라고 부른다.<br>
+<br>
 
 ### 브라우저 접두사
 CSS3 에서 아직 개발이 진행중이라 표준 규약이 아닌 속성들은 브라우저별로 다른 방식으로 지원된다.<br>
