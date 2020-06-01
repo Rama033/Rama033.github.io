@@ -9,10 +9,10 @@ tags: html html5 css css3 web design css style style-sheet text text-style
 cover: "/assets/instacode.png"
 ---
 
-## 1. 글꼴 관련 스타일
+## 1. 글꼴 관련 스타일 속성
 <br>
 
-### 1. font-family
+### 1. font-family - 폰트 설정
 ~~~css
   body {
     font-family:'맑은 고딕', "돋움", 궁서;
@@ -26,7 +26,7 @@ font-family 속성은 상속이 가능하기 때문에 \<body\> 에 적용시키
 한 개의 단어로 이루어져 있으면 해줘도 되고 안해줘도 된다.<br>
 <br>
 
-### 2. @font-face
+### 2. @font-face - 웹 폰트 설정
 ~~~html
 <style>
   @font-face {
@@ -42,5 +42,65 @@ font-family 속성은 상속이 가능하기 때문에 \<body\> 에 적용시키
   }
 </style>
 ~~~
+@font-face 를 사용하면 웹 문서 안에 글꼴 정보도 함께 저장했다가 사용자가 웹 문서에 접속하면 글꼴을 사용자 시스템으로 다운로드시켜서 사용할 수 있다.<br>
+위 예시 처럼 @font-face { ~ } 안에 font-family 속성으로 직접 준비한 폰트 이름을 지정하고, src 속성에 글꼴 정보를 넣어준다.<br>
+src 속성의 맨 처음 것부터 차례대로 시도하게 되며, 따라서 가장 먼저 local() 함수로 사용자의 시스템에 이미 해당 글꼴이 있는지 확인한다.<br>
+있을 경우에는 넘어가고, 없을 경우에는 url() 로 넣은 값을 다운로드 받아서 사용하게된다.<br>
+<br>
 
+### 3. 구글 웹 폰트
+~~~html
+<style>
+  /* 구글 웹 폰트 주소 */
+  @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+  .my-font {
+    font-family: 'Jeju Hallasan', cursive;
+  }
+</style>
+<body>
+  <p>기본 글꼴</p>
+  <p>제주 한라산</p>
+</body>
+~~~
+<style>
+  /* 구글 웹 폰트 주소 */
+  @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+  .my-font {
+    font-family: 'Jeju Hallasan', cursive;
+  }
+</style>
+<body>
+  <p>기본 글꼴</p>
+  <p>제주 한라산</p>
+</body>
 
+@font-face 를 사용해서 웹 폰트를 적용할 수도 있지만 구글 웹 폰트를 사용하면 더욱 간편하게 적용할 수 있다.<br>
+@import url() 안에 구글 웹 폰트 주소를 넣으면 다른 처리를 해 줄 필요 없이 웹 개발자의 PC에 없는 폰트도 적용시킬 수 있다.<br>
+<a href="https://fonts.google.com/earlyaccess">구글 웹 폰트</a>에 들어가서 원하는 폰트를 찾은 다음 link 를 import 하면 된다.<br>
+아직 얼리엑세스라 폰트 종류가 많지는 않지만 매우 편리하게 사용할 수 있어서 좋다.<br>
+<br>
+
+### 4. font-size - 글자 크기
+~~~css
+font-size: <절대 크기> | <상대 크기> | <숫자> | <백분율>
+~~~
+이름 그대로 글자 크기를 조절하는 속성이다.<br>
+절대 크기, 상대 크기, 숫자, 백분율 중 하나로 지정할 수 있으며, 기본 값은 절대 크기 medium 이다.<br>
+font-size 속성은 상속 된다.<br>
+* **절대 크기**: 브라우저에서 지정한 글자 크기. 다음 크기 중 선택
+  * xx-smal
+  * x-smal
+  * small
+  * medium
+  * large
+  * x-large
+  * xx-large
+* **상대 크기**: 부모 요소의 font-size 를 기준으로 더 크게, 또는 작게 표시. 다음 두 가지 중 선택
+  * larger: 부모 요소보다 크게
+  * smaller: 부모 요소보다 작게
+* **숫자**: 글자 크기를 직접 지정. 단위는 다음과 같다
+  * em: 해당 글꼴에서의 대문자 M의 너비를 기준으로 크기를 조절
+  * ex: 해당 글꼴에서의 소문자 x의 높이를 기준으로 크기를 조절
+  * px: 픽셀 단위. 모니터에 따라 상대적 크기가 됨. 폰트 크기가 고정된ㄷ
+  * pt: 포인트 단위. 일반 문서에서 많이 사용
+  
