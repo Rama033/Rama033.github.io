@@ -362,30 +362,29 @@ none 은 쓸모가 없어보일 수도 있는데, 이 속성값을 사용해서 
     list-style-type: none
   }
 </style>
-<p>검은색 원</p>
+<h4>검은색 원</h4>
 <ul class="disc">
   <li>가</li>
   <li>나</li>
   <li>다</li>
 </ul>
-<p>빈 원</p>
+<h4>빈 원</h4>
 <ul class="circle">
   <li>가</li>
   <li>나</li>
   <li>다</li>
 </ul>
-<p>검은색 사각형</p>
+<h4>검은색 사각형</h4>
 <ul class="square">
   <li>가</li>
   <li>나</li>
   <li>다</li>
 </ul>
-<p>불릿 없음</p>
+<h4>불릿 없음</h4>
 <ul class="none">
   <li>가</li>
   <li>나</li>
   <li>다</li>
-</ul>
 </ul>
 ~~~
 <style>
@@ -402,25 +401,25 @@ none 은 쓸모가 없어보일 수도 있는데, 이 속성값을 사용해서 
     list-style-type: none
   }
 </style>
-<p>검은색 원</p>
+<h4>검은색 원</h4>
 <ul class="disc">
   <li>가</li>
   <li>나</li>
   <li>다</li>
 </ul>
-<p>빈 원</p>
+<h4>빈 원</h4>
 <ul class="circle">
   <li>가</li>
   <li>나</li>
   <li>다</li>
 </ul>
-<p>검은색 사각형</p>
+<h4>검은색 사각형</h4>
 <ul class="square">
   <li>가</li>
   <li>나</li>
   <li>다</li>
 </ul>
-<p>불릿 없음</p>
+<h4>불릿 없음</h4>
 <ul class="none">
   <li>가</li>
   <li>나</li>
@@ -467,7 +466,7 @@ none 값을 줘서 불릿이 없는 리스트를 만들 수도 있는데, 이런
     list-style-image: url('/assets/img/css_text_style/check.png');
   }
 </style>
-<p>오늘의 할 일</p>
+<h3>오늘의 할 일</h3>
 <ul class="image-bullet">
   <li>설거지</li>
   <li>청소</li>
