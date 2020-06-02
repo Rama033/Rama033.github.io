@@ -107,6 +107,9 @@ font-size 속성은 상속 된다.<br>
 <br>
 
 ## 2. 텍스트 스타일
+글자 하나하나, 글자 묶음에 적용되는 스타일<br>
+<br>
+
 ### 1. color - 글자 색
 ~~~html
 <style>
@@ -190,7 +193,7 @@ none 은 쓸모가 없어보일 수도 있는데, 이 속성값을 사용해서 
 <style>
   .shadow-test {
     /* 가로거리, 세로거리, 번짐정도, 색상 */
-    text-shadow: 2px -3px 10px #f00;
+    text-shadow: 2px -3px 1px #f00;
   }
 </style>
 
@@ -274,3 +277,197 @@ none 은 쓸모가 없어보일 수도 있는데, 이 속성값을 사용해서 
 <p class="word2">가나다라 마바사</p>
 
 각각 자간과 어간을 조절한다.<br>
+<br>
+<br>
+
+## 3. 문단 스타일
+문단 전체에 적용되는 스타일<br>
+<br>
+
+### 1. text-indent - 들여쓰기
+~~~html
+<style>
+  .indent1 {
+    text-indent: 15px;
+  }
+  .indent2 {
+    text-indent: 5%;
+  }
+</style>
+~~~
+<style>
+  .indent1 {
+    text-indent: 15px;
+  }
+  .indent2 {
+    text-indent: 5%;
+  }
+</style>
+
+문단의 첫 글자를 얼마나 들여쓸지를 결정해준다.<br>
+크기 또는 백분율로 들여쓰는 정도를 지정할 수 있다. 백분율로 할 경우에는 부모 요소의 너비를 기준으로 상대적 크기를 지정한다.<br>
+<br>
+
+### 2. line-height - 행간
+~~~html
+<style>
+  .big-line {
+    line-height: 2;
+  }
+  .small-line {
+    line-height: 0.7;
+  }
+</style>
+<p class="big-line">행간 넓게<br>가나다라마바사</p>
+<p class="big-line">행간 좁게<br>가나다라마바사</p>
+~~~
+<style>
+  .big-line {
+    line-height: 2;
+  }
+  .small-line {
+    line-height: 0.7;
+  }
+</style>
+<p class="big-line">행간 넓게<br>가나다라마바사</p>
+<p class="big-line">행간 좁게<br>가나다라마바사</p>
+
+문단의 줄 간격을 지정해준다.<br>
+숫자, 백분율을 이용해 간격을 정할 수 있으며, 둘 다 부모 요소를 기준으로 몇 배인지 지정된다.<br>
+<br>
+
+### 2. list-style-type - 리스트 글머리 변경
+순서 없는 리스트의 불릿이나 순서 리스트의 숫자를 바꿀 수 있다.<br>
+<br>
+
+#### 1. 순서 없는 리스트
+~~~html
+<style>
+  .disc {
+    list-style-style: disc
+  }
+  .circle {
+    list-style-style: circle
+  }
+  .square {
+    list-style-style: square
+  }
+  .none {
+    list-style-style: none
+  }
+</style>
+<p>검은색 원</p>
+<ul class="disc">
+  <li>가</li>
+  <li>나</li>
+  <li>다</li>
+</ul>
+<p>빈 원</p>
+<ul class="circle">
+  <li>가</li>
+  <li>나</li>
+  <li>다</li>
+</ul>
+<p>검은색 사각형</p>
+<ul class="square">
+  <li>가</li>
+  <li>나</li>
+  <li>다</li>
+</ul>
+<p>불릿 없음</p>
+<ul class="none">
+  <li>가</li>
+  <li>나</li>
+  <li>다</li>
+</ul>
+</ul>
+~~~
+<style>
+  .disc {
+    list-style-style: disc
+  }
+  .circle {
+    list-style-style: circle
+  }
+  .square {
+    list-style-style: square
+  }
+  .none {
+    list-style-style: none
+  }
+</style>
+<p>검은색 원</p>
+<ul class="disc">
+  <li>가</li>
+  <li>나</li>
+  <li>다</li>
+</ul>
+<p>빈 원</p>
+<ul class="circle">
+  <li>가</li>
+  <li>나</li>
+  <li>다</li>
+</ul>
+<p>검은색 사각형</p>
+<ul class="square">
+  <li>가</li>
+  <li>나</li>
+  <li>다</li>
+</ul>
+<p>불릿 없음</p>
+<ul class="none">
+  <li>가</li>
+  <li>나</li>
+  <li>다</li>
+</ul>
+
+* **disc**: 검은색 원
+* **circle**: 빈 원
+* **square**: 검은색 사각형
+* **none**: 불릿 없애기<br>
+<br>
+
+list-style-type 속성에 none 값을 줘서 불릿이 없는 리스트를 만들 수 있다.<br> 
+이런 리스트는 주로 메뉴를 만들 때 사용한다.<br>
+<br>
+
+#### 2. 순서 리스트
+* **decimal**: 십진수 (1, 2, 3, ..., 10, 11, ...)
+* **decimal-leading-zero**: 앞에 0이 붙은 십진수 (01, 02, 03, ..., 99)
+* **lower-roman**: 소문자 로마 숫자 (i, ii, iii, iv, v, ...)
+* **upper-roman**: 대문자 로마 숫자 (I, II, III, IV, ...)
+* **lower-alpha | lower-latin**: 소문자 알파벳 (a, b, c, ...)
+* **upper-alpha | upper-latin**: 대문자 알파벳 (A, B, C, ...)
+* **armenian**: 아르메니아 숫자
+* **georgian**: 조지 왕조시대 숫자<br>
+<br>
+
+### 3. list-style-image - 이미지를 글머리로
+~~~html
+<style>
+  .image-bullet {
+    list-style-image: url('/assets/img/css-text-style/check.png');
+  }
+</style>
+<p>오늘의 할 일</p>
+<ul class="image-bullet">
+  <li>설거지</li>
+  <li>청소</li>
+  <li>빨래</li>
+  <li>분리수거</li>
+</ul>
+~~~
+<style>
+  .image-bullet {
+    list-style-image: url('/assets/img/css-text-style/check.png');
+  }
+</style>
+<p>오늘의 할 일</p>
+<ul class="image-bullet">
+  <li>설거지</li>
+  <li>청소</li>
+  <li>빨래</li>
+  <li>분리수거</li>
+</ul>
+
+순서 없는 리스트의 불릿을 이미지로 바꿀 수 있다.<br>
