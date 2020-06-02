@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo `git add _config.yml ./_posts/`
+echo `git add _config.yml ./_posts/ ./assets/`
 
 echo  "\n\n...complete add _config.yml and posts...\n\n"
 
