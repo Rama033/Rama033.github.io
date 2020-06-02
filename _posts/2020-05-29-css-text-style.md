@@ -71,7 +71,7 @@ src 속성의 맨 처음 것부터 차례대로 시도하게 되며, 따라서 �
 </style>
 <body>
   <p>기본 글꼴</p>
-  <p>제주 한라산</p>
+  <p class="my-font">제주 한라산</p>
 </body>
 
 @font-face 를 사용해서 웹 폰트를 적용할 수도 있지만 구글 웹 폰트를 사용하면 더욱 간편하게 적용할 수 있다.<br>
@@ -101,6 +101,176 @@ font-size 속성은 상속 된다.<br>
 * **숫자**: 글자 크기를 직접 지정. 단위는 다음과 같다
   * em: 해당 글꼴에서의 대문자 M의 너비를 기준으로 크기를 조절
   * ex: 해당 글꼴에서의 소문자 x의 높이를 기준으로 크기를 조절
-  * px: 픽셀 단위. 모니터에 따라 상대적 크기가 됨. 폰트 크기가 고정된ㄷ
-  * pt: 포인트 단위. 일반 문서에서 많이 사용
-  
+  * px: 픽셀 단위. 모니터에 따라 상대적 크기가 됨.
+  * pt: 포인트 단위. 일반 문서에서 많이 사용<br>
+<br>
+<br>
+
+## 2. 텍스트 스타일
+### 1. color - 글자 색
+~~~html
+<style>
+  .color-test {
+    color:rgb(0, 200, 0);
+  }
+</style>
+
+<h2 class="color-test">글자 색 바꾸기</h2>
+~~~
+<style>
+  .color-test {
+    color:rgb(0, 200, 0);
+  }
+</style>
+
+<h2 class="color-test">글자 색 바꾸기</h2>
+
+16진수 값, rgb 값, hsl 값, 색상 이름 중 하나를 사용해서 글자의 색을 지정한다.<br>
+<br>
+
+### 2. text-decoration - 선 긋기
+~~~html
+<style>
+  .deco-none {
+    text-decoration: none;
+  }
+  .deco-underline {
+    text-decoration: underline;
+  }  
+  .deco-overline {
+    text-decoration: overline;
+  }
+  .deco-line-through {
+    text-decoration: line-through;
+  }
+</style>
+
+<p class="deco-none">아무것도 안함</p>
+<p class="deco-underline">밑줄 표시</p>
+<p class="deco-overline">윗줄 표시</p>
+<p class="deco-line-through">취소선 표시</p>
+~~~
+<style>
+
+  .deco-none {
+    text-decoration: none;
+  }
+  .deco-underline {
+    text-decoration: underline;
+  }  
+  .deco-overline {
+    text-decoration: overline;
+  }
+  .deco-line-through {
+    text-decoration: line-through;
+  }
+</style>
+
+<p class="deco-none">아무것도 안함</p>
+<p class="deco-underline">밑줄 표시</p>
+<p class="deco-overline">윗줄 표시</p>
+<p class="deco-line-through">취소선 표시</p>
+<a href="https://www.google.com" class=".deco-none">밑줄 없는 하이퍼링크</a>
+
+텍스트에 줄을 그을 때 사용하는 속성이다.<br>
+none 은 쓸모가 없어보일 수도 있는데, 이 속성값을 사용해서 하이퍼링크의 밑줄을 없앨 수가 있다.<br>
+<br>
+
+### 3. text-shadow - 그림자 넣기
+~~~html
+<style>
+  .shadow-test {
+    /* 가로거리, 세로거리, 번짐정도, 색상 */
+    text-shadow: 2px -3px 10px #f00;
+  }
+</style>
+
+<p class="shadow-test">안녕하세요</p>
+~~~
+<style>
+  .shadow-test {
+    /* 가로거리, 세로거리, 번짐정도, 색상 */
+    text-shadow: 2px -3px 10px #f00;
+  }
+</style>
+
+<p class="shadow-test">안녕하세요</p>
+
+텍스트에 그림자 효과를 추가해준다.<br>
+속성값은 최대 네 개가 들어갈 수 있는데, 순서대로 가로거리, 세로거리, 번짐정도, 색상을 지정해주는 값이다.<br>
+가로, 세로 거리는 필수 값이며, 나머지는 굳이 넣어주지 않아도 된다.<br>
+<br>
+
+### 4. white-space - 공백
+~~~css
+.normal {
+  white-space: normal;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.pre {
+  white-space: pre;
+}
+.pre-line {
+  white-space: pre-line;
+}
+.pre-wrap {
+  white-space: pre-wrap;
+}
+~~~
+
+공백을 처리하는 방법을 지정할 수 있다.<br>
+속성값은 다음과 같다.<br>
+* **normal**: 연속하는 공백을 하나로 처리. default 값
+* **nowrap**: 연속하는 공백을 하나로 처리하고, 줄을 바꾸지 않음
+* **pre**: 연속하는 공백을 소스 그대로 표시하고, 소스에서 줄을 바꾼 부분만 줄바꿈을 표시하며 자동 줄바꿈은 안됨
+* **pre-line**: 연속하는 공백은 하나로 취급하고, 소스에서 줄을 바꾼 부분은 줄바꿈을 표시하며 영역 너비 넘어간 부분 자동 줄바꿈 됨
+* **pre-wrap**: 연속하는 공백을 소스 그대로 표시하고, 소스에서 줄을 바꾼 부분은 줄바꿈을 표시하며 영역 너비 넘어간 부분 자동 줄바꿈 됨<br>
+<br>
+
+### 5. letter-spacing, word-spacing - 글자, 단어사이 간격
+~~~html
+<style>
+  .letter1 {
+    letter-spacing: 0.2em;
+  }
+  .letter2 {
+    letter-spacing: 1.0em;
+  }
+
+  .word1 {
+    word-spacing: 0.5em;
+  }
+  .word2 {
+    word-spacing: 3.0em;
+  }
+</style>
+
+<p class="letter1">가나다라마바사</p>
+<p class="letter2">가나다라마바사</p>
+<p class="word1">가나다라 마바사</p>
+<p class="word2">가나다라 마바사</p>
+~~~
+<style>
+  .letter1 {
+    letter-spacing: 0.2em;
+  }
+  .letter2 {
+    letter-spacing: 1.0em;
+  }
+
+  .word1 {
+    word-spacing: 0.5em;
+  }
+  .word2 {
+    word-spacing: 3.0em;
+  }
+</style>
+
+<p class="letter1">가나다라마바사</p>
+<p class="letter2">가나다라마바사</p>
+<p class="word1">가나다라 마바사</p>
+<p class="word2">가나다라 마바사</p>
+
+각각 자간과 어간을 조절한다.<br>
