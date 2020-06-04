@@ -10,7 +10,7 @@ cover: "/assets/instacode.png"
 ---
 
 ## Semantic 태그
-<img src="/assets/img/html5_semantic_tag/standard_web_doc_structure.png">
+<img src="/assets/img/html5_semantic_tag/standard_web_doc_structure.PNG">
 <br>
 
 HTML4 는 화면 구성을 대부분 \<div\> 로 하였고, 이 태그들을 구분하기위해 id 속성을 이용했다.<br>
