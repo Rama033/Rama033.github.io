@@ -111,6 +111,7 @@ bar();
 
 ~~~
 > foo
+> foo
 > bar
 > foofoo
 > foofoofoo
