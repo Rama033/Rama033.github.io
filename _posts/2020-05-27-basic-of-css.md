@@ -250,49 +250,7 @@ id selector 는 요소의 id 속성값을 가지고 선택적으로 스타일을
 만약 동일한 id 값 가지는 요소가 여러개라면 해당 요소들 전부에 스타일이 적용되겠지만, 서로 다른 요소에 대해 동일한 id 값을 사용하는것은 좋지 않기 때문에 보통 문서 내에서 한 번만 사용되는 스타일에 대해서 id selector 를 쓴다.<br>
 <br>
 
-### 4. Descendant, Child Selector - 하위, 자식 선택자
-~~~html
-<head>
-  <style>
-    body h1 {
-      color:darkgreen;
-    }
-    #parent>#child {
-      color:brown;
-    }
-  </style>
-</head>
-<body>
-  <div id="parent">
-    <h1>하위 요소</h1>
-    <h2 id="child">자식요소</h2>
-  </div>
-</body>
-~~~
-<head>
-  <style>
-    body h1 {
-      color:darkgreen;
-    }
-    #parent>#child {
-      color:brown;
-    }
-  </style>
-</head>
-<body>
-  <div id="parent">
-    <h1>하위 요소</h1>
-    <h2 id="child">자식요소</h2>
-  </div>
-</body>
-
-"상위 태그" "하위 태그" 를 selector 로 해서 descendat selector 를 쓸 수 있고,<br>
-"부모 태그"\>"자식 태그" 로 해서 child selector 를 쓸 수 있다.<br>
-Descendant selector, child selector 둘 다 특정 요소 아래에 있는 요소에 스타일을 적용시킨다.<br>
-차이점은 child selector 의 경우 바로 아래에 있는 자식 요소에 대해서만 스타일을 적용시킨다는 것이고,<br>
-desendant selector 는 깊이와 상관 없이 자기 하위에 있는 모든 요소에 대해서 작용한다.<br>
-
-### 5. Group Selector - 그룹 선택자
+### 4. Group Selector - 그룹 선택자
 ~~~html
 <head>
   <title>그룹 선택자</title>
