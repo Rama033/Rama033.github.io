@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>감자는 맛있다</title>
+    <description>개발 공부 블로그</description>
+    <link>https://sungunjo.github.io/</link>
+    <atom:link href="https://sungunjo.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 13 Jun 2020 23:02:23 +0900</pubDate>
+    <lastBuildDate>Sat, 13 Jun 2020 23:02:23 +0900</lastBuildDate>
+    <generator>Jekyll v3.8.6</generator>
+    
+      <item>
+        <title>URI, URL, URN</title>
+        <description>&lt;h2 id=&quot;uri-uniform-resource-identifier&quot;&gt;URI (Uniform Resource Identifier)&lt;/h2&gt; &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scheme:[//[user[:password]@]host[:port]][/path][?query][#fragment] &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt; &lt;p&gt;통합 자원 식별자. 말 그대로 네트워크 상에서 자원을 식별해준다. &lt;br /&gt; URI 의 하위 개념으로 URL 과 URN 이 있다.&lt;br...</description>
+        <pubDate>Sat, 13 Jun 2020 22:57:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/web/2020/06/13/uri-url-urn.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/web/2020/06/13/uri-url-urn.html</guid>
+        
+        <category>web</category>
+        
+        <category>uri</category>
+        
+        <category>urn</category>
+        
+        <category>url</category>
+        
+        
+        <category>web</category>
+        
+      </item>
+    
+      <item>
+        <title>[HTML5 &amp; CSS3] CSS 기초 및 주요 선택자</title>
+        <description>&lt;h2 id=&quot;1-연결-선택자&quot;&gt;1. 연결 선택자&lt;/h2&gt; &lt;p&gt;selector 와 selector 를 연결해 적용 대상을 한정하는 selector&lt;br /&gt; combination selector 라고도 한다.&lt;br /&gt;&lt;/p&gt; &lt;h3 id=&quot;1-descendant-selector---하위-선택자&quot;&gt;1. Descendant Selector - 하위 선택자&lt;/h3&gt; &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre...</description>
+        <pubDate>Tue, 02 Jun 2020 17:00:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/html-css/2020/06/02/css-selector.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/html-css/2020/06/02/css-selector.html</guid>
+        
+        <category>html</category>
+        
+        <category>html5</category>
+        
+        <category>css</category>
+        
+        <category>css3</category>
+        
+        <category>web</category>
+        
+        <category>design</category>
+        
+        <category>css</category>
+        
+        <category>style</category>
+        
+        <category>style-sheet</category>
+        
+        <category>selector</category>
+        
+        
+        <category>html-css</category>
+        
+      </item>
+    
+      <item>
+        <title>[HTML5 &amp; CSS3] CSS Semantic Tag</title>
+        <description>&lt;h2 id=&quot;semantic-태그&quot;&gt;Semantic 태그&lt;/h2&gt; &lt;p&gt;&lt;img src=&quot;/assets/img/html5_semantic_tag/standard_web_doc_structure.PNG&quot; /&gt; &lt;br /&gt;&lt;/p&gt; &lt;p&gt;HTML4 는 화면 구성을 대부분 &amp;lt;div&amp;gt; 로 하였고, 이 태그들을 구분하기위해 id 속성을 이용했다.&lt;br /&gt; 그러다보니 홈페이지 구조를 분석하고 이해하기가 어려웠고, HTML5...</description>
+        <pubDate>Tue, 02 Jun 2020 16:01:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/html-css/2020/06/02/html5-semantic-tag.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/html-css/2020/06/02/html5-semantic-tag.html</guid>
+        
+        <category>html</category>
+        
+        <category>html5</category>
+        
+        <category>css</category>
+        
+        <category>css3</category>
+        
+        <category>web</category>
+        
+        <category>design</category>
+        
+        <category>css</category>
+        
+        <category>style</category>
+        
+        <category>style-sheet</category>
+        
+        <category>semantic</category>
+        
+        <category>tag</category>
+        
+        <category>semantic-tag</category>
+        
+        
+        <category>html-css</category>
+        
+      </item>
+    
+      <item>
+        <title>[HTML5 &amp; CSS3] CSS 박스 모델</title>
+        <description>&lt;h3 id=&quot;블록-레벨-요소&quot;&gt;블록 레벨 요소&lt;/h3&gt; &lt;p&gt;요소를 삽입했을 때 혼자 한 줄을 전부 차지하는 요소로, 다른 요소와 한 줄에 존재할 수 없다.&lt;br /&gt; ex) &amp;lt;div&amp;gt;, &amp;lt;p&amp;gt; 등&lt;br /&gt; &lt;br /&gt;&lt;/p&gt; &lt;h3 id=&quot;인라인-레벨-요소&quot;&gt;인라인...</description>
+        <pubDate>Tue, 02 Jun 2020 14:51:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/html-css/2020/06/02/css-box-model.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/html-css/2020/06/02/css-box-model.html</guid>
+        
+        <category>html</category>
+        
+        <category>html5</category>
+        
+        <category>css</category>
+        
+        <category>css3</category>
+        
+        <category>web</category>
+        
+        <category>design</category>
+        
+        <category>css</category>
+        
+        <category>style</category>
+        
+        <category>style-sheet</category>
+        
+        <category>box</category>
+        
+        <category>model</category>
+        
+        <category>box-model</category>
+        
+        
+        <category>html-css</category>
+        
+      </item>
+    
+      <item>
+        <title>[HTML5 &amp; CSS3] CSS 스타일</title>
+        <description>&lt;h3 id=&quot;background-속성&quot;&gt;background 속성&lt;/h3&gt; &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.color-background&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;rgb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.img-background&lt;/span&gt; &lt;span...</description>
+        <pubDate>Tue, 02 Jun 2020 13:46:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/html-css/2020/06/02/css-style.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/html-css/2020/06/02/css-style.html</guid>
+        
+        <category>html</category>
+        
+        <category>html5</category>
+        
+        <category>css</category>
+        
+        <category>css3</category>
+        
+        <category>web</category>
+        
+        <category>design</category>
+        
+        <category>css</category>
+        
+        <category>style</category>
+        
+        <category>style-sheet</category>
+        
+        
+        <category>html-css</category>
+        
+      </item>
+    
+      <item>
+        <title>[HTML5 &amp; CSS3] CSS 텍스트 스타일</title>
+        <description>&lt;h2 id=&quot;1-글꼴-관련-스타일-속성&quot;&gt;1. 글꼴 관련 스타일 속성&lt;/h2&gt; &lt;p&gt;&lt;br /&gt;&lt;/p&gt; &lt;h3 id=&quot;1-font-family---폰트-설정&quot;&gt;1. font-family - 폰트 설정&lt;/h3&gt; &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'맑은 고딕'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span...</description>
+        <pubDate>Fri, 29 May 2020 09:03:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/html-css/2020/05/29/css-text-style.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/html-css/2020/05/29/css-text-style.html</guid>
+        
+        <category>html</category>
+        
+        <category>html5</category>
+        
+        <category>css</category>
+        
+        <category>css3</category>
+        
+        <category>web</category>
+        
+        <category>design</category>
+        
+        <category>css</category>
+        
+        <category>style</category>
+        
+        <category>style-sheet</category>
+        
+        <category>text</category>
+        
+        <category>text-style</category>
+        
+        
+        <category>html-css</category>
+        
+      </item>
+    
+      <item>
+        <title>[HTML5 &amp; CSS3] CSS 와 cascading</title>
+        <description>&lt;h2 id=&quot;1-cascading-style-sheetcss&quot;&gt;1. Cascading Style Sheet(CSS)&lt;/h2&gt; &lt;h3 id=&quot;1-cascadnig-이란&quot;&gt;1. Cascadnig 이란?&lt;/h3&gt; &lt;p&gt;위에서 아래로 흐른다는 뜻으로, CSS 의 경우 스타일 시트에서 selector 에 여러 스타일이 적용될 때 스타일 충돌을 막기 위해 ‘위에서 아래로...</description>
+        <pubDate>Thu, 28 May 2020 13:58:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/html-css/2020/05/28/css-cascading.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/html-css/2020/05/28/css-cascading.html</guid>
+        
+        <category>html</category>
+        
+        <category>html5</category>
+        
+        <category>css</category>
+        
+        <category>css3</category>
+        
+        <category>web</category>
+        
+        <category>design</category>
+        
+        <category>css</category>
+        
+        <category>style</category>
+        
+        <category>style-sheet</category>
+        
+        <category>cascading</category>
+        
+        
+        <category>html-css</category>
+        
+      </item>
+    
+      <item>
+        <title>MS Exchange</title>
+        <description>&lt;h3 id=&quot;1-exchange-란&quot;&gt;1. Exchange 란?&lt;/h3&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;MS 에서 제공하는 메일 서비스&lt;br /&gt;&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;대부분의 엔터프라이즈 기업이 Exchange 사용&lt;br /&gt;&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;2010 -&amp;gt; 2013 -&amp;gt; 2016 -&amp;gt; Online -&amp;gt;...</description>
+        <pubDate>Tue, 26 May 2020 15:07:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/microsoft/2020/05/26/exchange.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/microsoft/2020/05/26/exchange.html</guid>
+        
+        <category>microsoft</category>
+        
+        <category>ms</category>
+        
+        <category>solution</category>
+        
+        <category>groupware</category>
+        
+        <category>exchange</category>
+        
+        <category>exchange-server</category>
+        
+        <category>mail</category>
+        
+        <category>owa</category>
+        
+        <category>outlook</category>
+        
+        <category>windows</category>
+        
+        
+        <category>microsoft</category>
+        
+      </item>
+    
+      <item>
+        <title>Active Directory</title>
+        <description>&lt;h3 id=&quot;1-active-directory-란&quot;&gt;1. Active Directory 란?&lt;/h3&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;네트워크상의 모든 리소스에 관한 정보(사용자 및 컴퓨터, 그룹 등)을 논리적 계층 구조로 중앙 저장소(일종의 데이터베이스)에 저장하여 네트워크상에서 인증을 통해 언제 어디서든 해당 리소스를...</description>
+        <pubDate>Tue, 26 May 2020 14:52:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/microsoft/2020/05/26/active-directory.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/microsoft/2020/05/26/active-directory.html</guid>
+        
+        <category>microsoft</category>
+        
+        <category>ms</category>
+        
+        <category>solution</category>
+        
+        <category>groupware</category>
+        
+        <category>active-directory</category>
+        
+        <category>ldap</category>
+        
+        <category>windows</category>
+        
+        
+        <category>microsoft</category>
+        
+      </item>
+    
+      <item>
+        <title>[HTML5 &amp; CSS3] CSS 기초 및 주요 선택자</title>
+        <description>&lt;h2 id=&quot;1-스타일과-스타일-시트&quot;&gt;1. 스타일과 스타일 시트&lt;/h2&gt; &lt;h3 id=&quot;1-스타일-스타일-시트&quot;&gt;1. 스타일? 스타일 시트?&lt;/h3&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;style: HTML 문서에서 자주 사용하는 글꼴, 색상, 정렬, 요소 배치 방법 등 문서 디자인에 대한 내용 &lt;br /&gt;&lt;/p&gt;...</description>
+        <pubDate>Mon, 25 May 2020 16:58:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/html-css/2020/05/25/basic-of-css.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/html-css/2020/05/25/basic-of-css.html</guid>
+        
+        <category>html</category>
+        
+        <category>html5</category>
+        
+        <category>css</category>
+        
+        <category>css3</category>
+        
+        <category>web</category>
+        
+        <category>design</category>
+        
+        <category>css</category>
+        
+        <category>style</category>
+        
+        <category>style-sheet</category>
+        
+        <category>selector</category>
+        
+        
+        <category>html-css</category>
+        
+      </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[HTML5 & CSS3] CSS Semantic Tag</title>
+  <meta name="description" content="Semantic 태그HTML4 는 화면 구성을 대부분 &lt;div&gt; 로 하였고, 이 태그들을 구분하기위해 id 속성을 이용했다.그러다보니 홈페이지 구조를 분석하고 이해하기가 어려웠고, HTML5 에서는 이러한 문제를 해결하기 위해 표준화된 시맨틱 태그 를 사용해 태그만 보고...">
+  
+  <meta name="author" content="Jo">
+  <meta name="copyright" content="&copy; Jo 2020">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="Semantic 태그HTML4 는 화면 구성을 대부분 &lt;div&gt; 로 하였고, 이 태그들을 구분하기위해 id 속성을 이용했다.그러다보니 홈페이지 구조를 분석하고 이해하기가 어려웠고, HTML5 에서는 이러한 문제를 해결하기 위해 표준화된 시맨틱 태그 를 사용해 태그만 보고..." />
+  <meta property="og:url" content="https://sungunjo.github.io/html-css/2020/06/02/html5-semantic-tag.html">
+  <meta property="og:site_name" content="감자는 맛있다" />
+  <meta property="og:title" content="[HTML5 & CSS3] CSS Semantic Tag" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sungunjo.github.io/assets/instacode.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[HTML5 & CSS3] CSS Semantic Tag">
+  <meta name="twitter:description" content="Semantic 태그HTML4 는 화면 구성을 대부분 &lt;div&gt; 로 하였고, 이 태그들을 구분하기위해 id 속성을 이용했다.그러다보니 홈페이지 구조를 분석하고 이해하기가 어려웠고, HTML5 에서는 이러한 문제를 해결하기 위해 표준화된 시맨틱 태그 를 사용해 태그만 보고...">
+  <meta name="twitter:image" content="https://sungunjo.github.io/assets/instacode.png">
+  <meta name="twitter:url" content="https://sungunjo.github.io/html-css/2020/06/02/html5-semantic-tag.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://sungunjo.github.io/html-css/2020/06/02/html5-semantic-tag.html">
+	<link rel="alternate" type="application/rss+xml" title="감자는 맛있다" href="https://sungunjo.github.io/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="감자는 맛있다">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/instacode.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">[HTML5 & CSS3] CSS Semantic Tag</h1>
+      <p class="info">by <strong>Jo</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">June 2, 2020</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/html-css">Html-css</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h2 id="semantic-태그">Semantic 태그</h2>
+<p><img src="/assets/img/html5_semantic_tag/standard_web_doc_structure.PNG" />
+<br /></p>
+
+<p>HTML4 는 화면 구성을 대부분 &lt;div&gt; 로 하였고, 이 태그들을 구분하기위해 id 속성을 이용했다.<br />
+그러다보니 홈페이지 구조를 분석하고 이해하기가 어려웠고, HTML5 에서는 이러한 문제를 해결하기 위해 <strong>표준화된 시맨틱 태그</strong> 를 사용해 태그만 보고도 웹 문서의 구조를 분석하기 용이하게 만들었다.<br />
+레이아웃을 만들 때 사용하는 주요 태그를 미리 약속해두어 태그만 보고도 헤더가 어디인지, 콘텐츠 영역, 네비게이션 영역은 어디인지 알기 쉽다.<br />
+<br /></p>
+
+<h3 id="header-태그---머리말">&lt;header&gt; 태그 - 머리말</h3>
+<p>사이트 전체, 혹은 본문의 제목 부분이 될 수 있다.<br />
+주로 페이지 맨 위쪽이나 왼쪽에 삽입되며, &lt;form&gt; 을 사용해 검색 창을 넣거나, &lt;nav&gt; 를 사용해 사이트 메뉴를 넣는다.<br /></p>
+
+<h3 id="nav-태그---네비게이션-링크">&lt;nav&gt; 태그 - 네비게이션 링크</h3>
+<p>같은 사이트, 혹은 다른 사이트의 문서로 연결하는 링크를 나타낸다.<br />
+네비게이션 메뉴 뿐만 아니라 푸터에 있는 사이트 링크 모음 부분에서도 사용된다.<br />
+<br /></p>
+
+<h3 id="section-태그---주제별-콘텐츠-영역">&lt;section&gt; 태그 - 주제별 콘텐츠 영역</h3>
+<p>문서에서 콘텐츠를 주제별로 묶을 때 사용된다.<br />
+섹션 제목을 나타내기 위해 &lt;h&gt;태그가 함께 사용된다.<br />
+<br /></p>
+
+<h3 id="article-태그---콘텐츠-내용">&lt;article&gt; 태그 - 콘텐츠 내용</h3>
+<p>웹 상의 실제 내용을 나타낸다.<br />
+이 부분만 뗴어내어 독립적으로 사용해도 완전히 하나의 콘텐츠가 될 수 있는 영역이다.<br />
+<br /></p>
+
+<h3 id="aside-태그---본문-이외의-내용">&lt;aside&gt; 태그 - 본문 이외의 내용</h3>
+<p>본문 내용 외에 주변에 표시되는 기타 내용들이다.<br />
+필수 요소가 아니기 때문에 광고, 링크 모음 등 문서의 주요 내용에 영향을 끼치지 않는 내용들을 넣기위해 사용한다.<br />
+<br /></p>
+
+<h3 id="footer-태그---제작-정보와-저작권-정보">&lt;footer&gt; 태그 - 제작 정보와 저작권 정보</h3>
+<p>사이트 제작자의 연락처, 저작권 정보를 표시한다.<br />
+사이트 링크 모음 등을 표시하기도 한다.<br /></p>
+
+<h3 id="address-태그---제작자-정보와-연락처-정보">&lt;address&gt; 태그 - 제작자 정보와 연락처 정보</h3>
+<p>사이트 제작자의 이름, 웹페이지, 또는 피드백을 위한 연락처 정보와, 웹 사이트와 관련된 우편 주소 등을 표시한다.<br /></p>
+
+<h3 id="div-태그">&lt;div&gt; 태그</h3>
+<p>콘텐츠에 CSS 를 적용하여 시각적 효과를 주려고 할 때 콘텐츠를 묶기 위해서 사용한다.<br />
+<br /></p>
+
+<h2 id="etc">ETC</h2>
+<blockquote>
+  <p>&lt;section&gt;, &lt;article&gt;, &lt;div&gt; 의 구분:<br />
+서로 관계되는 내용들이라면 &lt;section&gt;<br />
+내용이 독립적이라면 &lt;article&gt;<br />
+의미적으로 관계가 없다면 &lt;div&gt;<br /></p>
+</blockquote>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/html">html</a>,&nbsp;<a href="/tag/html5">html5</a>,&nbsp;<a href="/tag/css">css</a>,&nbsp;<a href="/tag/css3">css3</a>,&nbsp;<a href="/tag/web">web</a>,&nbsp;<a href="/tag/design">design</a>,&nbsp;<a href="/tag/css">css</a>,&nbsp;<a href="/tag/style">style</a>,&nbsp;<a href="/tag/style-sheet">style-sheet</a>,&nbsp;<a href="/tag/semantic">semantic</a>,&nbsp;<a href="/tag/tag">tag</a>,&nbsp;<a href="/tag/semantic-tag">semantic-tag</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%5BHTML5+%26+CSS3%5D+CSS+Semantic+Tag&url=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F06%2F02%2Fhtml5-semantic-tag.html&via="
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=%5BHTML5+%26+CSS3%5D+CSS+Semantic+Tag&u=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F06%2F02%2Fhtml5-semantic-tag.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F06%2F02%2Fhtml5-semantic-tag.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=%5BHTML5+%26+CSS3%5D+CSS+Semantic+Tag&url=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F06%2F02%2Fhtml5-semantic-tag.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=%5BHTML5+%26+CSS3%5D+CSS+Semantic+Tag&url=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F06%2F02%2Fhtml5-semantic-tag.html&media=https://sungunjo.github.io/assets/instacode.png"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('https://sungunjo.github.io/html-css/2020/06/02/html5-semantic-tag.html') + '&title=[HTML5 & CSS3] CSS Semantic Tag'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'sungunjo-github-io';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">감자는 맛있다</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:sungunjo.dev@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">sungunjo.dev@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/sungunjo" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">sungunjo</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/sungunjo" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">SungUn Jo</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">개발 공부 블로그</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-156645046-1', 'auto');
+  ga('send', 'pageview', {
+    'page': '/html-css/2020/06/02/html5-semantic-tag.html',
+    'title': '[HTML5 & CSS3] CSS Semantic Tag'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

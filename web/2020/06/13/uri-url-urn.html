@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>URI, URL, URN</title>
+  <meta name="description" content="URI (Uniform Resource Identifier)scheme:[//[user[:password]@]host[:port]][/path][?query][#fragment]통합 자원 식별자. 말 그대로 네트워크 상에서 자원을 식별해준다. URI 의 하위 개념으로 URL 과 U...">
+  
+  <meta name="author" content="Jo">
+  <meta name="copyright" content="&copy; Jo 2020">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="URI (Uniform Resource Identifier)scheme:[//[user[:password]@]host[:port]][/path][?query][#fragment]통합 자원 식별자. 말 그대로 네트워크 상에서 자원을 식별해준다. URI 의 하위 개념으로 URL 과 U..." />
+  <meta property="og:url" content="https://sungunjo.github.io/web/2020/06/13/uri-url-urn.html">
+  <meta property="og:site_name" content="감자는 맛있다" />
+  <meta property="og:title" content="URI, URL, URN" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sungunjo.github.io/assets/instacode.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="URI, URL, URN">
+  <meta name="twitter:description" content="URI (Uniform Resource Identifier)scheme:[//[user[:password]@]host[:port]][/path][?query][#fragment]통합 자원 식별자. 말 그대로 네트워크 상에서 자원을 식별해준다. URI 의 하위 개념으로 URL 과 U...">
+  <meta name="twitter:image" content="https://sungunjo.github.io/assets/instacode.png">
+  <meta name="twitter:url" content="https://sungunjo.github.io/web/2020/06/13/uri-url-urn.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://sungunjo.github.io/web/2020/06/13/uri-url-urn.html">
+	<link rel="alternate" type="application/rss+xml" title="감자는 맛있다" href="https://sungunjo.github.io/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="감자는 맛있다">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/instacode.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">URI, URL, URN</h1>
+      <p class="info">by <strong>Jo</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">June 13, 2020</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/web">Web</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h2 id="uri-uniform-resource-identifier">URI (Uniform Resource Identifier)</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scheme:[//[user[:password]@]host[:port]][/path][?query][#fragment]
+</code></pre></div></div>
+<p>통합 자원 식별자. 말 그대로 네트워크 상에서 자원을 식별해준다. <br />
+URI 의 하위 개념으로 URL 과 URN 이 있다.<br />
+URL이 가리키는게 자원, 즉 파일의 위치라면 URI 는 그보다 더 상위의 개념으로써 identifier 를 가리킨다고 볼 수 있다.<br />
+따라서 Apache, IIS 등의 핸들러를 나타내기 위해서는 URL 이 아니라 URI 를 사용해야 하며 이 때문에 요즘에는 그냥 보통 URI 로 쓰는게 트렌드라고 한다.<br />
+<br /></p>
+
+<h2 id="urluniform-resource-locator">URL(Uniform Resource Locator)</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scheme:[//[user:password@]host[:port]][/]path[?query][#fragment]
+</code></pre></div></div>
+<p>네트워크 상에서 자원의 위치를 나타내는 주소. <br />
+일반적으로 웹사이트 주소를 나타낸다고 생각하지만, 컴퓨터 네트워크 상의 자원은 모두 나타낼 수 있다.<br />
+<br /></p>
+
+<h2 id="urnuniform-resource-name">URN(Uniform Resource Name)</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;URN&gt; ::= "urn:" &lt;NID&gt; ":" &lt;NSS&gt;
+</code></pre></div></div>
+<p>URN 은 특정 자원을 가리키는 불변의 이름을 말한다.<br />
+URL 은 자원의 ‘위치’ 를 나타내기 때문에 해당 파일이 어느 서버의 어떤 디렉토리에 있는 파일인지 전부 다 알아야 하며, 그 구조가 바뀌게 되면 해당 파일을 나타내기 위한 URL 또한 바뀌어야 한다.<br />
+블로그만 봐도 포스트 파일 위치를 다른 디렉토리로 바꾸면 그 포스트는 기존 주소로는 접속할 수 없어진다. 검색 봇에 의해 다시 색인되기 전 까진 구글에서 검색도 되지만 접속해봤자 에러만 뜰 뿐이다.<br />
+<br />
+하지만 URN 의 경우 특정 자원을 가리키는 ‘불변’의 이름이기 때문에 저장 위치가 바뀌든 서버가 바뀌든 상관 없이 자원을 나타내줄 수 있다.<br />
+URL 처럼 자원의 완전한 주소를 알 필요 없이 그저 이름만 알면 접근할 수 있는 것이다.<br />
+다만 지금까진 개념적으로만 제안되었을 뿐이고 아직도 실제로 구현하기 위해 개발중이라고 한다.<br /></p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/web">web</a>,&nbsp;<a href="/tag/uri">uri</a>,&nbsp;<a href="/tag/urn">urn</a>,&nbsp;<a href="/tag/url">url</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=URI%2C+URL%2C+URN&url=https%3A%2F%2Fsungunjo.github.io%2Fweb%2F2020%2F06%2F13%2Furi-url-urn.html&via="
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=URI%2C+URL%2C+URN&u=https%3A%2F%2Fsungunjo.github.io%2Fweb%2F2020%2F06%2F13%2Furi-url-urn.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsungunjo.github.io%2Fweb%2F2020%2F06%2F13%2Furi-url-urn.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=URI%2C+URL%2C+URN&url=https%3A%2F%2Fsungunjo.github.io%2Fweb%2F2020%2F06%2F13%2Furi-url-urn.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=URI%2C+URL%2C+URN&url=https%3A%2F%2Fsungunjo.github.io%2Fweb%2F2020%2F06%2F13%2Furi-url-urn.html&media=https://sungunjo.github.io/assets/instacode.png"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('https://sungunjo.github.io/web/2020/06/13/uri-url-urn.html') + '&title=URI, URL, URN'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'sungunjo-github-io';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">감자는 맛있다</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:sungunjo.dev@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">sungunjo.dev@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/sungunjo" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">sungunjo</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/sungunjo" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">SungUn Jo</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">개발 공부 블로그</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-156645046-1', 'auto');
+  ga('send', 'pageview', {
+    'page': '/web/2020/06/13/uri-url-urn.html',
+    'title': 'URI, URL, URN'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

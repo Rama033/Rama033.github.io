@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[HTML5 & CSS3] CSS 기초 및 주요 선택자</title>
+  <meta name="description" content="1. 스타일과 스타일 시트1. 스타일? 스타일 시트?      style: HTML 문서에서 자주 사용하는 글꼴, 색상, 정렬, 요소 배치 방법 등 문서 디자인에 대한 내용        style sheet: 스타일들을 관리하기 쉽도록 모아둔 시트  2. 스타일을 사용하는 이유st...">
+  
+  <meta name="author" content="Jo">
+  <meta name="copyright" content="&copy; Jo 2020">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="1. 스타일과 스타일 시트1. 스타일? 스타일 시트?      style: HTML 문서에서 자주 사용하는 글꼴, 색상, 정렬, 요소 배치 방법 등 문서 디자인에 대한 내용        style sheet: 스타일들을 관리하기 쉽도록 모아둔 시트  2. 스타일을 사용하는 이유st..." />
+  <meta property="og:url" content="https://sungunjo.github.io/html-css/2020/05/25/basic-of-css.html">
+  <meta property="og:site_name" content="감자는 맛있다" />
+  <meta property="og:title" content="[HTML5 & CSS3] CSS 기초 및 주요 선택자" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sungunjo.github.io/assets/instacode.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[HTML5 & CSS3] CSS 기초 및 주요 선택자">
+  <meta name="twitter:description" content="1. 스타일과 스타일 시트1. 스타일? 스타일 시트?      style: HTML 문서에서 자주 사용하는 글꼴, 색상, 정렬, 요소 배치 방법 등 문서 디자인에 대한 내용        style sheet: 스타일들을 관리하기 쉽도록 모아둔 시트  2. 스타일을 사용하는 이유st...">
+  <meta name="twitter:image" content="https://sungunjo.github.io/assets/instacode.png">
+  <meta name="twitter:url" content="https://sungunjo.github.io/html-css/2020/05/25/basic-of-css.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://sungunjo.github.io/html-css/2020/05/25/basic-of-css.html">
+	<link rel="alternate" type="application/rss+xml" title="감자는 맛있다" href="https://sungunjo.github.io/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="감자는 맛있다">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/instacode.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">[HTML5 & CSS3] CSS 기초 및 주요 선택자</h1>
+      <p class="info">by <strong>Jo</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">May 25, 2020</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/html-css">Html-css</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h2 id="1-스타일과-스타일-시트">1. 스타일과 스타일 시트</h2>
+
+<h3 id="1-스타일-스타일-시트">1. 스타일? 스타일 시트?</h3>
+<ul>
+  <li>
+    <p>style: HTML 문서에서 자주 사용하는 글꼴, 색상, 정렬, 요소 배치 방법 등 문서 디자인에 대한 내용
+<br /></p>
+  </li>
+  <li>
+    <p>style sheet: 스타일들을 관리하기 쉽도록 모아둔 시트
+<br />
+<br /></p>
+  </li>
+</ul>
+
+<h3 id="2-스타일을-사용하는-이유">2. 스타일을 사용하는 이유</h3>
+<p>style 을 사용함으로써 내용(HTML) 과 디자인(CSS) 을 분리해 디자인에 영향 없이 내용을 수정하거나, 내용은 건드리지 않고 디자인만 바꿀 수 있다.<br />
+또한 내용은 동일한 상태로 프린터나 스마트폰 브라우저 등 다양한 기기에 맞는 레이아웃을 만들어 기기에 맞춰 탄력적으로 바뀌는 문서를 만들 수 있다.<br />
+<br />
+<br /></p>
+
+<h3 id="3-스타일-사용-방법">3. 스타일 사용 방법</h3>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* 'selector' { 'style attribute': 'attribute value';} */</span>
+<span class="nt">p</span> <span class="p">{</span> <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li><strong>selector</strong>: { 와 } 사이에 정의한 스타일 규칙의 적용 대상. 위 예시의 경우는 &lt;p&gt; 태그</li>
+  <li><strong>속성</strong>과 <strong>속성 값</strong>: ‘속성: 속성값;’ 형식으로 표현
+<br />
+<br /></li>
+</ul>
+
+<h3 id="4-스타일-시트">4. 스타일 시트</h3>
+<p>스타일 시트는 HTML 문서 안에 함께 포함할 수도 있고 (내부 스타일 시트), 별도 CSS 파일로 분리되어 있을 수도 있다 (외부 스타일 시트).<br /></p>
+
+<h4 id="a-내부-스타일-시트">a. 내부 스타일 시트</h4>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- test.html --&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>내부 스타일 시트<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;style&gt;</span>
+    <span class="nt">h1</span> <span class="p">{</span> <span class="c">/* header 1 */</span>
+      <span class="nl">color</span><span class="p">:</span><span class="no">red</span><span class="p">;</span> <span class="c">/* 글자색: 빨강 */</span>
+    <span class="p">}</span>
+    <span class="nt">ul</span><span class="nc">.myUl</span> <span class="p">{</span> <span class="c">/* unordered list */</span>
+      <span class="nl">color</span><span class="p">:</span><span class="no">blue</span><span class="p">;</span> <span class="c">/* 글자색: 파랑 */</span>
+      <span class="nl">list-style-type</span><span class="p">:</span><span class="n">squre</span><span class="p">;</span> <span class="c">/* 불릿 형태: square */</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>내부 스타일 시트 연습<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;ul&gt;</span>
+    <span class="nt">&lt;li&gt;</span>안녕하세요<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>Hello<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>Здравствуйте<span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</code></pre></div></div>
+<head>
+  <meta charset="utf-8" />
+  <title>내부 스타일 시트</title>
+  <style>
+    h1 { /* header 1 */
+      color:red; /* 글자색: 빨강 */
+    }
+    ul.myUl { /* unordered list */
+      color:blue; /* 글자색: 파랑 */
+      list-style-type:squre; /* 불릿 형태: square */
+    }
+  </style>
+</head>
+<body>
+  <h1>내부 스타일 시트 연습</h1>
+  <ul>
+    <li>안녕하세요</li>
+    <li>Hello</li>
+    <li>Здравствуйте</li>
+  </ul>
+</body>
+
+<p>웹 문서 안에서 사용할 스타일들을 같은 문서 안에 정리해둔 것이다.<br />
+모든 스타일 정보는 &lt;head&gt; ~ &lt;/head&gt; 사이에 &lt;style&gt; ~ &lt;style&gt; 태그를 넣고, 그 안에 작성한다.<br /></p>
+
+<h4 id="b-외부-스타일-시트">b. 외부 스타일 시트</h4>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* stylesheet_test.css*/</span>
+<span class="nt">ul</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span><span class="no">blue</span><span class="p">;</span>
+  <span class="nl">list-style-type</span><span class="p">:</span><span class="nb">square</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- test.html --&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>외부 스타일 시트<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"style.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;ul&gt;</span>
+    <span class="nt">&lt;li&gt;</span>외부<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>스타일<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>시트<span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</code></pre></div></div>
+
+<p>여러 웹 문서에서 사용할 스타일을 별도 파일로 저장해 놓고 필요할 때마다 파일에서 링크해서 사용하는 방법이다.<br />
+&lt;style&gt; 태그 없이 &lt;link&gt; 태그를 사용해 미리 만들어둔 외부 스타일 시트 파일을 연결해서 해당 파일 내의 스타일들을 사용한다.<br />
+<br />
+<br /></p>
+
+<h3 id="5-인라인-스타일">5. 인라인 스타일</h3>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>인라인 스타일<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;p</span> <span class="na">style=</span><span class="s">"color:red;"</span><span class="nt">&gt;</span>인라인 스타일 이용한 빨간색 글씨<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>일반 글씨<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</code></pre></div></div>
+
+<p>인라인 스타일을 사용하면 스타일 시트 없이 적용할 대상에 직접 표시해줄 수 있다.<br />
+스타일을 적용할 태그에 style 속성을 사용해서</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="err">태그</span> <span class="na">style=</span><span class="s">"속성: 속성 값;"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+<p>형태로 값을 줘서 적용할 수 있다.<br />
+<br />
+<br /></p>
+
+<h2 id="2-주요-selector">2. 주요 selector</h2>
+<h3 id="1-universal-selector---전체-선택자">1. Universal Selector - 전체 선택자</h3>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">*</span> <span class="p">{</span>
+  <span class="nl">margin</span><span class="p">:</span><span class="m">0</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span><span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Universal selector 는 모든 HTML 요소를 선택해서 스타일을 적용시킨다.<br />
+주로 다른 selector 와 함께 모든 하위 요소에 한꺼번에 스타일을 적용하려 할 때 사용한다.<br />
+<br /></p>
+
+<h3 id="2-type-selector---태그-선택자">2. Type Selector - 태그 선택자</h3>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">h2</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span><span class="no">blue</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">p</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span><span class="m">12px</span><span class="p">;</span>
+  <span class="nl">margin-left</span><span class="p">:</span><span class="m">20px</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span><span class="no">red</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Type selector 는 특정 태그를 사용한 모든 요소에 스타일을 적용시킨다.<br />
+위의 예시 같은 경우 &lt;h2&gt; 요소들은 전부 파란색이 되고, &lt;p&gt; 요소들은 12포인트, 좌측 마진 20, 빨간색이 된다.<br />
+<br /></p>
+
+<h3 id="3-class-selector---클래스-선택자">3. Class Selector - 클래스 선택자</h3>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;title&gt;</span>클래스 선택자<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;style&gt;</span>
+    <span class="nt">h1</span><span class="nc">.class1</span> <span class="p">{</span>
+      <span class="nl">color</span><span class="p">:</span><span class="no">blue</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nc">.class2</span> <span class="p">{</span>
+      <span class="nl">color</span><span class="p">:</span><span class="no">red</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>그냥 h1<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"class1"</span><span class="nt">&gt;</span>h1 class1<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"class2"</span><span class="nt">&gt;</span>h1 class2<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;p&gt;</span>그냥 p<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"class1"</span><span class="nt">&gt;</span>p class1<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"class2"</span><span class="nt">&gt;</span>p class2<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</code></pre></div></div>
+<head>
+  <title>클래스 선택자</title>
+  <style>
+    h2.class1 {
+      color:blue;
+    }
+    .class2 {
+      color:red;
+    }
+  </style>
+</head>
+<body>
+  <h2>h2</h2>
+  <h2 class="class1">h2 class1</h2>
+  <h2 class="class2">h2 class2</h2>
+  <p>p</p>
+  <p class="class1">p class1</p>
+  <p class="class2">p class2</p>
+</body>
+
+<p>class selector 는 특정 태그 중에서도 일부에만 스타일을 적용할 수 있다.<br />
+태그.”클래스 이름” 형식으로 사용하며, 해당 태그 중에서도 class 속성이 “클래스 이름” 인 요소들에만 스타일을 적용하겠다는 뜻이다.<br />
+태그를 쓰지 않고 .”클래스 이름” 만 쓰는 경우에는 모든 태그 타입 중에서 “클래스 이름” 을 class 속성 값으로 가지는 요소들에 적용할 수 있다.<br />
+<br /></p>
+
+<h3 id="4-id-selector---아이디-선택자">4. id Selector - 아이디 선택자</h3>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;title&gt;</span>아이디 선택자<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;style&gt;</span>
+    <span class="nf">#hello</span> <span class="p">{</span>
+      <span class="nl">color</span><span class="p">:</span><span class="no">yellow</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nf">#world</span> <span class="p">{</span>
+      <span class="nl">color</span><span class="p">:</span><span class="no">brown</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">"hello"</span><span class="nt">&gt;</span>Hello<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;h2</span> <span class="na">id=</span><span class="s">"world"</span><span class="nt">&gt;</span>World!<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</code></pre></div></div>
+<head>
+  <title>아이디 선택자</title>
+  <style>
+    #hello {
+      color:yellow;
+    }
+    #world {
+      color:brown;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="hello">Hello</h1>
+  <h2 id="world">World!</h2>
+</body>
+
+<p>id selector 는 요소의 id 속성값을 가지고 선택적으로 스타일을 적용해준다.<br />
+#”id 값” 을 selector 로 사용하면 되며, 이렇게 만든 스타일은 해당 “id 값” 을 id 속성값으로 가지는 요소에 대해서만 스타일을 적용한다.<br />
+만약 동일한 id 값 가지는 요소가 여러개라면 해당 요소들 전부에 스타일이 적용되겠지만, 서로 다른 요소에 대해 동일한 id 값을 사용하는것은 좋지 않기 때문에 보통 문서 내에서 한 번만 사용되는 스타일에 대해서 id selector 를 쓴다.<br />
+<br /></p>
+
+<h3 id="4-group-selector---그룹-선택자">4. Group Selector - 그룹 선택자</h3>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;title&gt;</span>그룹 선택자<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;style&gt;</span>
+    <span class="nt">h5</span><span class="o">,</span> <span class="nt">h6</span><span class="o">,</span> <span class="nt">h4</span><span class="nc">.myH4</span> <span class="p">{</span>
+      <span class="nl">color</span><span class="p">:</span><span class="no">yellow</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;h4</span> <span class="na">class=</span><span class="s">"myH4"</span><span class="nt">&gt;</span>Group Selector Test<span class="nt">&lt;/h4&gt;</span>
+  <span class="nt">&lt;h5</span> <span class="na">id=</span><span class="s">"hello"</span><span class="nt">&gt;</span>Hello<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;h6</span> <span class="na">id=</span><span class="s">"world"</span><span class="nt">&gt;</span>World!<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</code></pre></div></div>
+<head>
+  <title>그룹 선택자</title>
+  <style>
+    h5, h6, h4.myH4 {
+      color:cyan;
+    }
+  </style>
+</head>
+<body>
+  <h4 class="myH4">Group Selector Test</h4>
+  <h5>Hello</h5>
+  <h6>World!</h6>
+</body>
+
+<p>여러개의 selector 들에 대해 동일한 스타일을 적용해 주고 싶다면 group selector 를 사용하면 된다.<br />
+위 예시와 같이 selector 들을 콤마(,) 로 구분해서 나열해주면 되며, 서로 다른 selector 타입을 섞어서 사용해도 된다.<br /></p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/html">html</a>,&nbsp;<a href="/tag/html5">html5</a>,&nbsp;<a href="/tag/css">css</a>,&nbsp;<a href="/tag/css3">css3</a>,&nbsp;<a href="/tag/web">web</a>,&nbsp;<a href="/tag/design">design</a>,&nbsp;<a href="/tag/css">css</a>,&nbsp;<a href="/tag/style">style</a>,&nbsp;<a href="/tag/style-sheet">style-sheet</a>,&nbsp;<a href="/tag/selector">selector</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%5BHTML5+%26+CSS3%5D+CSS+%EA%B8%B0%EC%B4%88+%EB%B0%8F+%EC%A3%BC%EC%9A%94+%EC%84%A0%ED%83%9D%EC%9E%90&url=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F05%2F25%2Fbasic-of-css.html&via="
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=%5BHTML5+%26+CSS3%5D+CSS+%EA%B8%B0%EC%B4%88+%EB%B0%8F+%EC%A3%BC%EC%9A%94+%EC%84%A0%ED%83%9D%EC%9E%90&u=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F05%2F25%2Fbasic-of-css.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F05%2F25%2Fbasic-of-css.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=%5BHTML5+%26+CSS3%5D+CSS+%EA%B8%B0%EC%B4%88+%EB%B0%8F+%EC%A3%BC%EC%9A%94+%EC%84%A0%ED%83%9D%EC%9E%90&url=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F05%2F25%2Fbasic-of-css.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=%5BHTML5+%26+CSS3%5D+CSS+%EA%B8%B0%EC%B4%88+%EB%B0%8F+%EC%A3%BC%EC%9A%94+%EC%84%A0%ED%83%9D%EC%9E%90&url=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F05%2F25%2Fbasic-of-css.html&media=https://sungunjo.github.io/assets/instacode.png"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('https://sungunjo.github.io/html-css/2020/05/25/basic-of-css.html') + '&title=[HTML5 & CSS3] CSS 기초 및 주요 선택자'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'sungunjo-github-io';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">감자는 맛있다</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:sungunjo.dev@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">sungunjo.dev@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/sungunjo" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">sungunjo</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/sungunjo" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">SungUn Jo</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">개발 공부 블로그</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-156645046-1', 'auto');
+  ga('send', 'pageview', {
+    'page': '/html-css/2020/05/25/basic-of-css.html',
+    'title': '[HTML5 & CSS3] CSS 기초 및 주요 선택자'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

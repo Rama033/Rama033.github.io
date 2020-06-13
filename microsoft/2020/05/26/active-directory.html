@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Active Directory</title>
+  <meta name="description" content="1. Active Directory 란?">
+  
+  <meta name="author" content="Jo">
+  <meta name="copyright" content="&copy; Jo 2020">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="1. Active Directory 란?" />
+  <meta property="og:url" content="https://sungunjo.github.io/microsoft/2020/05/26/active-directory.html">
+  <meta property="og:site_name" content="감자는 맛있다" />
+  <meta property="og:title" content="Active Directory" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sungunjo.github.io/assets/instacode.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Active Directory">
+  <meta name="twitter:description" content="1. Active Directory 란?">
+  <meta name="twitter:image" content="https://sungunjo.github.io/assets/instacode.png">
+  <meta name="twitter:url" content="https://sungunjo.github.io/microsoft/2020/05/26/active-directory.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://sungunjo.github.io/microsoft/2020/05/26/active-directory.html">
+	<link rel="alternate" type="application/rss+xml" title="감자는 맛있다" href="https://sungunjo.github.io/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="감자는 맛있다">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/instacode.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">Active Directory</h1>
+      <p class="info">by <strong>Jo</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">May 26, 2020</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/microsoft">Microsoft</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h3 id="1-active-directory-란">1. Active Directory 란?</h3>
+
+<ul>
+  <li>
+    <p>네트워크상의 모든 리소스에 관한 정보(사용자 및 컴퓨터, 그룹 등)을 논리적 계층 구조로 중앙 저장소(일종의 데이터베이스)에 저장하여 네트워크상에서 인증을 통해 언제 어디서든 해당 리소스를 검색, 엑세스 할 수 있게 해주는 Directory Service<br />
+=&gt; Directory Service?: 분산된 네트워크 관련 자원 정보를 중앙 저장소에 통합시켜 사용자가 중앙 저장소를 통해 원하는 네트워크 자원에 대한 정보를 자동으로 취득하여 접근할 수 있는 서비스 개념, Acive Directory 는 이러한 개념을 Windows Server 에서 실제로 구현한 것이다.<br />
+<br /></p>
+  </li>
+  <li>데이터베이스로 저장한다고 하는데 RDBMS 는 아니고 File DB 같은 형태로 저장돼서 사용<br />
+    <ul>
+      <li>단순한 셀렉트, 쿼리 용으로 RDB 는 느리기 때문에 다른 방식을 사용<br />
+<br /></li>
+    </ul>
+  </li>
+  <li>Active Directory 를 관리하기 위해서 별도의 콘솔(MMC) 들을 사용한다.<br />
+    <ul>
+      <li>Active Directory 관리 센터, Acive Directory 도메인 및 트러스트, Acive Directory 사용자 및 컴퓨터, Active Directory 사이트 및 서버스, ADSI 편집, DNS, 그룹 정책 관리 등<br />
+<br /></li>
+    </ul>
+  </li>
+  <li>MS 제품을 포함해 많은 서비스들이 Active Directory 를 사용<br />
+    <ul>
+      <li>그룹웨어 시스템의 중심</li>
+    </ul>
+  </li>
+  <li>DNS(Domain Name System) 을 통해 이름 해석 기능, 해당 개체 위치 정보를 제공<br />
+    <ul>
+      <li>AD 를 사용하려면 DNS 는 꼭 있어야함<br /></li>
+    </ul>
+  </li>
+  <li>
+    <p>디렉토리 개체와 도메인 자원에 접근할 때 적용되는 모든 권한이 정책을 기반으로 관리<br /></p>
+  </li>
+  <li>사용자 인증과 접근 권한 제어를 통해 보안 기능<br />
+    <ul>
+      <li>사용자 인증은 중앙에서 관리<br /></li>
+      <li>접근 권한 제어는 AD 의 각 개체뿐 아니라 각 속성에서도 정의 가능<br />
+<br />
+<br /></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-active-directory-용어">2. Active Directory 용어</h3>
+
+<ol>
+  <li>
+    <p>계정관리<br />
+AD 에 포함된 다양한 기능중 가장 중요한것이 계정관리<br /></p>
+  </li>
+  <li>
+    <p>도메인<br />
+AD의 기본이 되는 단위로, 관리를 하기 위한 하나의 큰 단위의 범위를 표현하며, 세부 단위로 구분 가능
+도메인 가입: 도메인에 가입한 PC 는 하나부터 열까지 다 조절할 수 있음(시작 프로그램, 화면 보호기 등)
+AD Domain 에 대한 단위는 Forest &gt; Tree &gt; Domain &gt; OU &gt; Object 로 구성</p>
+  </li>
+  <li>
+    <p>Domain Controller (DC)<br />
+로그인, 이용 권한 확인, 새로운 사용자 등록, 암호 변경 그룹 등을 처리하는 기능을 하는 서버
+Domain 에 대한 정책 할당, 객체 관리 등의 목적으로 AD 에는 하나 이상의 DC 가 구성되어있어야 함</p>
+  </li>
+  <li>Read Only Domain Controller (RODC)<br />
+주 DC 로 부터 AD 관련 데이터 전송받아 저장후 Read Only 로 사용<br />
+    <ul>
+      <li>RODC 에서는 데이터 추가, 변경 안함</li>
+    </ul>
+  </li>
+  <li>
+    <p>Tree<br />
+도메인의 집합</p>
+  </li>
+  <li>
+    <p>Forest<br />
+서로 다른 AD 를 묶어서 유기적으로 사용할 수 있게 구성해주는 개념</p>
+  </li>
+  <li>Trust<br />
+도메인 또는 Forest 사이에 신뢰할지 여부에 대한 관계를 나타냄
+네트워크 트래픽을 줄이고 거쳐가는 Domain Controller 의 부하를 줄이기 위해 사용될 수도 있음
+같은 포리스트 안의 도메인 사이에는 상호 양방형 전이 트러스트를 가짐
+    <ul>
+      <li>한쪽 방향의 신뢰 관계만 맺는 경우: 단방향 전이 트러스트
+Trust 를 통해 Forest 를 구성. Forest (Trust) &gt; Tree &gt; Domain &gt; OU &gt; Object
+계정 정보는 서로 공유할 필요가 있는데 AD 를 별도 구성해야하는 경우 등 사용</li>
+    </ul>
+  </li>
+  <li>
+    <p>Global Catalog(GC)<br />
+AD Trust 내의 도메인들에 포함된 object 에 대한 정보를 수집하여 저장하는 통합 저장소</p>
+  </li>
+  <li>
+    <p>Object<br />
+User, Group, Contact, Desktop, Server, Printer 등으로 AD 를 구성하는 최소 단위
+Object 별로 정책 설정 가능
+User 는 여러 Group 에 소속할 수 있음 (ex. 홍길동(user) 은 인사팀(group), 대리(group) 등에 속하며, 각각 group 의 정책 설정의 영향을 받음</p>
+  </li>
+  <li>Organization Unit (OU, 조직 구성 단위)<br />
+Object 를 관리할 목적으로 만들어진 그룹화된 단위
+OU 도 정책 설정 가능
+<br />
+<br /></li>
+</ol>
+
+<h3 id="3-active-directory-인증-관련-기능">3. Active Directory 인증 관련 기능</h3>
+<ol>
+  <li>인증 서비스 (LDAP 인증방식)<br />
+AD 에서 인증 다 받아서 처리해줌<br />
+    <ul>
+      <li>다른 서비스에서 인증 필요할 때 아이디 패스워드 AD 로 보내면 맞다 틀리다 반환<br /></li>
+      <li>LDAP?: 조직이나 개체, 인터넷, 인트라넷 등 네트워크 상의 파일이나 장치들과 같은 자원 등의 위치를 찾을 수 있게 해주는 SW Protocol</li>
+    </ul>
+  </li>
+  <li>인증서 서비스<br />
+AD 가 사설 인증서 발급, 관리하는 인증기관 역할 수행 가능</li>
+</ol>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/microsoft">microsoft</a>,&nbsp;<a href="/tag/ms">ms</a>,&nbsp;<a href="/tag/solution">solution</a>,&nbsp;<a href="/tag/groupware">groupware</a>,&nbsp;<a href="/tag/active-directory">active-directory</a>,&nbsp;<a href="/tag/ldap">ldap</a>,&nbsp;<a href="/tag/windows">windows</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=Active+Directory&url=https%3A%2F%2Fsungunjo.github.io%2Fmicrosoft%2F2020%2F05%2F26%2Factive-directory.html&via="
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=Active+Directory&u=https%3A%2F%2Fsungunjo.github.io%2Fmicrosoft%2F2020%2F05%2F26%2Factive-directory.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsungunjo.github.io%2Fmicrosoft%2F2020%2F05%2F26%2Factive-directory.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=Active+Directory&url=https%3A%2F%2Fsungunjo.github.io%2Fmicrosoft%2F2020%2F05%2F26%2Factive-directory.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=Active+Directory&url=https%3A%2F%2Fsungunjo.github.io%2Fmicrosoft%2F2020%2F05%2F26%2Factive-directory.html&media=https://sungunjo.github.io/assets/instacode.png"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('https://sungunjo.github.io/microsoft/2020/05/26/active-directory.html') + '&title=Active Directory'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'sungunjo-github-io';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">감자는 맛있다</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:sungunjo.dev@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">sungunjo.dev@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/sungunjo" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">sungunjo</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/sungunjo" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">SungUn Jo</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">개발 공부 블로그</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-156645046-1', 'auto');
+  ga('send', 'pageview', {
+    'page': '/microsoft/2020/05/26/active-directory.html',
+    'title': 'Active Directory'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[OS X Internals] CH.4 Parts of the Process - (작성중)</title>
+  <meta name="description" content="Mach-O, Process, and Thread Internals">
+  
+  <meta name="author" content="Jo">
+  <meta name="copyright" content="&copy; Jo 2020">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="Mach-O, Process, and Thread Internals" />
+  <meta property="og:url" content="https://sungunjo.github.io/mac-os-x/2019/11/13/ch.4-parts-of-the-process.html">
+  <meta property="og:site_name" content="감자는 맛있다" />
+  <meta property="og:title" content="[OS X Internals] CH.4 Parts of the Process - (작성중)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sungunjo.github.io/assets/instacode.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[OS X Internals] CH.4 Parts of the Process - (작성중)">
+  <meta name="twitter:description" content="Mach-O, Process, and Thread Internals">
+  <meta name="twitter:image" content="https://sungunjo.github.io/assets/instacode.png">
+  <meta name="twitter:url" content="https://sungunjo.github.io/mac-os-x/2019/11/13/ch.4-parts-of-the-process.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://sungunjo.github.io/mac-os-x/2019/11/13/ch.4-parts-of-the-process.html">
+	<link rel="alternate" type="application/rss+xml" title="감자는 맛있다" href="https://sungunjo.github.io/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="감자는 맛있다">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/instacode.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">[OS X Internals] CH.4 Parts of the Process - (작성중)</h1>
+      <p class="info">by <strong>Jo</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">November 13, 2019</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/mac-os-x">Mac-os-x</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h1 id="mach-o-process-and-thread-internals">Mach-O, Process, and Thread Internals</h1>
+
+<p>os는 application을 실행할 수 있는 platform으로 설계된다. 실행 중인 application의 각 instance는 process를 구성한다.</p>
+
+<p>이 장에서는 process에 대해 그들의 executable format 에서부터 memory에 load하는 과정, 그리고 그 결과인 memory image 까지 user mode 관점에서 설명한다.<br />
+마지막으로 memory utilization 및 swapping에 관하여 system-wide 관점에서 virtual memory에 관한 논의하며 끝을 맺는다.</p>
+
+<h2 id="a-nomenclature-refresher">A NOMENCLATURE REFRESHER</h2>
+
+<p>process의 implementation 방법에 대해 내부적으로 공부하기 이전에 UNIX에서의 process와 signal 기본 용어를 복습해본다.</p>
+
+<h3 id="processes-and-treads">Processes and Treads</h3>
+
+<p>다른 pre-emptive multi-tasking system과 마찬가지로 UNIX에서 process는 executing program의 instance이다. 이러한 instance는 <strong>Process ID(PID)</strong> 에 의해 고유하게 정의되며, 동일 executable에 의해 multiple instance가 시작될 수 있지만 각각 다른 <strong>PID</strong> 를 가진다.</p>
+
+<p>process는 <strong>setpgrp</strong> 를 call하여 process group에 참여할 수 있는데, 이러한 group은 주로 user가 group에 signal을 send하여 하나 이상의 process를 control 할 수 있도록 하는데 사용된다.</p>
+
+<p>process는 <strong>Parent Process Identifier(PPID)</strong> 를 보존하여 parent process와의 kinship을 유지하는데, 이는 UNIX 에서 parent가 children보다 오래 사는 것이 표준이기 때문이다. <br />
+process는 parent process에 의해 collect될 value를 return 한다는 뚜렷하고 명확한 삶의 의미를 지닌다. 이 return value는 process가 exit sytem call(또는 main() 함수의 return value) 에게 전달하는 값이다.</p>
+
+<p>modern os는 process를 operation의 basic unit으로 취급하지 않고 thread와 함께 작동한다. thread는 고유한 register state로, process에 여러개 존재할 수 있다. 모든 thread는 virtual memory space, descriptor, handle을 공유한다.</p>
+
+<h3 id="the-process-lifecycle">The Process Lifecycle</h3>
+
+<p><img src="/assets/img/macosx/fig_4_1.PNG" alt="" /></p>
+
+<ul>
+  <li><strong>SIDL</strong> 은 <em>일시적으로 idle 상태인 process</em> 를 나타내며, parent에 의해 fork된 직후의 process가 속한다. 이 상태에서 process는 <em>“initializing”</em> 상태로, memory layout이 set up 되고 필요한 dependency가 load될 때 까지 어떤 signal에도 respond 하지 않고 아무런 action도 하지 않는다. 준비가 완료되고 <strong>SIDL</strong> 상태를 벗어나면 이후 다시 <strong>SIDL</strong> 상태가 될 수 없다.</li>
+  <li><strong>SRUN</strong> 은 <em>runnable</em> 혹은 <em>running process_를 의미한다. cpu의 register가 process의 thread 중 하나에 속하는 것으로 load 되었을 때만 _running</em> 상태이고, 이 외에는 running 가능하지만 cpu가 다른process를 처리하는 동안 실행 대기중인 <em>runnable</em> 상태이다. running process는 time slice가 expire 되거나 higer priority process에게 밀려날 때 “kicked out” 되어 다시 queue로 돌아올 수 있다.  process는 I/O 등 resource를 기다리지 않는 한 최대한 긴 시간을 <strong>SRUN</strong> 상태에서 보낸다. resource를 기다리게 되면 해당 resource를 사용할 수 있을 때 까지 <strong>SSLEEP</strong> 상태가 된다.</li>
+  <li><strong>SLEEP</strong> 필요로 하는 resource를 사용할 수 있게 될 때 까지 <em>“put a sleep”</em> 하여 대기한다. sleep 상태에서 signal에 의해 깨어날 수도 있다.</li>
+  <li><strong>SSTOP</strong> <em>TSTOP</em>, <em>TOSTOP</em> 등의 특수 signal을 받아  process가 <em>“freeze”</em> (모든 스레드가 동시에 일시 중단)되어 <em>“deep sleep”</em> 에 빠진 상태이다.   이 상태에서는 <em>CONT</em> 신호로만 재개할 수 있다.</li>
+  <li><strong>SZOMB</strong> process가 main()에서 return 되거나 exit를 호출하면 memory에서 지워지고 종료되는데 이 작업을 수행하기 전 잠시 해당하는 상태</li>
+  <li><strong>Dead</strong> process가 memory에서 지워지고 종료된 상태</li>
+</ul>
+
+<h4 id="the-zombie-state"><strong>The Zombie State</strong></h4>
+
+<p>process의 삶의 의미는 value를 parent에게 return하는 것이다. 따라서 process를 종료시킨다고 바로 종료되지 않고, wait() call family(wait(), waitpid(), wait3(), wait4())에 의해 return 값이 parent에게 전달될 때 까지 <strong>zombie state</strong>로 남는다. 이 때 resource는 모두 반환하고 자신의 status만 유지한다. <br />
+만약 parent가 먼저 끝날 경우 child는 <strong>orphan process</strong>가 되고, 이럴 경우 init process(PID 1)가 <strong>orphan process</strong>의 parent가 되어 관리한다.</p>
+
+<h4 id="pid_suspend-and-pid_resume"><strong>pid_suspend and pid_resume</strong></h4>
+
+<p><strong>pid_suspend</strong> 와 <strong>pid_resume</strong> 이 Snow Leopard 부터 추가되었다.</p>
+
+<ul>
+  <li><strong>pid_suspend</strong>: process를 “freeze” 시켜 <strong>SSLEEP</strong> 상태로 만든다.</li>
+  <li><strong>pid_resume</strong>: process를 “thaw” 시켜 깨운다.</li>
+</ul>
+
+<p><em>STOP</em>/<em>CONT</em> signal을 보내는 것과 유사해 보이지만 다르다. <br />
+우선 pid_suspend는 <strong>SSTOP</strong> 이 아니라 <strong>SSLEEP</strong> 상태로 만든다. 이 때 일반적인 “sleep” 처럼 보이지만 실제로는 더 깊은 상태이다(mach task level에서 수행되기 때문에).<br />
+둘째, <strong>pid_suspend</strong>를 반복 호출하여 일시 중단 횟수를 증가시킬 수 있다. 즉 <strong>pid_suspend</strong>를 여러번 call하면 이후 process를 재개하기 위해 <strong>pid_resume</strong>를 같은 횟수 만큼 call해야 한다.</p>
+
+<h3 id="unix-signals">UNIX Signals</h3>
+
+<p>모든 UNIX system과 마찬가지로 OS X는 signal(data를 포함하지 않거나 단일 bit의 data를 포함하는 asynchronous notification)을 지원한다.<br />
+OS X에는 31개 정도의 signal이 define되어 있으며 &lt;sys/signal.h&gt;에서 확인할 수 있다. signal number는 다른 UNIX system과 거의 유사하다.</p>
+
+<h4 id="process-basic-security"><strong>Process Basic Security</strong></h4>
+
+<p>UNIX는 security와 isolation을 모두 제공하기 위해  각 process별로 두 가지 primary credential을 유지한다: creator <strong>user identifier(UID)</strong>와 primary <strong>group identifier(GID).<br />
+real UID/GID, effective UID/GID</strong> 도 UNIX와 마찬가지로 존재한다. 다만 <em>setfsuid</em> /_setfsgid_는 지원하지 않는다.<br />
+또한 Linux와 달리 OS X는 <strong>Capability</strong> 를 지원하지 않는다. 열성적으로 <strong>Capability</strong> mechanism을 채택한 Linux와 달리 POSIX는 도입했다 다시 제거한 관계로 OS X에서는 <strong>Capability</strong> 에 대한 지원이 의무화 되지 않았기 때문이다.<br />
+<strong>Capability</strong> 대신 OS X는 sandbox compartmentalization mechanism에 사용되는 <strong>entitlement</strong> 를 지원한다.</p>
+
+<blockquote>
+  <p><strong>Capability?</strong>  전통적인 super user(root) 기반의 system management privilege 를  좀 더 세분화 하여 보안 위협에 대처하고자 만들어진 보안 model 이다. <br />
+특정한 관리 작업을 수행할 때 root가 가지고 있는 모든 privilege를 부여하는 것이 아니라 해당 작업에 필요한 privilege만 부여하면 설사 악의적인 user에게 control privilege를 넘겨주었다 하더라도 system의 피해를 최소화 할 수 있다.</p>
+</blockquote>
+
+<h2 id="executables">EXECUTABLES</h2>
+
+<p>특수하게 craft된 file을 memory에 load하면 process가 생성된다. 이 때 이 file은 os에서 이해하는 format이어야 하며, os는 file을 parse 하여 require 되는 dependency(i.e libraries) 를 설정하고, runtime environment를 initialize 하고 execution할 수 있다. <br />
+이러한 특수한 file을 <strong>executable</strong> 이라고 부른다. file을 실행 시킬 때 kernel은 file을 memory로 ~~~~읽어들이고 정확한 executable format를 결정할 수 있도록 header signature(<strong>magic</strong> 이라고 불림)를 찾는다. magic은 binary format에 대한 hint를 제공하며, 해당 format을 지원할 경우 적절한 loader function이 invoke 된다.</p>
+
+<blockquote>
+  <p><strong>magic?</strong> header signature로 사용되는 predefine 된 임의의 상수 값.</p>
+</blockquote>
+
+<p><img src="/assets/img/macosx/tab_4_2.PNG" alt="" /></p>
+
+<p>위 표에 나와있는 다양한 executable format 중 OS X는 현재 아래 세 개의 format_(interpreters/script, universal binaries, Mach-O)<em>을 지원한다.<br />
+interpreter는 실제로 _“진짜 binary”_를  pointing 하는 script일 뿐이므로 이 세가지 format중 _universal binaries, Mach-O</em> 두 가지만 논의한다.</p>
+
+<h2 id="universal-binaries">UNIVERSAL BINARIES</h2>
+
+<p>원래 PowerPC 기반으로 만들어졌던 OS X를 intel architecture로 이식하면서 두 platform 모두에서 사용할 수 있는 program을 만들기 위한 방법으로 등장하였다. <br />
+두 개의 상이한 architecture를 가진 platform을 하나의 binary로 지원하기 위해서 각각의 architecture를 위한 code가 분리되어 들어가있다. os에서 load시에 해당 architecture에 맞는 code(Mach-O format)를 찾아 실행한다. <br />
+emulating 방식과는 다르게 성능 저하가 전혀 없지만, 두 platform을 위한 code가 모두 들어가므로 binary file의 용량이 더 커진다(이 때문에 fat binary 라고 불리기도 ). 다만 두 code 중에서  architecture에 맞는 것 만을 실행시키므로 추가적인 ram 공간을 차지하지는 않는다.</p>
+
+<blockquote>
+  <p><strong>lipo</strong> : universal binary에서 특정 architecture를 지원하는 code만 뽑아낼 수  universal binary tool. architecture를 extracting, removing, 또는 replacing 하여 <em>“thin down”</em> 시킬 수 있다.<br />
+또한 fat header detail을 표시하는데에도 사용할 수 있다.</p>
+</blockquote>
+
+<p><img src="/assets/img/macosx/fig_4_2.PNG" alt="" /></p>
+
+<p>image는 page의 boundary에 맞게 optimize 되어있으므로 kernel은 header를 load하기 위해 binary의 첫 page만 read하면 된다. 첫 page를 읽어들여 header를 확인하면 다음으로 어떤 image를 load할지 결정할 수 있다.<br />
+system은 processor와 가장 일치하는 <strong>cputype</strong> 및 <strong>cpusubtype</strong>(위 그림의 fat_arch 부분 참조)으로 image를 선택한다(<strong>arch</strong> command로 overridden 가능). binary를 architecture에 matching 시키는 것은 <em>&lt;mach-o/arch.h&gt;</em> 안의 function에 의해 수행된다. <br />
+architecture는 <strong>cputype, cpusubtype, byteordering</strong> 을 hold 하고있는 <strong>NXArchInfo</strong> struct에 store 된다. <strong>NXGetLocalArchInfo()</strong> 는 host의 architecture를 얻기 위하여 사용되며, <strong>NXFindBestFatArch()</strong> 는 가장 일치하는 architecture(일치하지 않을 경우 NULL) return 한다.</p>
+
+<h3 id="mach-o-binaries">Mach-O Binaries</h3>
+
+<p><strong>ELF(Executable and Library Format)</strong> 을 standard로 사용하는 UN*X와 달리 OS X에서는 NeXTSTEP에서 유래된 자체 binary format인 <strong>Mach-Object(Mach-O)</strong> 를 유지한다.<br />
+<strong>Mach-O</strong> format은 다음과 같은 fixed header로 시작한다.</p>
+
+<p><img src="/assets/img/macosx/fig_4_3%20%281%29.PNG" alt="" /></p>
+
+<p>header는 32-bit 또는 64-bit architecture 용으로 신속하게 loader를 결정할 수 있는 <strong>magic</strong> 값으로 시작한다.<br />
+<strong>magic</strong> 값 다음에는 <strong>universal binary</strong> header에서와 동일한 function을 제공하는 <strong>cputype</strong> 및 <strong>cpusubtype</strong> field가 있으며 binary가 해당 architecture 에서 execute 하기 적합하다는 것을 보장한다. <br />
+그 외에는 32-bit와 64-bit architecture 사이의 header structure 에는 실질적인 차이가 없다.</p>
+
+<p>여러 object type(executable, library, core file, kernel extension)에 동일한 binary format이 사용되므로 <strong>filetype</strong> field는 int로 되어있다.(p.103, table 4-3)</p>
+
+<p>header는 또한 &lt;mach-o/loader.h&gt;에 define된 중요한 flag를 포함하고 있다. (p.104, table 4-4)</p>
+
+<blockquote>
+  <p>execution과 관련된 두 flag <strong>MH_ALLOW_STACK_EXECUTION,  MH_NO_HEAP_EXECUTION</strong> 이 있는데, 이 두 flag는 모두 <strong>NX(Non-eXecutable)</strong> 이라는 data execution 방지와 관련되어있다.<br />
+data와 관련된 page들을 non-executable로 만들면 hacker는 data segment에서 code를 execute 시킬 수 없으므로 code injection을 할 수 없다.</p>
+</blockquote>
+
+<p>code injection의 일반적인 technique은 stack(또는 automatic) variable에 의한 것이기 때문에 stack은 default로 non-executable 이고, heap은 stack에 비해 code를 inject 하기 더 힘들다고 간주되기 때문에 executable이 default로 되어있다.<br />
+<strong>vm.allow_stack_exec, vm.allow_heap_exec</strong> variable을 <strong>sysctl</strong> 을 사용하여 system-wide 하게 두 설정을 모두 setting 할 수 있다.</p>
+
+<p>Mach-O header의 main funcionality는 load command 이다. 이들은 header 바로 다음에 지정되며 두 개의 field(<strong>ncmds, sizeofncmds</strong>)가 parsing에 사용된다.</p>
+
+<h3 id="load-comands">Load Comands</h3>
+
+<p>Mach-O header에는 binary가 invoke될 때 binary를 set up 하고 load 하는 아주 detail한 instruction이 포함되어 있다.<br />
+이 instructions, 또는 <em>“load commans”_는 basic mach_header 바로 다음에 위치한다.<br />
+각 command 자체는 type-length-value 이다: 32-bit <strong>cmd</strong> value는 type, 32-bit value <strong>cmdsize</strong> (32-bit는 4의 배수, 64-bit는 8의 배수) 및 command (<strong>cmdsize</strong> 에 저장된 임의의 <strong>len</strong>)은 다음과 같다.<br />
+이러한 command 중 일부는 kernel loader(_bsd/kern/mach_loader.c</em>)에 의해 직접 load 되고, 나머지는 dynamic linker에 의해 handle된다.</p>
+
+<p><img src="/assets/img/macosx/tab_4_5.PNG" alt="" /></p>
+
+<p>loading process의 kernel 부분은 virtual memory allocate, main thread create, potential code signing/encryption 이다. <br />
+그러나 dynamically link된 대부분의 executable의 경우 <strong>LC_LOAD_DYLINKER</strong> command에 의해 실제 library load 및 symbol resolve가 user mode 상에서 handle 된다. control은 linker로 transfer 되어 header의 다른 load command를 추가적으로 처리한다.</p>
+
+<h4 id="lc_segment-and-the-process-virtual-memory-setup"><strong>LC_SEGMENT and the Process Virtual Memory Setup</strong></h4>
+
+<p>main load command는 <strong>LC_SEGMENT/LC_SEGMENT64</strong> commands로, kernel에 새로 실행된 process의 memory space를 set up 하는 방법을 지시한다. 이 _“segments”_는 Mach-O binary에서 memory로 직접 load되며, segment layout에 필요한 detail을 모두 제한다.</p>
+
+<p>따라서 process의 virtual memory를 설정하면 <strong>LC_SEGMENT</strong> command를 따르는 간단한 operation이 된다. 각 segment에 대해 memory는 file로부터 load한다: offset <strong>fileoff</strong> 에서 <strong>filesize</strong> bytes로, <strong>vmsize</strong> byte에서 <strong>vmaddr</strong> address로.<br />
+각 segment의 page는 <strong>initprot</strong>에 따라 초기화 되며, read/write/execute bits로 initial page protection을 지정한다. 이는 dynamically change될 수 있지만, <strong>maxprot</strong> 에 지정된 값을 초과할 수 없다.<br />
+<strong>LC_SEGMENT</strong> 는 <strong>__PAGEZERO</strong> (NULL pointer trap), <strong>__TEXT</strong> (program code), <strong>__DATA</strong> (program data) 및 <strong>__LINKEDIT</strong> (linker에서 사용되는 symbol 및 기타 table)에 제공된다. <br />
+segment는 optional 하게 section으로 더 분할될 수 있다.(p.108, table 4-7)</p>
+
+<p>segment에는 &lt;mach/loader.h&gt;에 define된 특정 flag가 set 되어있을 수 있는데, 이러한 flag중 하나는 *<strong>SG_PROTECTED_VERSION_1</strong> 이며 segment page가 “protected” (즉, encrypted)되어 있음을 나타낸다. Apple은 이 기술을 사용하여 binary를 encrypt 한다.<br />
+이 code encryption을 가능하게 하기 위해서 XNU는 <strong>Apple protect</strong> 라는 특정 (external) virtual memory manager를 포함한다.</p>
+
+<h4 id="lc_unixthread"><strong>LC_UNIXTHREAD</strong></h4>
+
+<p>모든 library가 load되면 <strong>dyld</strong> 의 job이 완료되며, <strong>LC_UNIXTHREAD</strong> command 는 binary의 main thread를 시작하는 책임이 있다. (따라서 executable에는 있지만 library 같은 다른 binary에는 없음)</p>
+
+<h4 id="lc_thread"><strong>LC_THREAD</strong></h4>
+
+<p><strong>LC_UNIXTHREAD</strong> 와 유사하게 <strong>LC_THREAD</strong> 는 core file에 사용된다. Mach-O core file은 process의 memory image를 설정하는 <strong>LC_SEGMENT/LC_SEGMENT_64</strong> command collection과 final <strong>LC_THREAD</strong> 이다. <br />
+<strong>LC_THREAD</strong> 에는 각 machine state(thread, float, exception 등)에 대한 여러 “flavor”가 포함된다.</p>
+
+<h4 id="lc_main"><strong>LC_MAIN</strong></h4>
+
+<p>Mountain Lion에서 <strong>LC_MAIN</strong> 은 새로운 load command로 <strong>LC_UNIXTHREAD</strong> command를 대체한다. program의 main thread의 entry point 및 stack size 설정에 사용되며, program counter에 대해 저장된 모든 register가 0으로 설정되므로 <strong>LC_UNIXTHREAD</strong> 를 사용하는 것 보다 더 의미 있다.</p>
+
+<h4 id="lc_code_signature"><strong>LC_CODE_SIGNATURE</strong></h4>
+
+<p>Mach-O binary는 digital sign이 가능하다. <br />
+<strong>codesign</strong> utility를 사용하여 code sign을 manipulate하고 display 할 수 있다. <strong>LC_CODE_SIGNATURE</strong> 에는 Mach-O binary의 code sign이 포함되어 있으며 code와 mismatch될 경우 <strong>SIGKILL</strong> 을 사용하여 kernel에 의해 즉시 종료된다.<br />
+OS X와 iOS에는 code sign operation을 위한 특수 system call인 <strong>csops</strong> 가 포함되어 있다.</p>
+
+<h2 id="dynamic-libraries">DYNAMIC LIBRARIES</h2>
+
+<p>거의 모든 executable은 standalone이 아니다. 정적으로 link된 극소수의 file을 제외하고 대부분의 executable은 os의 일부로서, 또는 third parties에 의해 제공되는 pre-existing libraries에 의존하여 dynamical하게 link 된다.</p>
+
+<p>이번 section에서는 library loading process(application이 launch 될 때나 runtime 중)에 대해 논의한다.</p>
+
+<h3 id="launch-time-loading-of-libraries">Launch-Time Loading of Libraries</h3>
+
+<p>이전 section에서는 kernel loader_(bsd/kern/machine_loader.c)<em>가 segment 및 기타 directive에 따라 process address space를 initialize 하기 위해 수행한 setup을 다루었다. <br />
+그러나 이것은 매우 적은 수의 process에게만 충분한데, 왜냐하면 사실상 모든 OS X의 program이 dynamical하게 link되어있기 때문이다. <br />
+이 말인 즉 Mach-O image가 program이 launch될 때 resolve 되는 _“hole”</em>(external libraries 및 symbols)로 가득 차 있다는 의미이다. <br />
+이것은 dynamic linker를 위한 일로, 이 과정을 symbol <em>“binding”</em> 이라고도 한다. <br />
+dynamic linker는 <strong>LC_DYLINKER</strong> load command를 실행한 후 kernel에 의해 시작되는데, 이 command에 대한 argument로 어떤 program이던 사용 가능하지만 일반적으로 <em>/usr/lib/dyld_를 지정한다. <br />
+kernel이 process의 entry point를 linker의 entry point로 setting하기 때문에, linker는 새로 시작된 process를 control 한다고 가정한다.<br />
+linker의 job은 _“hole을 메우는 것”</em> 으로,  어떤 symbol이나 library dependency를 찾아내어 resolve 하는것인데, library가 또 다른 library에 대해 dependency하고 있는 경우가 많으므로 recursive하게 행해져야 한다.</p>
+
+<blockquote>
+  <p><strong>dyld</strong> 는 kernel의 일부가 아니라 그냥 user mode process이다. <br />
+따라서 <strong>dyld</strong> 는 pluggable component로, third party linker로 대체될 수 있다.<br />
+user mode에 있긴 하지만 link editor는 process를 load 하는데에 매우 중요한 역할을 한다. library를 kernel mode에서 load 하는 것은 user mode에서 하는 경우보다 훨씬 어려울 것인데, 왜냐하면 user mode 에서 볼 수 있는 file이 kernel mode에 존재하지 않기 때문이다.</p>
+</blockquote>
+
+<p><img src="/assets/img/macosx/fig_4_4_a.PNG" alt="" /></p>
+
+<p><img src="/assets/img/macosx/fig_4_4_b%20%281%29.PNG" alt="" /></p>
+
+<p>linker는 관심 있는 특정 load command (아래 표 참조) 에 대해 Mach-O header를 scan한다.</p>
+
+<p>외부에서 define된 function 및 symbol을 사용하는 binary text segment에 undefined symbols를 위한 placeholder가 있는 section(_stubs)가 있다. code는 symbol stub section에 대한 call과 함께 generate 되며, runtime 동안 linker에  resolve 된다. <br />
+linker는 call address에 <strong>JMP</strong> instruction 을 배치하여 resolve 한다. <strong>JMP</strong> 는 control을 real function의 body로 옮기지만 stack을 modify 하지 않으므로 real function은 마치 direct로 call 된 것 처럼 정상적으로 return될 수 있다.<br />
+<strong>LC_LOAD_DYLIB</strong> command는 symbol을 찾을 수 있는 위치를 linker에게 지시한다. 지정된 각 library가 load 되고 matching되는 symbol이 search 된다. link될 library는 symbol name과 address를 link되어 있는 <strong>symbol table</strong>을 가지고 있다.<br />
+<strong>LC_SYMTAB</strong> load command로 지정된 <strong>symoff</strong> 의 Mach-O object 에서 address를 찾을 수 있다. 해당 symbol name은 <strong>stroff</strong> 에 있으며, 총 <strong>nsyms</strong> 만큼 있다.</p>
+
+<p><em>다른 모든 UN*X와 마찬가지로 Mach-O library 들은 /usr/lib 에 위치해있다. 그러나 UN*X와 OS X간에는 두가지 주요 차이점이 존재한다:</em></p>
+
+<ul>
+  <li>Library가 <strong>“shared objects”(.so)</strong> 가 아니다.OS X는 ELF 와 호환되지 않으며,이러한 concept가 Mach-O 에는 없기 때문에 OS X에서는 _.dylib extension_을 가진 <strong>“dynamic library”</strong> file 이다.</li>
+  <li><strong>libc</strong>가 없다. _/usr/lib/libc.dylib_는 <strong>libSystem.B.dylib</strong> 에 대한 symbolic link로만 존재하고, <strong>libSystem</strong> 이 <strong>LibC</strong>의 기능과 추가 기능(UN*X 에서는 별도의 library들에서 제공하는 것들) 을 제공한다.</li>
+</ul>
+
+<p><strong>libSystem</strong> 은 system, C, C++, Objective-C 등의 모든 binary에 대한 전제 조건이다. 왜냐하면 <strong>libSystem</strong> 은 lower-level system call들과 kernel service들에 대한 interface 역할을 하여, 이것 없이는 아무것도 할 수 없기 때문이다. 실제로 _/usr/lib/system_의 다양한 library에 대한 umbrella library 역할을 하며, <strong>LC_REEXPORT_LIB</strong> load command를 이용하여 re-export 한다.</p>
+
+<h4 id="shared-library-caches"><strong>Shared Library Caches</strong></h4>
+
+<p><strong>dyld</strong> 가 지원하는 또다른 mechanism은 <strong>shared library cache</strong> 이다. 이 것들은 pre-link 되어 disk 상의 한 file에 저장된 library 이다. OS X의 경우 <strong>dyld</strong> shared cache는 <em>/private/var/db/dyld</em> 에 있다. 또한 OS X에서는 iOS와 다르게 .map file도 제공된다.</p>
+
+<p><img src="/assets/img/macosx/fig_4_5.PNG" alt="" /></p>
+
+<p>shared cache는 매우 커질 수 있다. OS X의 경우 200개가 넘는 file이 있다.</p>
+
+<h3 id="runtime-loading-of-libraries">Runtime Loading of Libraries</h3>
+
+<p>일반적으로 developer는 다양한 header를 #include 할 때 사용할 library와 symbol을 declare 하고, 선택적으로 -l을 사용하여 linker에 additional library를 지정한다. 이러한 방식으로 build한 executable은 dependency가 resolve 될 때 까지 load 되지 않는다. <br />
+대안은, <strong>&lt;dlfcn.h&gt;</strong>  에서 제공하는 function을 사용하여 runtime 중 library를 load하는 것 이다. 이 방식을 이용하면 유연성이 향상되는데, compile time에는 library 이름을 commit 하거나 알리면 된다. 이렇게 하 developer는  여러개의 library를 준비하고 runtime 동안의 특징이나 requirement에 따라 가장 적절한 library를 load할 수 있다. 또한 load 실패시 error code를 return하여 program에서 이를 처리할 수 있다.</p>
+
+<p>OS X에서 runtime dynamic library loading을 위한 API는 POSIX에서의 API와 유사해 보이지만, 구현 면에 있어서는 완전히 다른 방식이다.</p>
+
+<ul>
+  <li><strong>dlopen(const char *</strong><em><strong>path</strong></em><strong>)</strong> 은 _path_로 지정된 library 또는 bundle을 찾아 load하는데 사용된다.</li>
+  <li><strong>dlopen_preflight(const char *path)</strong> 는 <strong>dlopen()</strong> 의 loading process를 simulate 하지만 실제로는 아무것도 load하지 않는다.</li>
+  <li><strong>dlsym(void *handle, char *sym)</strong> 은 <strong>dlopen()</strong> 에 의해 이전에 열린 handle에서 symbol을 찾을 때 이용한다.</li>
+  <li><strong>dladdr(char *addr, Dl_info *info)</strong> 는 주소  addr에 있는 bundle 또는 library의 name으로 <strong>DL_Info</strong> structure를 채운다. - <em>GNU extension과 동일</em></li>
+  <li><strong>dlerror()</strong> 는 다른 function에 의해 error가 발생한 경우 error message를 제공하는 데 사용된다.</li>
+</ul>
+
+<p><strong>cocoa</strong>는 _dl* function family_와 _Mach-O bundle file_을 load하는 데 사용할 수 있는 <strong>CFBundle / NSBundle</strong> object를 위한 higer-level wrapper를 제공한다.<br />
+program 자체에서 load된 library 및 symbol을 확인하는 한 가지 방법은 &lt;mach-o/dyld.h&gt; 에 정의된 low-level dyld API를 사용하는 것이다. header는 또한 image load 및 removal 시 callback mechanism을 define한다. <br />
+<strong>dyld</strong> API 는 dl* API(특히 <strong>dladdr()</strong>)와 함께 사용할 수 있다.</p>
+
+<h4 id="weakly-defined-symbols"><strong>Weakly Defined Symbols</strong></h4>
+
+<p>OS X의 흥미로운 기능은 symbol을 “weak”한 것으로 define할 수 있다는 것이다. 일반적으로 symbols은 strongly define 되므로, executable을 시작하기 전에 모두 resolve 되어야 하고 그러지 못할 경우 program execute에 실패하게 된다(보통 debugger trap의 형태).</p>
+
+<p>반대로 <strong>__attribute__</strong>(weak_import를 declaration에 지정하여 define할 수 있는) <strong>weak symbol</strong>은 resolve 되지 않아도 program linkage에 실패하지 않으며 대신 dynamic linker 에서 이를 NULL로 setting하여 programmer가 recover 하고 condition을 handle할 수 있는 몇가지 alternative logic을 지정할 수 있게 한다. 이는 dynamic loading 에 사용되는 modus operndi와 유사하다(<strong>dlopen()</strong> 또는 <strong>dlsym()</strong> 이 NULL을 return 하는 것과 같은 효과).</p>
+
+<p>-m switch와 함께 nm을 사용하면 weak symbol을 <em>“weak”</em> specifier와 함께 display할 수 있다.</p>
+
+<h3 id="dyld-features">dyld Features</h3>
+
+<p><strong>dyld</strong> 에서 제공하는 고유 기능 중 유용한 몇 가지를 알아본다.</p>
+
+<h4 id="two-level-namespace"><strong>Two-Level Namespace</strong></h4>
+
+<p>기존 UN*X <strong>ld</strong>와 달리 OS X <strong>dyld</strong> 는 two-level namespace를 사용할 수 있다(symbol name에 library information도 포함됨). 이 접근법은 두 개의 서로 다른 library가 동일한 symbol을 export 하도록 허용하므로 유용하다(다른 UN*X에서는 link error가 발생할 수 있음). <br />
+function hooking을 위해서 동일한 symbol name을 가진 다른 library를 inject 하려는 경우 처럼 flat namespace를 restrict 해야 할 경우, <strong>DYLD_FORCE_FLAT_NAMESPACE environment variable</strong>을 non-zero로 설정하면 된다. executable은 header에 <strong>MH_FORCE_FLAT</strong> flag를 setting하여 모든 load된 library에 flat namespace를 강제할 수 있다.</p>
+
+<h4 id="function-interposing"><strong>Function Interposing</strong></h4>
+
+<p>classic <strong>ld</strong> 에 없는 <strong>**또 다른 기능은 **function interposing</strong> 이다. macro <strong>DYLD_INTERPOSE</strong> 를 사용하면 library가 다른 function 에 대한 function interpose(switch) 할 수 있다.</p>
+
+<p>interposing은 단순히 <strong>__interpose</strong> 라는 새로운 <strong>__DATA</strong> section을 제공하는것으로 구성되며, 이 section에는 interposing 및 interposed가 연속적으로 list 되어있다. 나머지는 <strong>dyld</strong> 가 모두 처리한다.</p>
+
+<blockquote>
+  <p><strong>GuardMalloc</strong> library_(/usr/lib/libgmalloc.dylib)_ : 이 library는 <strong>interposing</strong> 을 사용하는 좋은 예시로, <strong>libSystem.B.dylib</strong> 의 <strong>malloc()</strong> 관련 기능을 자체 구현으로 대체하여 강력한 debugging 및 memory error tracing 기능을 제공한다.<br />
+<strong>DYLD_INSERT_LIBRARIES</strong> variable을 setting하여 library를 우선적으로 application에 강제 inject 할 수 있다.</p>
+</blockquote>
+
+<p>interpose mechanism은 매우 강력하다. <br />
+예를들어, file system access의 monitoring 및 virtualization의 얇은 layer 제공을 위해 open() 및 close()와 같은 function을 intercept 하려고 function interpose를 쉽게 사용할 수 있다(다른 모든 operation은 file descriptor를 사용하므로 open operation 중에 다른 file로 redirecting 함).</p>
+
+<h4 id="environment-varibles"><strong>Environment Varibles</strong></h4>
+
+<p>OS X <strong>dyld</strong> 는 configuration이 매우 용이하며 environment variable을 사용하여 modify 할 수 있다.</p>
+
+<ul>
+  <li><strong>DYLD_FORCE_FLAT_NAMESPACE:</strong> (insert의 경우) library의 two-level namespace를 disable. 그렇지 않으면 symbol name에도 library name이 포함.</li>
+  <li><strong>DYLD_IGNORE_PREBINDING:</strong> performance test 를 위해 prebinding을 disable.</li>
+  <li><strong>DYLD_IMAGE_SUFFIX:</strong> 이 suffix로 library를 search.  <strong>libSystem</strong> 대신에 <em>/usr/lib/libSystem.B_debug.dylib</em> 또는 <em>/usr/lib/libSystem.B_profile</em> 을 load 하려면 일반적으로 <strong>_debug</strong> 또는 __<strong>_profile</strong>로 setting.</li>
+  <li><strong>DYLD_INSERT_LIBRARIES:</strong> program loading시 하나 이상의 library를 강제로 insertion(UN*X의 lD_PRELOAD와 동일).</li>
+  <li><strong>DYLD_LIBRARY_PATH:</strong> UN*X의 <strong>LD_LIBRARY_PATH</strong> 와 동일.</li>
+  <li><strong>DYLD_FALLBACK_LIBRARY_PATH:</strong> <strong>DYLD_LIBRARY_PATH</strong> 가 시래할 때 사용.</li>
+  <li><strong>DYLD_FRAMEWORK_PATH:</strong> <strong>DYLD_LIBRARY_PATH</strong> 와 같지만 framework 용.</li>
+  <li><strong>DYLD_FALLBACK_FRAMEWORK_PATH:</strong> <strong>DYLD_FRAMEWORK_PATH</strong> 가 실패 할 때 사용.</li>
+</ul>
+
+<p><strong>dyld</strong> 의 debug printing control option은 다음과 같다.</p>
+
+<ul>
+  <li><strong>DYLD_PRINT_APIS: dyld</strong> API call dump<strong>(</strong>i.e. <strong>dlopen).</strong></li>
+  <li><strong>DYLD_PRINT_BINDINGS:</strong> dump symbol binding.</li>
+  <li><strong>DYlD_PRINT_ENV:</strong> 초기 environment variable을 dump.</li>
+  <li><strong>DYLD_PRINT_INITIALIZERS:</strong> dump library initialization(entry point) calls.</li>
+  <li><strong>DYLD_PRINT_LIBRARIES:</strong> library가 load될 때 표시.</li>
+  <li><strong>DYLD_PRINT_LIBRARIES_POST_LAUNCH:</strong> load 후, dynamical하게 load된 library를 표시.</li>
+  <li><strong>DYLD_PRINT_SEGMENTS:</strong> dump segment mapping.</li>
+  <li><strong>DYLD_PRINT_STATISTICS:</strong> runtime statistics를 표시.</li>
+</ul>
+
+<h2 id="process-address-space">PROCESS ADDRESS SPACE</h2>
+
+<p>user mode의 benefit 중 하나는 isolate된 virtual memory 이다. process는 4GB(32-bit OS X의 경우), 16 exabyte(64-bit OS X) 의 private address space를 사용할 수 있다. <br />
+앞 section에서 논의한 바와 같이, 이 address space는 다양한 <strong>LC_SEGMENT</strong> command 를 사용하여  executable과 다양한 libraries 들로 채워진다. 이번 section에서는 address space layout에 대해 detail하게 알아본다.</p>
+
+<h3 id="the-process-entry-point">The Process Entry Point</h3>
+
+<p>작성중…</p>
+
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/mac">mac</a>,&nbsp;<a href="/tag/osx">osx</a>,&nbsp;<a href="/tag/internals">internals</a>,&nbsp;<a href="/tag/mach-o">mach-o</a>,&nbsp;<a href="/tag/process">process</a>,&nbsp;<a href="/tag/thread">thread</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%5BOS+X+Internals%5D+CH.4+Parts+of+the+Process+-+%28%EC%9E%91%EC%84%B1%EC%A4%91%29&url=https%3A%2F%2Fsungunjo.github.io%2Fmac-os-x%2F2019%2F11%2F13%2Fch.4-parts-of-the-process.html&via="
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=%5BOS+X+Internals%5D+CH.4+Parts+of+the+Process+-+%28%EC%9E%91%EC%84%B1%EC%A4%91%29&u=https%3A%2F%2Fsungunjo.github.io%2Fmac-os-x%2F2019%2F11%2F13%2Fch.4-parts-of-the-process.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsungunjo.github.io%2Fmac-os-x%2F2019%2F11%2F13%2Fch.4-parts-of-the-process.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=%5BOS+X+Internals%5D+CH.4+Parts+of+the+Process+-+%28%EC%9E%91%EC%84%B1%EC%A4%91%29&url=https%3A%2F%2Fsungunjo.github.io%2Fmac-os-x%2F2019%2F11%2F13%2Fch.4-parts-of-the-process.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=%5BOS+X+Internals%5D+CH.4+Parts+of+the+Process+-+%28%EC%9E%91%EC%84%B1%EC%A4%91%29&url=https%3A%2F%2Fsungunjo.github.io%2Fmac-os-x%2F2019%2F11%2F13%2Fch.4-parts-of-the-process.html&media=https://sungunjo.github.io/assets/instacode.png"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('https://sungunjo.github.io/mac-os-x/2019/11/13/ch.4-parts-of-the-process.html') + '&title=[OS X Internals] CH.4 Parts of the Process - (작성중)'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'sungunjo-github-io';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">감자는 맛있다</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:sungunjo.dev@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">sungunjo.dev@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/sungunjo" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">sungunjo</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/sungunjo" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">SungUn Jo</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">개발 공부 블로그</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-156645046-1', 'auto');
+  ga('send', 'pageview', {
+    'page': '/mac-os-x/2019/11/13/ch.4-parts-of-the-process.html',
+    'title': '[OS X Internals] CH.4 Parts of the Process - (작성중)'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

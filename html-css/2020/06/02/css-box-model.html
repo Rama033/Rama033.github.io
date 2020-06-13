@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[HTML5 & CSS3] CSS 박스 모델</title>
+  <meta name="description" content="블록 레벨 요소요소를 삽입했을 때 혼자 한 줄을 전부 차지하는 요소로, 다른 요소와 한 줄에 존재할 수 없다.ex) &lt;div&gt;, &lt;p&gt; 등인라인 레벨 요소줄을 차지하지 않는 요소로, 표시되는 콘텐츠만큼의 영역만 차지하여 나머지 공간에는 다른 요소가 올 수 있다...">
+  
+  <meta name="author" content="Jo">
+  <meta name="copyright" content="&copy; Jo 2020">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="블록 레벨 요소요소를 삽입했을 때 혼자 한 줄을 전부 차지하는 요소로, 다른 요소와 한 줄에 존재할 수 없다.ex) &lt;div&gt;, &lt;p&gt; 등인라인 레벨 요소줄을 차지하지 않는 요소로, 표시되는 콘텐츠만큼의 영역만 차지하여 나머지 공간에는 다른 요소가 올 수 있다..." />
+  <meta property="og:url" content="https://sungunjo.github.io/html-css/2020/06/02/css-box-model.html">
+  <meta property="og:site_name" content="감자는 맛있다" />
+  <meta property="og:title" content="[HTML5 & CSS3] CSS 박스 모델" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sungunjo.github.io/assets/instacode.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[HTML5 & CSS3] CSS 박스 모델">
+  <meta name="twitter:description" content="블록 레벨 요소요소를 삽입했을 때 혼자 한 줄을 전부 차지하는 요소로, 다른 요소와 한 줄에 존재할 수 없다.ex) &lt;div&gt;, &lt;p&gt; 등인라인 레벨 요소줄을 차지하지 않는 요소로, 표시되는 콘텐츠만큼의 영역만 차지하여 나머지 공간에는 다른 요소가 올 수 있다...">
+  <meta name="twitter:image" content="https://sungunjo.github.io/assets/instacode.png">
+  <meta name="twitter:url" content="https://sungunjo.github.io/html-css/2020/06/02/css-box-model.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://sungunjo.github.io/html-css/2020/06/02/css-box-model.html">
+	<link rel="alternate" type="application/rss+xml" title="감자는 맛있다" href="https://sungunjo.github.io/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="감자는 맛있다">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/instacode.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">[HTML5 & CSS3] CSS 박스 모델</h1>
+      <p class="info">by <strong>Jo</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">June 2, 2020</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/html-css">Html-css</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h3 id="블록-레벨-요소">블록 레벨 요소</h3>
+<p>요소를 삽입했을 때 혼자 한 줄을 전부 차지하는 요소로, 다른 요소와 한 줄에 존재할 수 없다.<br />
+ex) &lt;div&gt;, &lt;p&gt; 등<br />
+<br /></p>
+
+<h3 id="인라인-레벨-요소">인라인 레벨 요소</h3>
+<p>줄을 차지하지 않는 요소로, 표시되는 콘텐츠만큼의 영역만 차지하여 나머지 공간에는 다른 요소가 올 수 있다.<br />
+ex) &lt;img&gt;, &lt;strong&gt;, &lt;span&gt; 등<br />
+<br /></p>
+
+<h3 id="박스-모델">박스 모델</h3>
+<p><img src="/assets/img/css_box_model/box_model.png" />
+CSS 에서 박스는 실제 콘텐츠가 들어가는 <strong>contents</strong>, 콘텐츠와 테두리 사이의 <strong>padding</strong>, 박스의 테두리인 <strong>border</strong>, 요소 간의 거리를 나타내는 <strong>margin</strong> 으로 구성되어있다.<br />
+contents 영억은 width, height 속성으로 크기를 지정할 수 있으며, 나머지 영역은 padding, border, margin 을 속성으로 해서 각각 크기를 지정해줄 수 있다.<br />
+<br /></p>
+
+<h4 id="width-height-속성">width, height 속성</h4>
+<p>실제 콘텐츠 영역의 크기를 지정한다.<br />
+박스의 전체 너비 = width + 좌우 padding + 좌우 border
+박스의 전체 높이 = height + 상하 padding + 상하 border</p>
+<ul>
+  <li>**<크기>**: 너비나 높이 값을 px, cm 등의 단위와 함께 수치로 지정</크기></li>
+  <li>**<백분율>**: 해당 박스를 포함하는 부모 요소를 기준으로 너비나 높이 값을 백분율로 지정</백분율></li>
+  <li><strong>auto</strong>: 콘텐츠 양에 따라 자동으로 결정. default 값<br />
+<br /></li>
+</ul>
+
+<h4 id="display-속성">display 속성</h4>
+<p>요소를 어떻게 표시할지에 대한 속성이다.<br />
+주로 다음과 같은 속성값을 사용한다.<br /></p>
+<ul>
+  <li><strong>block</strong>: 해당 요소를 블록 레벨로 지정</li>
+  <li><strong>inline</strong>: 해당 요소를 인라인 레벨로 지정</li>
+  <li><strong>inline-block</strong>: 해당 요소를 인라인 레벨로 배치하지만, 내용에는 블록 레벨 속성을 지정</li>
+  <li><strong>none</strong>: 해당 요소를 화면에 표시하지 않고, 공간도 차지하지 않음<br />
+<br /></li>
+</ul>
+
+<p>이 외에도 다음과 같이 다양한 속성값을 사용할 수 있다.<br /></p>
+<ul>
+  <li><strong>inherit</strong>: 상위 요소의 display 속성을 상속받음</li>
+  <li><strong>table</strong>: 블록 레벨 표로 만듬</li>
+  <li><strong>inline-table</strong>: 인라인 레벨 표로 만듬 (&lt;table&gt; 처럼)</li>
+  <li><strong>table-row</strong>: 표의 행으로 만듬 (&lt;tr&gt; 처럼)</li>
+  <li><strong>table-row-group</strong>: 표의 행 그룹으로 만듬 (&lt;tbody&gt; 처럼)</li>
+  <li><strong>table-header-group</strong>: 표의 제목 영역 그룹으로 만듬 (&lt;thead&gt; 처럼)</li>
+  <li><strong>table-footer-group</strong>: 표의 요약 영역 그룹으로 만듬 (&lt;tfoot&gt; 처럼)</li>
+  <li><strong>table-column</strong>: 표의 열로 만듬 (&lt;col&gt; 처럼)</li>
+  <li><strong>table-column-group</strong>: 표의 열 그룹으로 만듬 (&lt;colgroup&gt; 처럼)</li>
+  <li><strong>table-cell</strong>: 표에서 하나의 셀로 만듬 (&lt;td&gt; 나 &lt;th&gt; 처럼)</li>
+  <li><strong>table-caption</strong>: 표의 캡션으로 만듬 (&lt;caption&gt; 처럼)</li>
+  <li><strong>list-item</strong>: 목록의 항목을 표시할 수 있도록 기본적인 블록 박스(항목의 내용 표시되는 부분) 과 표시자 박스(불릿이 표시되는 부분) 을 만듬 (&lt;li&gt; 처럼)<br />
+<br /></li>
+</ul>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/html">html</a>,&nbsp;<a href="/tag/html5">html5</a>,&nbsp;<a href="/tag/css">css</a>,&nbsp;<a href="/tag/css3">css3</a>,&nbsp;<a href="/tag/web">web</a>,&nbsp;<a href="/tag/design">design</a>,&nbsp;<a href="/tag/css">css</a>,&nbsp;<a href="/tag/style">style</a>,&nbsp;<a href="/tag/style-sheet">style-sheet</a>,&nbsp;<a href="/tag/box">box</a>,&nbsp;<a href="/tag/model">model</a>,&nbsp;<a href="/tag/box-model">box-model</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%5BHTML5+%26+CSS3%5D+CSS+%EB%B0%95%EC%8A%A4+%EB%AA%A8%EB%8D%B8&url=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F06%2F02%2Fcss-box-model.html&via="
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=%5BHTML5+%26+CSS3%5D+CSS+%EB%B0%95%EC%8A%A4+%EB%AA%A8%EB%8D%B8&u=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F06%2F02%2Fcss-box-model.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F06%2F02%2Fcss-box-model.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=%5BHTML5+%26+CSS3%5D+CSS+%EB%B0%95%EC%8A%A4+%EB%AA%A8%EB%8D%B8&url=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F06%2F02%2Fcss-box-model.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=%5BHTML5+%26+CSS3%5D+CSS+%EB%B0%95%EC%8A%A4+%EB%AA%A8%EB%8D%B8&url=https%3A%2F%2Fsungunjo.github.io%2Fhtml-css%2F2020%2F06%2F02%2Fcss-box-model.html&media=https://sungunjo.github.io/assets/instacode.png"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('https://sungunjo.github.io/html-css/2020/06/02/css-box-model.html') + '&title=[HTML5 & CSS3] CSS 박스 모델'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'sungunjo-github-io';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">감자는 맛있다</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:sungunjo.dev@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">sungunjo.dev@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/sungunjo" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">sungunjo</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/sungunjo" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">SungUn Jo</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">개발 공부 블로그</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-156645046-1', 'auto');
+  ga('send', 'pageview', {
+    'page': '/html-css/2020/06/02/css-box-model.html',
+    'title': '[HTML5 & CSS3] CSS 박스 모델'
+  });
+</script>
+
+
+
+  </body>
+
+</html>
