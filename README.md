@@ -6,7 +6,7 @@ $ bundle exec jekyll serve
 
 블로그 갱신하려면
 ~~~
-$ sh update.sh
+$ sh update.sh "커밋 메시지"
 ~~~
 
 
