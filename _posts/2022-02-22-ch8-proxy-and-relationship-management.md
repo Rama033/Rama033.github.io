@@ -399,7 +399,279 @@ Order order1 = orders.get(0);   // 실제 DB 조회 및 초기화 이뤄짐
   - (optional = false): 외부 조인
   - (optional = true): 외부 조인
 
+<br/>
+<br/>
+<br/>
 
+# 8.4 영속성 전이: CASCADE
+- 특정 엔티티를 영속 상태로 만들 때 연관된 엔티티도 함께 영속 상태로 만들려면 **영속성 전이(transitive persistence)**  기능 사용
+- JPA는 CASCADE 옵션으로 영속성 전이 제공
 
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드 확인</b></summary>
+<div markdown="1">
 
-*작성중...(2022-02-24 8.3장까지 함)*
+<img src="/assets/img/jpa_study/ch.8/pic-8-9.png">
+
+```java
+@Entity
+public class Parent {
+  @Id
+  @GeneratedValue
+  private Long id;
+
+  @OneToMany(mappedBy = "parent")
+  private List<Child> children = new ArrayList<Child>();
+
+  ...
+}
+
+...
+
+@Entity
+public class Child {
+  @Id
+  @GeneratedValue
+  private Long id;
+
+  @ManyToOne
+  private Parent parent;
+
+  ...
+}
+
+...
+
+// parent 하나에 child 두개 저장하는 경우
+private static void saveNoCascade(EntityManager em) {
+  // parent 저장
+  Parent parent = new Parent();
+  em.persist(parent);
+  
+  // child1 저장
+  Child child1 = new Child();
+  child1.setParent(parent);         // child -> parent 연관관계 설정
+  parent.getChildren().add(child1); // parent -> child 연관관계 설정
+  em.persist(Child1);
+
+  // child2 저장
+  Child child2 = new Child();
+  child2.setParent(parent);         // child -> parent 연관관계 설정
+  parent.getChildren().add(child2); // parent -> child 연관관계 설정
+  em.persist(Child2);
+}
+```
+
+</div>
+</details>
+
+- JPA에서 엔티티를 저장할 때 연관된 모든 엔티티는 영속 상태여야 함
+- 따라서 위 예제에서 parent 를 영속 상태로 만든 이후 추가한 child 엔티티들도 각각 영속상태로 만들어줌
+- 영속성 전이를 사용하면 parent만 영속 상태로 만들어도 연관된 child 엔티티들도 한번에 영속 상태로 만들 수 있음
+
+<br/>
+<br/>
+
+## 8.4.1 영속성 전이: 저장
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드 확인</b></summary>
+<div markdown="1">
+
+```java
+@Entity
+public class Parent {
+  ...
+
+  @OneToMany(mappedBy = "parent", cascade = CascadeType.PERSIST)
+  private List<Child> children = new ArrayList<Child>();
+
+  ...
+}
+
+...
+
+private static void saveWithCascade(EntityManager em) {
+  Child child1 = new Child();
+  Child child2 = new Child();
+
+  Parent parent = new Parent();
+  child1.setParent(parent);     // child1 연관관계 추가
+  child2.setParent(parent);     // child2 연관관계 추가
+  parent.getChildren().add(child1);
+  parent.getChildren().add(child2);
+
+  // parent 저장, 연관된 child 들도 같이 저장
+  em.persist(parent);
+}
+```
+
+</div>
+</details>
+
+<img src="/assets/img/jpa_study/ch.8/pic-8-10.png">
+
+- parent에 child 엔티티들을 ```@OneToMany(cascade = CascadeType.PERSIST)```로 영속성 전이 설정해줘서 parent 영속화시 child들도 같이 영속화해서 저장됨
+- 영속성 전이는 연관 관계 매핑과는 관련 X
+  - 엔티티 영속화 시 연관된 엔티티도 함께 영속화되는 편리함을 제공할 뿐
+
+<br/>
+<br/>
+
+## 8.4.2 영속성 전이: 삭제
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드 확인</b></summary>
+<div markdown="1">
+
+```java
+@Entity
+public class Parent {
+  ...
+
+  @OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE)
+  private List<Child> children = new ArrayList<Child>();
+
+  ...
+}
+
+...
+
+private static void removeNoCascade(EntityManager em) {
+  Parent parent = em.find(Parent.class, 1L);
+  Child child1 = em.find(Child.class, 1L);
+  Child child2 = em.find(Child.class, 2L);
+
+  em.remove(child1);
+  em.remove(child2);
+  em.remove(parent);
+}
+
+...
+
+private static void removeWithCascade(EntityManager em) {
+  Parent parent = em.find(Parent.class, 1L);
+
+  em.remove(parent);
+}
+```
+
+</div>
+</details>
+
+- default로는 삭제 시 위 예시의 ```removeNoCascade()``` 처럼 각각 엔티티를 하나씩 제거해야 함
+- ```@OneToManyu(cascade = CascadeType.REMOVE)``` 로 삭제에 대한 영속성 전이 설정해 주면 ```removeWithCascade()``` 처럼 parent 만 지워도 연관된 child 엔티티들 함께 삭제됨
+  - 이 때 알아서 fk 제약조건 고려하여 child 먼저 삭제하고 parent 삭제해줌
+
+<br/>
+<br/>
+
+## 8.4.3 CASCADE의 종류
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드 확인</b></summary>
+<div markdown="1">
+
+```java
+public enum CascadeType {
+  ALL         // 모두 적용
+  , PERSIST   // 영속
+  , MERGE     // 병합
+  , REMOVE    // 삭제
+  , REFRESH   // refresh
+  , DETACH    // detach
+}
+```
+
+</div>
+</details>
+
+- 위 코드에 나와있는 다양한 CascadeType 을 적용하여 상황에 따라 사용 가능
+- ```cascade = (CascadeType.PERSIST, CascadeType.REMOVE)``` 처럼 여러 옵션 같이 적용할 수도 있음
+- ```CascadeType.PERSIST```, ```CascadeType.REMOVE```는 각각 ```em.persist()```, ```em.remove()```실행할 때 바로 전이 발생 X
+  - flush 호출 시 전이 발생함
+
+<br/>
+<br/>
+<br/>
+
+# 8.5 고아 객체
+- JPA에서는 parent 엔티티와 연관관계 끊어진 child 엔티티 자동 삭제 기능을 제공 => **고아 객체 제거(ORPHAN REMOVAL)**
+- 
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드 확인</b></summary>
+<div markdown="1">
+
+```java
+@Entity
+public class Parent {
+  @ID
+  @GeneratedValue
+  private Long id;
+
+  @OneToMany(mappedBy = "parent", orphanRemoval = true)
+  private List<Child> children = new ArrayList<Child>();
+
+  ...
+}
+
+...
+
+public void removeChild(EntityManager em) {
+  Parent parent = em.find(Parent.class, 1L);
+
+  parent.getChildren().remove(0);   child 엔티티를 컬렉션에서 제거
+}
+
+...
+
+public void removeAllChild(EntityManager em) {
+  Parent parent = em.find(Parent.class, 1L);
+
+  parent.getChildren().clear();   child 엔티티 전부를 컬렉션에서 제거
+}
+```
+
+</div>
+</details>
+
+- ```@OneToMany(orphanRemoval = true)``` 로 설정해주면 연관관계 끊어질 때 child 엔티티도 자동으로 제거됨
+- 고아 객체 제거 기능도 영속성 컨텍스트 flush 시 적용되므로 flush 시점에 DELETE 쿼리가 수행되어 제거
+- 고아 객체 제거는 **참조가 제거된 엔티티는 다른 곳에서 참조하지 않는 고아 객체로 보고 삭제하는 기능**이므로 참조하는 곳이 하나일 때만 사용해야 함
+  - 삭제한 엔티티를 다른 곳에서도 참조중이면 문제 발생할 수 있음
+  - 따라서 orphanRemoval은 ```@OneToOne```, ```@OneToMany``` 에서만 사용 가능
+- 또한 parent를 제거해버리면 child도 고아가 되는거나 마찬가지라 parent 제거시 child도 같이 제거됨
+  - ```CascadeType.REMOVE``` 설정한 것과 동일함
+
+<br/>
+<br/>
+<br/>
+
+# 8.6 영속성 전이 + 고아 객체, 생명주기
+- 일반적으로 엔티티는 ```EntityManager::persist()``` 를 통해 영속화, ```EntityManager::remove()``` 를 통해 제거됨
+  - 엔티티 스스로 생명주기를 관리한다는 의미
+- 만약 ```CascadeType.ALL```과 ```oprhanRemoval = true``` 를 통시에 사용할 경우
+  - parent 엔티티를 통해 child의 생명주기 관리 가능
+  - child 저장하려면 parent에 등록만 하면 됨(CASCADE)
+  - child 삭제하려면 parent에서 제거만 하면 됨(orphanRemoval)
+  - 
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드 확인</b></summary>
+<div markdown="1">
+
+```java
+public void save(EntityManager em, parentId, child) {
+  // parent 엔티티에 등록하여 child도 저장
+  Parent parent = em.find(Parent.class, parentId);
+  parent.addChild(Child);
+}
+
+public void remove(EntityManager em, parentId, child) {
+  // parent에서 제거하여 child도 삭제
+  Parent parent = em.find(Parent.class, parentId);
+  parent.getChildren().remove(child);
+}
+```
+
+</div>
+</details>
