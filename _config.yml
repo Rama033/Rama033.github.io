@@ -46,11 +46,11 @@ jekyll-archives:
     category: '/category/:name/'
     tag: '/tag/:name/'
 
-jekyll-sitemap:
-  - scope:
-      path: google*.html
-    values:
-      sitemap: false
+
+- scope:
+    path: google*.html
+  values:
+    sitemap: false
 
 # Disqus comments
 disqus_shortname: 'sungunjo-github-io'
