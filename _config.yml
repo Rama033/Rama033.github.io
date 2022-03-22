@@ -46,6 +46,12 @@ jekyll-archives:
     category: '/category/:name/'
     tag: '/tag/:name/'
 
+jekyll-sitemap:
+  - scope:
+      path: google*.html
+    values:
+      sitemap: false
+
 # Disqus comments
 disqus_shortname: 'sungunjo-github-io'
 
@@ -199,6 +205,3 @@ protocols:
     os_repo: "https://github.com/sungunjo/sungunjo.github.io"
     os_rcs_type: "git"
     os_src: "git@github.com:sungunjo/sungunjo.github.io.git"
-
-
-https://sungunjo.github.io/jpa-study/2022/01/20/ch.3-persistence-management.html
