@@ -1,0 +1,2513 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[자바 ORM 표준 JPA 프로그래밍] 3장. 영속성 관리</title>
+  <meta name="description" content="3. 영속성 관리  JPA가 제공하는 기능은 크게 다음과 같이 분류 가능          entity와 table을 mapping하는 설계      mapping한 entity를 실제로 사용      ">
+  
+  <meta name="author" content="Jo">
+  <meta name="copyright" content="&copy; Jo 2022">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="3. 영속성 관리  JPA가 제공하는 기능은 크게 다음과 같이 분류 가능          entity와 table을 mapping하는 설계      mapping한 entity를 실제로 사용      " />
+  <meta property="og:url" content="https://sungunjo.github.io/jpa-study/2022/01/20/ch.3-persistence-management.html">
+  <meta property="og:site_name" content="Development Stash" />
+  <meta property="og:title" content="[자바 ORM 표준 JPA 프로그래밍] 3장. 영속성 관리" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sungunjo.github.io/assets/instacode.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 3장. 영속성 관리">
+  <meta name="twitter:description" content="3. 영속성 관리  JPA가 제공하는 기능은 크게 다음과 같이 분류 가능          entity와 table을 mapping하는 설계      mapping한 entity를 실제로 사용      ">
+  <meta name="twitter:image" content="https://sungunjo.github.io/assets/instacode.png">
+  <meta name="twitter:url" content="https://sungunjo.github.io/jpa-study/2022/01/20/ch.3-persistence-management.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://sungunjo.github.io/jpa-study/2022/01/20/ch.3-persistence-management.html">
+	<link rel="alternate" type="application/rss+xml" title="Development Stash" href="https://sungunjo.github.io/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="Development Stash">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/instacode.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">[자바 ORM 표준 JPA 프로그래밍] 3장. 영속성 관리</h1>
+      <p class="info">by <strong>Jo</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">January 20, 2022</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/jpa-study">Jpa-study</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h1 id="3-영속성-관리">3. 영속성 관리</h1>
+<ul>
+  <li>JPA가 제공하는 기능은 크게 다음과 같이 분류 가능
+    <ol>
+      <li>entity와 table을 mapping하는 설계</li>
+      <li>mapping한 entity를 실제로 사용</li>
+    </ol>
+  </li>
+  <li>entity manager와 persistence는 mapping한 entity를 실제로 사용하는 동적인 부분에 해당함</li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="31-entity-manager-factory와-entity-manager">3.1 entity manager factory와 entity manager</h1>
+<h3 id="entity-manager-factory">entity manager factory</h3>
+<ul>
+  <li><strong>역할</strong>
+    <ul>
+      <li>entity manager를 만드는 공장</li>
+    </ul>
+  </li>
+  <li><strong>비용</strong>
+    <ul>
+      <li>생성 비용이 매우 크기 때문에 한 개를 만들어서 application 전체에서 공유</li>
+      <li>일반적으로 DB 하나만 사용할 경우 EntityManagerFactory 하나 생성</li>
+    </ul>
+  </li>
+  <li><strong>thread safe</strong>
+    <ul>
+      <li>entity manager factory는 thread safe</li>
+      <li>∴ 여러 스레드에서 하나 공유</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Persistence.createEntityManagerFactory()</code> 호출시 <code class="language-plaintext highlighter-rouge">META-INF/persistence.xml</code> 에 있는 정보를 바탕으로 EntityManagerFactory 생성</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="entity-manager">entity manager</h3>
+<ul>
+  <li><strong>역할</strong>
+    <ul>
+      <li>entity를 저장, 수정, 삭제, 조회하는 등 entity와 관련된 모든 일을 처리, 관리하는 관리자</li>
+      <li>entity를 저장하는 가상의 DB로 생각하면 됨</li>
+    </ul>
+  </li>
+  <li><strong>비용</strong>
+    <ul>
+      <li>entity manager factory로 생성하는 entity manager는 생성 비용이 거의 들지 않음</li>
+      <li>필요할 때마다 생성</li>
+    </ul>
+  </li>
+  <li><strong>thread safe</strong>
+    <ul>
+      <li>entity manager는 thread safe하지 않음</li>
+      <li>동시성 문제 발생하기 때문에 스레드 간 공유하면 안됨</li>
+    </ul>
+  </li>
+  <li><strong>connection</strong>
+    <ul>
+      <li>entity manager는 DB 연결이 필요한 시점까지 connection 얻지 않음
+        <ul>
+          <li>일반적으로 transaction을 시작할 때 connection 획득</li>
+        </ul>
+      </li>
+      <li>JPA 구현체들은 EntityManagerFactory 생성시 persistence.xml의 DB 접속 정보를 이용하여 connection풀도 만듬 (J2SE 환경)
+        <ul>
+          <li>스프링 프레임워크를 포함한 J2EE 환경에서는 해당 container가 제공하는 datasource를 사용함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="32-persistence란">3.2 persistence란?</h1>
+<ul>
+  <li>entity를 영구 저장하는 환경</li>
+  <li>entity manager로 entity를 저장, 조회시 entity manager는 persistence로 entity를 보관, 관리</li>
+  <li>persistence는 entity manager 생성시 하나 만들어짐</li>
+  <li>entity manager를 통해 접근 및 관리 가능</li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="33-entity의-생명-주기">3.3 entity의 생명 주기</h1>
+<ul>
+  <li>entity의 4가지 상태
+    <ol>
+      <li><strong>비영속(new/transient):</strong> persistence와 전혀 관계가 없는 상태</li>
+      <li><strong>영속(managed):</strong> persistence에 저장된 상태</li>
+      <li><strong>준영속(detached):</strong> persistence에 저장되었다가 분리된 상태</li>
+      <li><strong>삭제(removed):</strong> 삭제된 상태</li>
+    </ol>
+  </li>
+</ul>
+
+<p><img src="/assets/img/jpa_study/ch.3/pic-3-2.png" /></p>
+
+<p><br /></p>
+
+<h3 id="비영속-newtransient">비영속 (new/transient)</h3>
+<ul>
+  <li>entity 객체 생성 후 아직 저장하지 않아 persistence context, DB와는 관련 없는 순수한 객체 상태</li>
+  <li></li>
+</ul>
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 객체를 생성한 상태 (비영속)</span>
+<span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">();</span>
+<span class="n">member</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="s">"member1"</span><span class="o">);</span>
+<span class="n">member</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"회원1"</span><span class="o">);</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><br /></p>
+
+<h3 id="영속-managed">영속 (managed)</h3>
+<ul>
+  <li>entity manager를 통해 persistence에 저장되어 persistence에 의해 관리하는 entity</li>
+  <li><code class="language-plaintext highlighter-rouge">em.find()</code> 또는 JPQL을 사용해서 조회한 entity도 persistence가 관리하는 영속 상태가 됨</li>
+  <li></li>
+</ul>
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 객체를 저장한 상태(영속)</span>
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><br /></p>
+
+<h3 id="준영속detached">준영속(detached)</h3>
+<ul>
+  <li>persistence가 관리하던 entity가 persistence에 의해 관리되지 않으면 준영속 상태가 됨</li>
+  <li>다음을 이용하여 entity를 준영속 상태로 변경할 수 있음
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">em.detach()</code> 를 호출</li>
+      <li><code class="language-plaintext highlighter-rouge">em.close()</code> 로 persistence를 종료</li>
+      <li><code class="language-plaintext highlighter-rouge">em.clear()</code> 로 persistence를 초기화</li>
+    </ul>
+  </li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// persistence에서 분리된 상태(준영속)</span>
+<span class="n">em</span><span class="o">.</span><span class="na">detach</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><br /></p>
+
+<h3 id="삭제">삭제</h3>
+<ul>
+  <li>entity를 persistence 및 DB에서 삭제</li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 객체를 삭제한 상태(삭제)</span>
+<span class="n">em</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="34-persistence의-특징">3.4 persistence의 특징</h1>
+<ol>
+  <li>persistence와 식별자 값
+    <ul>
+      <li>persistence는 entity를 식별자 값(@Id로 table의 기본 키와 mapping한 값)으로 구분</li>
+      <li>∴ 식별자 값은 non-null</li>
+    </ul>
+  </li>
+  <li>persistence와 DB 저장
+    <ul>
+      <li>JPA는 보통 transaction commit시 persistence에 새로 저장된 entity를 DB에 반영 (<strong>flush</strong>)</li>
+    </ul>
+  </li>
+  <li>persistence에 의한 entity 관리시 장점
+    <ul>
+      <li>1차 cache</li>
+      <li>identity 보장</li>
+      <li>transaction을 지원하는 쓰기 지연</li>
+      <li>변경 감지</li>
+      <li>지연 로딩</li>
+    </ul>
+  </li>
+</ol>
+
+<p><br />
+<br /></p>
+
+<h2 id="341-entity-조회">3.4.1 entity 조회</h2>
+<h3 id="1차-cache">1차 cache</h3>
+<ul>
+  <li>persistence 내부의 cache</li>
+  <li>영속 상태의 entity는 이곳에 저장</li>
+  <li>key는 @Id로 DB pk와 mapping된 식별자 값
+    <ul>
+      <li>∴ persistence에 데이터 저장, 조회하는 모든 기준은 DB 기본 키 값</li>
+    </ul>
+  </li>
+  <li>value는 entity instance</li>
+</ul>
+
+<h4 id="entity-조회">entity 조회</h4>
+<ol>
+  <li>우선 1차 cache에서 식별자 값으로 entity 조회</li>
+  <li>1차 cache에 entity 없을 경우 DB를 조회해서 entity 생성</li>
+  <li>1차 cache에 저장 후 영속 상태의 entity 반환</li>
+</ol>
+
+<ul>
+  <li>이처럼 먼저 메모리상의 1차 cache부터 조회하여 성능상 이점을 누릴 수 있음</li>
+</ul>
+
+<h4 id="영속-entity의-identity-보장">영속 entity의 identity 보장</h4>
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Member</span> <span class="n">a</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"member1"</span><span class="o">);</span>
+<span class="nc">Member</span> <span class="n">b</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"member1"</span><span class="o">);</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span>    <span class="c1">// identity 비교 결과: true</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">em.find()</code> 반복 호출시에도 persistence는 1차 cache에 있는 같은 entity instance를 반환</li>
+  <li>∴ entity의 identity을 보장</li>
+</ul>
+
+<blockquote>
+  <p><strong>identity과 equality</strong><br />
+동일성(identity): 실제 instance가 같음<br />
+동등성(equality): instance는 다를 수 있음. instance가 가지고 있는 값이 같음</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>REPEATABLE READ</strong><br />
+JPA는 1차 cache를 통해 반복 가능한 읽기 등급(REPEATABLE READ)의 transaction 격리 수준을 DB가 아닌 application 차원에서 제공</p>
+</blockquote>
+
+<p><br />
+<br /></p>
+
+<h2 id="342-entity-등록">3.4.2 entity 등록</h2>
+
+<h4 id="transaction을-지원하는-쓰기-지연-transactional-write-behind">transaction을 지원하는 쓰기 지연 (transactional write-behind)</h4>
+<ul>
+  <li>entity manager는 transaction commit 전까지 DB에 entity 저장하지 않고 쓰기 지연 SQL 저장소에 쿼리문 저장</li>
+  <li>transaction commit시 모아둔 쿼리를 DB에 보냄 (<strong>flush</strong>)
+    <ul>
+      <li>persistence의 변경 사항을 DB 에 동기화하는 작업</li>
+    </ul>
+  </li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span>
+<span class="nc">EntityTransaction</span> <span class="n">et</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">();</span>
+
+<span class="c1">// entity manager는 데이터 변경시 transaction 시작해야 함</span>
+<span class="n">et</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
+
+<span class="cm">/**
+  * ----persistence----
+  * 1차 cache 
+  * [  ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  * 
+  *
+  * --------DB---------
+  * [  ]
+  * -------------------
+  */</span>
+
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member1</span><span class="o">);</span>
+<span class="cm">/**
+  * member1을 1차 cache에 저장, member1 INSERT 쿼리 생성
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [ member1 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [ INSERT member1 ]
+  * -------------------
+  * 
+  * 
+  * --------DB---------
+  * [  ]
+  * -------------------
+  */</span>
+
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member2</span><span class="o">);</span>
+<span class="cm">/**
+  * member2를 1차 cache에 저장, member2 INSERT 쿼리 생성
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [ member1, member2 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [ INSERT member1, INSERT member2 ]
+  * -------------------
+  * 
+  *
+  * --------DB---------
+  * [  ]
+  * -------------------
+  */</span>
+  
+<span class="c1">// commit하는 순간 DB에 INSERT 쿼리 보냄</span>
+<span class="n">et</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<span class="cm">/**
+  * member1, member2 INSERT 쿼리 DB로 보냄
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [ member1, member2 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  * |                |
+  * | INSERT member2 |
+  * | INSERT member1 |
+  * v                v
+  * --------DB---------
+  * [  ]
+  * -------------------
+  */</span>
+
+<span class="cm">/**
+  * persistence와 DB 동기화 후 실제 DB transaction commit
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [ member1, member2 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1, member2 ]
+  * -------------------
+  */</span>
+  
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<h3 id="transaction을-지원하는-쓰기-지연이-가능한-이유">transaction을 지원하는 쓰기 지연이 가능한 이유</h3>
+
+<ol>
+  <li>entity 저장할 때마다 INSERT 쿼리를 DB로 보내고 commit 호출 시 DB transaction commit하는 경우</li>
+  <li>쓰기 지연으로 쿼리문 모아두었다가 commit 호출 시 모아둔 쿼리 DB로 한번에 보내고 DB transaction commit하는 경우</li>
+</ol>
+
+<ul>
+  <li>위 두가지 경우의 결과는 동일</li>
+  <li>어차피 DB commit 안하면 미리 DB에서 쿼리 실행해도 의미 없기 때문에 쓰기 지연을 사용하여 효율적으로 관리할 수 있음</li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="343-entity-수정">3.4.3 entity 수정</h2>
+<h3 id="sql-수정-쿼리의-문제점">SQL 수정 쿼리의 문제점</h3>
+<ul>
+  <li>SQL 을 사용하는 경우엔 수정 쿼리를 직접 작성해야 함</li>
+  <li>프로젝트가 커질수록 수정 쿼리들도 점점 추가됨</li>
+  <li>관리하기도 복잡해지며, 직/간접적으로 비즈니스 로직이 SQL에 의존하게 됨</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="변경-감지-dirty-checking">변경 감지 (dirty checking)</h3>
+<ul>
+  <li>JPA 는 entity를 persistence에 보관할 때 최초 상태를 보관해서 snapshot으로 저장함</li>
+  <li>transaction commit시 entity manager 내부에서 먼저 flush 호출되고, 이 때 snapshot과 entity 비교해서 변경 감지</li>
+  <li>변경 감지된 entity 있으면 업데이트 쿼리 생성해서 쓰기 지연 SQL 저장소에 보관</li>
+  <li>쓰기 지연 SQL 저장소에 있는 쿼리들 보낼 때 같이 보내져서 DB 에 반영</li>
+  <li>변경 감지는 영속 상태의 entity에게만 적용됨</li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span>
+<span class="nc">EntityTransaction</span> <span class="n">et</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">();</span>
+<span class="n">et</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
+
+<span class="nc">Member</span> <span class="n">member1</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"member1"</span><span class="o">);</span>
+<span class="nc">Member</span> <span class="n">member2</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"member2"</span><span class="o">);</span>
+
+<span class="cm">/**
+  * 최초 상태 snapshot으로 저장됨
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [    @id    | Entity  |  snapshot   ]
+  * [ "member1" | member1 | member1 ]
+  * [ "member2" | member2 | member2 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1, member2 ]
+  * -------------------
+  */</span>
+
+<span class="n">member1</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+<span class="cm">/**
+  * member1 변경됨
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [    @id    |  Entity  |  snapshot   ]
+  * [ "member1" | member1' | member1 ]
+  * [ "member2" | member2  | member2 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1, member2 ]
+  * -------------------
+  */</span>
+
+<span class="n">et</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<span class="cm">/**
+  * transaction commit시 flush 호출됨
+  * flush 호출되면 entity와 snapshot 비교하여 변경된 entity 감지
+  * 변경된 entity 있으면 UPDATE 쿼리를 쓰기 지연 SQL 저장소로 보냄
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [    @id    |  Entity  |  snapshot   ]
+  * [ "member1" | member1' | member1 ] =&gt; diff
+  * [ "member2" | member2  | member2 ] =&gt; eq
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [ UPDATE member1 ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1, member2 ]
+  * -------------------
+  */</span>
+
+<span class="cm">/**
+  * 쓰기 지연 SQL 저장소의 쿼리들 DB 로 전송
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [    @id    |  Entity  |  snapshot   ]
+  * [ "member1" | member1' | member1 ]
+  * [ "member2" | member2  | member2 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  * |                |
+  * | UPDATE member1 |
+  * v                v
+  * --------DB---------
+  * [ member1, member2 ]
+  * -------------------
+  */</span>
+
+<span class="cm">/**
+  * member1 변경사항 DB에 반영됨
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [    @id    |  Entity  |  snapshot   ]
+  * [ "member1" | member1' | member1 ]
+  * [ "member2" | member2  | member2 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1', member2 ]
+  * -------------------
+  */</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<blockquote>
+  <p>변경된 entity의 snapshot은 어느 시점에서 수정될까?</p>
+</blockquote>
+
+<h4 id="변경-감지-update-쿼리-기본-전략">변경 감지 UPDATE 쿼리 기본 전략</h4>
+<ul>
+  <li>변경된 필드 뿐만 아니라 entity의 모든 필드를 업데이트 함
+    <ul>
+      <li>단점: DB 로 전송되는 데이터량이 증가</li>
+      <li>장점:
+        <ul>
+          <li>수정 쿼리가 항상 같으므로 application 로딩 시점에 수정 쿼리를 미리 생성해두고 재사용 가능</li>
+          <li>동일한 쿼리를 보내면 DB에서는 이전에 파싱된 쿼리를 재사용 가능</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>위와 같은 장점 때문에 기본 전략은 전체 필드 업데이트
+    <ul>
+      <li>필드가 많거나 저장되는 내용이 너무 클 경우 수정된 데이터만 사용해서 동적으로 UPDATE 쿼리 생성하는 전략 선택 가능
+        <ul>
+          <li>필드수가 대략 30개 이상인 경우에 수정된 데이터만 업데이트 하는 동적 쿼리 생성 전략이 더 빠를 수 있다고 함</li>
+        </ul>
+      </li>
+      <li>hibernate의 경우 <code class="language-plaintext highlighter-rouge">@org.hibernate.annotations.DynamicUpdate</code> 어노테이션을 entity 클래스 앞에 붙이면 됨</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="344-entity-삭제">3.4.4 entity 삭제</h2>
+<ul>
+  <li>entity를 삭제하려면 먼제 대상을 조회</li>
+  <li><code class="language-plaintext highlighter-rouge">em.remove()</code> 호출하여 entity 삭제
+    <ul>
+      <li>이 때 persistence에서 entity가 제거되는데, 이러한 entity는 재사용하지 말고 GC 대상이 되도룩 두어야 함</li>
+    </ul>
+  </li>
+  <li>INSERT, UPDATE 와 마찬가지로 쓰기 지연 SQL 저장소에 등록 후 flush 시점에서 DB 에 반영됨</li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span>
+<span class="nc">EntityTransaction</span> <span class="n">et</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">();</span>
+<span class="n">et</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
+
+<span class="cm">/**
+  * ----persistence----
+  * 1차 cache 
+  * [  ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  * 
+  * 
+  * --------DB---------
+  * [ member1 ]
+  * -------------------
+  */</span>
+
+<span class="nc">Member</span> <span class="n">member1</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"member1"</span><span class="o">);</span>
+<span class="cm">/**
+  * member1 조회
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [ member1 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  * 
+  * 
+  * --------DB---------
+  * [ member1 ]
+  * -------------------
+  */</span>
+
+<span class="n">em</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">member1</span><span class="o">);</span>
+<span class="cm">/**
+  * member1 entity 삭제
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [  ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [ DELETE member1 ]
+  * -------------------
+  * 
+  *
+  * --------DB---------
+  * [ member1 ]
+  * -------------------
+  */</span>
+  
+<span class="n">et</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<span class="cm">/**
+  * member1 DELETE 쿼리 DB로 전송
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [  ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  * |                |
+  * | DELETE member1 |
+  * v                v
+  * --------DB---------
+  * [ member1 ]
+  * -------------------
+  */</span>
+
+<span class="cm">/**
+  * DB에서 member1 삭제
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [  ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [  ]
+  * -------------------
+  */</span>
+  
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="35-플러시">3.5 플러시</h1>
+<ul>
+  <li>flush는 persistence의 변경 내용을 DB에 반영</li>
+  <li>플러시 실행 과정은 다음과 같음
+    <ol>
+      <li>변경 감지가 동작, 수정된 entity의 UPDATE 쿼리 만들어 쓰기 지연 SQL 저장소에 등록</li>
+      <li>쓰기 지연 SQL 저장소에 보관된 쿼리들 DB 로 전송(INSERT, UPDATE, DELETE 쿼리들)</li>
+    </ol>
+  </li>
+  <li>persistence를 플러시 하는 방법은 다음과 같음
+    <ol>
+      <li><code class="language-plaintext highlighter-rouge">em.flush()</code> 직접 호출
+        <ul>
+          <li>entity manager의 <code class="language-plaintext highlighter-rouge">flush()</code> 메소드를 직접 호출하여 persistence를 강제로 플러시</li>
+          <li>테스트시, 혹은 다른 프레임워크 + JPA 조합으로 쓸 때를 제외하고는 거의 사용 X</li>
+        </ul>
+      </li>
+      <li>transaction commit시 자동 호출
+        <ul>
+          <li>DB transaction commit 전에 flush 호출해서 persistence와 DB 동기화해야 하기 때문에 JPA는 transaction commit시 자동으로 flush 실행</li>
+        </ul>
+      </li>
+      <li>JPQL 쿼리 실행시 자동 호출
+        <ul>
+          <li>JPQL이나 Criteria 같은 객체지향 쿼리 호출시에도 flush 자동 실행</li>
+        </ul>
+
+        <details>
+</details>
+      </li>
+    </ol>
+  </li>
+</ul>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+  <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member1</span><span class="o">);</span>
+      <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member2</span><span class="o">);</span>
+      <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member3</span><span class="o">);</span>
+
+      <span class="c1">// commit 전에 JPQL 실행</span>
+      <span class="n">query</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="s">"select m from Member m"</span><span class="o">,</span> <span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+      <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">memberList</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">getResultList</span><span class="o">();</span>
+      
+</code></pre></div>  </div>
+
+</div>
+<p>&lt;/details&gt;
+     - 위와 같이 persistence에 있는 entity들이 DB에 반영되기 전에 JPQL 실행할 경우 영속 상태인 entity들이 DB에는 반영 전이라 조회가 안됨
+     - ∴ JPA는 JPQL 실행 전에 flush 해서 persistence와 DB 를 동기화 시킨 후 JPQL 실행함
+       - 식별자를 기준으로 조회하는 <code class="language-plaintext highlighter-rouge">find()</code> 메소드 호출시에는 flush 실행 X</p>
+
+<p><br />
+<br /></p>
+
+<h2 id="351-플러시-모드-옵션">3.5.1 플러시 모드 옵션</h2>
+<ul>
+  <li>entity manager에 플러시 모드 직접 지정하려면 <details></details></li>
+</ul>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+  <p><code class="language-plaintext highlighter-rouge">javax.persistence.FlushModeType</code> 사용하면 됨</p>
+  <ul>
+    <li><strong>FlushModeType.AUTO:</strong> commit이나 쿼리 실행시 flush (default)</li>
+    <li><strong>FlushModeType.COMMIT:</strong> commit할때만 flush. 성능 최적화를 위해 사용할 수 있음</li>
+  </ul>
+
+  <details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+      <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">em</span><span class="o">.</span><span class="na">setFlushMode</span><span class="o">(</span><span class="nc">FlushModeType</span><span class="o">.</span><span class="na">COMMIT</span><span class="o">)</span>
+
+</code></pre></div>      </div>
+
+    </div>
+</details>
+
+  <p><br />
+<br />
+<br /></p>
+
+  <h1 id="section">3.6 준영속</h1>
+  <ul>
+    <li>persistence가 관리하는 영속 상태의 entity가 persistence로부터 분리(detached) 된 것이 준영속 상태</li>
+    <li>∴ 준영속 상태인 entity는 persistence가 제공하는 기능 사용 X</li>
+    <li>영속 -&gt; 준영속 상태 변환은 크게 다음과 같음
+      <ol>
+        <li><strong>em.detach(entity):</strong> 특정 entity만 준영속상태로 전환</li>
+        <li><strong>em.clear():</strong> persistence를 초기화</li>
+        <li><strong>em.close():</strong> persistence를 종료</li>
+      </ol>
+    </li>
+  </ul>
+
+  <p><br />
+<br /></p>
+
+  <h2 id="entity----detach">3.6.1 entity를 준영속 상태로 전환: detach()</h2>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">detach()</code> 를 호출하면 해당 entity를 준영속 상태로 전환</li>
+    <li>준영속 상태로 전환된 entity는 1차 cache 뿐만 아니라 쓰기 지연 SQL 저장소까지 관련 정보가 persistence에서 모두 삭제됨</li>
+  </ul>
+
+  <details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+      <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span>
+<span class="nc">EntityTransaction</span> <span class="n">et</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">();</span>
+<span class="n">et</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
+
+<span class="nc">Member</span> <span class="n">member1</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="s">"member1"</span><span class="o">);</span>
+<span class="nc">Member</span> <span class="n">member2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">();</span>
+<span class="n">member2</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="s">"member2"</span><span class="o">);</span>
+<span class="n">member2</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"Bob"</span><span class="o">);</span>
+
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member2</span><span class="o">);</span>
+<span class="cm">/**
+  * member2가 영속상태가 되어 1차 cache에 저장
+  * member2 INSERT 쿼리도 쓰기 지연 SQL 저장소에 등록
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [ member1 ]
+  * [ member2 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [ INSERT member2 ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1 ]
+  * -------------------
+  */</span>
+
+<span class="n">em</span><span class="o">.</span><span class="na">detach</span><span class="o">(</span><span class="n">member2</span><span class="o">);</span>
+<span class="cm">/**
+  * member2 준영속 상태로 전환
+  * 1차 cache에서 삭제됨
+  * 쓰기 지연 SQL 저장소에 등록되어 있던 member2 INSERT 쿼리도 삭제
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [ member1 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1 ]
+  * -------------------
+  */</span>
+
+<span class="n">et</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<span class="cm">/**
+  * flush 될때도 member2 는 persistence로부터 완전히 분리되었기 때문에 DB 반영 안됨
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [ member1 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1 ]
+  * -------------------
+  */</span>
+
+</code></pre></div>      </div>
+
+    </div>
+</details>
+
+  <p><br />
+<br /></p>
+
+  <h2 id="persistence--clear">3.6.2 persistence 초기화: clear()</h2>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">em.clear()</code> 호출시 해당 persistence를 초기화해서 모든 entity를 준영속 상태로 만듬</li>
+  </ul>
+
+  <details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+      <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+  * ----persistence----
+  * 1차 cache 
+  * [ member1 ]
+  * [ member2 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [ INSERT member2 ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1 ]
+  * -------------------
+  */</span>
+
+<span class="n">em</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+<span class="cm">/**
+  * persistence em 전체 초기화
+  * 1차 cache, 쓰기 지연 SQL 저장소 다 초기화됨
+  * 해당 persistence에 의해 관리되던 entity는 모두 준영속으로 전환
+  *
+  * ----persistence----
+  * 1차 cache
+  * [  ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1 ]
+  * -------------------
+  */</span>
+
+<span class="n">member1</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"Charlie"</span><span class="o">);</span>
+<span class="n">member2</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"David"</span><span class="o">);</span>
+
+<span class="n">et</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<span class="cm">/**
+  * 값 변경해도 반영 안됨
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [  ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1 ]
+  * -------------------
+  */</span>
+
+</code></pre></div>      </div>
+
+    </div>
+</details>
+
+  <p><br />
+<br /></p>
+
+  <h2 id="persistence--close">3.6.3 persistence 종료: close()</h2>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">em.close()</code> 로 persistence 종료시 관리되던 영속 상태 entity가 모두 준영속 상태로 전환</li>
+    <li>개발자가 detach, clear 등으로 직접 준영속 상태로 만드는 일은 드물고, 주로 persistence 종료와 함께 준영속 상태가 됨</li>
+  </ul>
+
+  <details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+      <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+  * ----persistence----
+  * 1차 cache 
+  * [ member1 ]
+  * [ member2 ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [ INSERT member2 ]
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1 ]
+  * -------------------
+  */</span>
+
+<span class="n">em</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="cm">/**
+  * persistence em 종료되어 영속 상태 entity 모두 준영속으로 전환
+  *
+  * ----persistence----
+  *       종    료
+  * -------------------
+  *
+  *
+  * --------DB---------
+  * [ member1 ]
+  * -------------------
+  */</span>
+
+</code></pre></div>      </div>
+
+    </div>
+</details>
+
+  <p><br /></p>
+
+  <h2 id="section-1">3.6.4 준영속 상태의 특징</h2>
+  <ol>
+    <li>비영속 상태와 거의 유사
+      <ul>
+        <li>persistence가 제공하는 1차 cache, 쓰기 지연, 변경 감지, 지연 로딩 등의 기능 동작 X</li>
+      </ul>
+    </li>
+    <li>식별자 값을 가짐
+      <ul>
+        <li>비영속 상태의 경우 식별자 값이 없을 수 있지만, 준영속 상태는 영속 상태를 거쳤기 때문에 반드시 식별자 값이 존재</li>
+      </ul>
+    </li>
+  </ol>
+
+  <blockquote>
+    <p><strong>지연 로딩(lazy loading)?</strong><br />
+실재 객체 대신 프록시 객체를 로딩해두고 해당 객체를 실제 사용할 때 persistence를 통해 데이터를 불러오는 방법</p>
+  </blockquote>
+
+  <p><br />
+<br /></p>
+
+  <h2 id="merge">3.6.5 병합: merge()</h2>
+  <ul>
+    <li>병합을 사용하여 준영속 상태의 entity를 다시 영속 상태로 변경할 수 있음
+      <ul>
+        <li>비영속 상태 entity도 병합으로 영속 상태 전환 가능
+          <ul>
+            <li>∴ 병합은 <strong>save or update</strong></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">merge()</code> 메소드는 준영속 상태의 entity를 받아서 새로운 영속 상태의 entity를 반환</p>
+    </li>
+    <li>병합 과정은 다음과 같음
+      <ol>
+        <li>준영속 entity <strong>x</strong> 를 파라미터로 <code class="language-plaintext highlighter-rouge">merge()</code> 실행</li>
+        <li><strong>x</strong> 의 식별자 값으로 1차 cache에서 entity 조회
+          <ul>
+            <li>1차 cache에 entity 없으면 DB 에서 조회해서 저장</li>
+            <li>DB에도 없으면 새로 생성해서 저장</li>
+          </ul>
+        </li>
+        <li>조회한 영속 entity <strong>y</strong> 에 <strong>x</strong> 의 값 채워넣음</li>
+        <li><strong>y</strong> 반환</li>
+      </ol>
+    </li>
+  </ul>
+
+  <details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+      <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">EntityManager</span> <span class="n">em1</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span>
+<span class="nc">EntityTransaction</span> <span class="n">et1</span> <span class="o">=</span> <span class="n">em1</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">();</span>
+<span class="n">et1</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
+
+<span class="nc">Member</span> <span class="n">member1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">();</span>
+<span class="n">member1</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="s">"member1"</span><span class="o">);</span>
+<span class="n">member1</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"Alice"</span><span class="o">);</span>
+
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member1</span><span class="o">);</span>
+
+<span class="cm">/**
+  * member1 영속 상태로 전환
+  * 
+  * member1 = { id: "member1", userName: "Alice" } =&gt; 영속
+  *
+  *
+  * ----persistence (em1)----
+  * 1차 cache 
+  * [ { id: "member1", userName: "Alice" } ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [ INSERT { id: "member1", userName: "Alice" } ]
+  * -------------------------
+  *
+  *
+  * --------DB---------
+  * [  ]
+  * -------------------
+  */</span>
+
+<span class="n">et1</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<span class="cm">/**
+  * member1 DB에 저장
+  * 
+  * member1 = { id: "member1", userName: "Alice" } =&gt; 영속
+  *
+  *
+  * ----persistence (em1)----
+  * 1차 cache 
+  * [ { id: "member1", userName: "Alice" } ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------------
+  *
+  *
+  * --------DB---------
+  * [ { id: "member1", userName: "Alice" } ]
+  * -------------------
+  */</span>
+
+<span class="n">em</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="cm">/**
+  * persistence em1 종료되어 member1 entity 준영속으로 전환
+  * 
+  * member1 = { id: "member1", userName: "Alice" } =&gt; 준영속
+  *
+  *
+  * ----persistence (em1)----
+  *       종    료
+  * -------------------------
+  *
+  *
+  * --------DB---------
+  * [ { id: "member1", userName: "Alice" } ]
+  * -------------------
+  */</span>
+  
+<span class="n">member1</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"Bob"</span><span class="o">);</span>
+<span class="cm">/**
+  * member1 값 변경해도 준영속 상태라 반영 X
+  * 
+  * member1 = { id: "member1", userName: "Bob" } =&gt; 준영속
+  *
+  *
+  * ----persistence (em1)----
+  *       종    료
+  * -------------------------
+  *
+  *
+  * --------DB---------
+  * [ { id: "member1", userName: "Alice" } ]
+  * -------------------
+  */</span>
+
+<span class="nc">EntityManager</span> <span class="n">em2</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span>
+<span class="nc">EntityTransaction</span> <span class="n">et2</span> <span class="o">=</span> <span class="n">em2</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">();</span>
+<span class="n">et2</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
+
+<span class="nc">Member</span> <span class="n">mergedMember</span> <span class="o">=</span> <span class="o">(</span><span class="n">em2</span><span class="o">.</span><span class="na">merge</span><span class="o">(</span><span class="n">member1</span><span class="o">));</span>
+<span class="cm">/**
+  * merge 되면서 member1의 식별자로 persistence em2에서 entity 조회
+  * 
+  * member1 = { id: "member1", userName: "Bob" } =&gt; 준영속
+  *
+  *
+  * ----persistence (em2)----
+  * 1차 cache 
+  * [  ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------------
+  *
+  *
+  * --------DB---------
+  * [ { id: "member1", userName: "Alice" } ]
+  * -------------------
+  */</span>
+
+<span class="cm">/**
+  * 1차 cache에 entity 없으므로 DB 에서 가져와서 저장
+  * 
+  * member1 = { id: "member1", userName: "Bob" } =&gt; 준영속
+  *
+  *
+  * ----persistence (em2)----
+  * 1차 cache 
+  * [                 Entity               |                 snapshot                 ]
+  * [ { id: "member1", userName: "Alice" } | { id: "member1", userName: "Alice" } ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------------
+  *
+  *
+  * --------DB---------
+  * [ { id: "member1", userName: "Alice" } ]
+  * -------------------
+  */</span>
+
+<span class="cm">/**
+  * 가져온 entity에 준영속 상태이던 member1 값 채워넣고 반환
+  * 기존 준영속 상태이던 entity는 계속 준영속 상태
+  * 
+  * member1 = { id: "member1", userName: "Bob" } =&gt; 준영속
+  * mergedMember = { id: "member1", userName: "Bob" } =&gt; 영속
+  * 
+  *
+  * ----persistence (em2)----
+  * 1차 cache 
+  * [                Entity              |                 snapshot                 ]
+  * [ { id: "member1", userName: "Bob" } | { id: "member1", userName: "Alice" } ]
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [  ]
+  * -------------------------
+  *
+  *
+  * --------DB---------
+  * [ { id: "member1", userName: "Alice" } ]
+  * -------------------
+  */</span>
+
+<span class="n">et2</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<span class="cm">/**
+  * commit하면 변경사항 DB에 반영됨
+  *
+  * ----persistence----
+  * 1차 cache 
+  * [                Entity              |                 snapshot                 ]
+  * [ { id: "member1", userName: "Bob" } | { id: "member1", userName: "Alice" } ] =&gt; diff
+  *
+  * 쓰기 지연 SQL 저장소 
+  * [ UPDATE member1 ]
+  * -------------------------
+  * |                |
+  * | UPDATE member1 |
+  * v                v
+  * --------DB---------
+  * [ { id: "member1", userName: "Bob" } ]
+  * -------------------
+  */</span>
+</code></pre></div>      </div>
+    </div></details>
+</div>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/jpa">jpa</a>,&nbsp;<a href="/tag/entity-manager">entity-manager</a>,&nbsp;<a href="/tag/entity">entity</a>,&nbsp;<a href="/tag/manager">manager</a>,&nbsp;<a href="/tag/persistence-context">persistence-context</a>,&nbsp;<a href="/tag/persistence">persistence</a>,&nbsp;<a href="/tag/context">context</a>,&nbsp;<a href="/tag/lifecycle">lifecycle</a>,&nbsp;<a href="/tag/flush">flush</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+3%EC%9E%A5.+%EC%98%81%EC%86%8D%EC%84%B1+%EA%B4%80%EB%A6%AC&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F01%2F20%2Fch.3-persistence-management.html&via="
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+3%EC%9E%A5.+%EC%98%81%EC%86%8D%EC%84%B1+%EA%B4%80%EB%A6%AC&u=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F01%2F20%2Fch.3-persistence-management.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F01%2F20%2Fch.3-persistence-management.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+3%EC%9E%A5.+%EC%98%81%EC%86%8D%EC%84%B1+%EA%B4%80%EB%A6%AC&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F01%2F20%2Fch.3-persistence-management.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+3%EC%9E%A5.+%EC%98%81%EC%86%8D%EC%84%B1+%EA%B4%80%EB%A6%AC&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F01%2F20%2Fch.3-persistence-management.html&media=https://sungunjo.github.io/assets/instacode.png"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('https://sungunjo.github.io/jpa-study/2022/01/20/ch.3-persistence-management.html') + '&title=[자바 ORM 표준 JPA 프로그래밍] 3장. 영속성 관리'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'sungunjo-github-io';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Development Stash</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:sungunjo.dev@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">sungunjo.dev@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/sungunjo" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">sungunjo</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/sungunjo" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">SungUn Jo</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">개발 공부 블로그</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-156645046-1', 'auto');
+  ga('send', 'pageview', {
+    'page': '/jpa-study/2022/01/20/ch.3-persistence-management.html',
+    'title': '[자바 ORM 표준 JPA 프로그래밍] 3장. 영속성 관리'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

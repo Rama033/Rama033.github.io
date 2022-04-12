@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[OS X Internals] CH.3 On The Shoulders of Giants</title>
+  <meta name="description" content="OS X and iOS Technologies">
+  
+  <meta name="author" content="Jo">
+  <meta name="copyright" content="&copy; Jo 2022">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="OS X and iOS Technologies" />
+  <meta property="og:url" content="https://sungunjo.github.io/mac-os-x/2019/11/08/ch.3-on-the-shoulders-of-giants.html">
+  <meta property="og:site_name" content="Development Stash" />
+  <meta property="og:title" content="[OS X Internals] CH.3 On The Shoulders of Giants" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sungunjo.github.io/assets/instacode.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[OS X Internals] CH.3 On The Shoulders of Giants">
+  <meta name="twitter:description" content="OS X and iOS Technologies">
+  <meta name="twitter:image" content="https://sungunjo.github.io/assets/instacode.png">
+  <meta name="twitter:url" content="https://sungunjo.github.io/mac-os-x/2019/11/08/ch.3-on-the-shoulders-of-giants.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://sungunjo.github.io/mac-os-x/2019/11/08/ch.3-on-the-shoulders-of-giants.html">
+	<link rel="alternate" type="application/rss+xml" title="Development Stash" href="https://sungunjo.github.io/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="Development Stash">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/instacode.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">[OS X Internals] CH.3 On The Shoulders of Giants</h1>
+      <p class="info">by <strong>Jo</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">November 8, 2019</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/mac-os-x">Mac-os-x</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h1 id="os-x-and-ios-technologies">OS X and iOS Technologies</h1>
+
+<p>OS X는 BSD에서 파생된 system이기 때문에 해당 architecture의 고유한 kernel 기능 대부분을 상속한다.</p>
+
+<p>하지만 Apple은 BSD를 기반으로 하여 구성 요소를 향상, 대체 하여 OS X를 개발하였기 때문에 OS X를 “또 다른 BSD system”으로 분류하는것은 잘못된 것 이다.</p>
+
+<p>이 장에서는 먼저 BSD에서 영감을 받은 API에 대해 논의한 다음, Apple 고유의 API에 대해 알아본다.<br />
+여기서는 API를 user mode 관점에서 알아보며, 해당 API들의 kernel mode 관점에 대해서는 ch.14 를 참조해야한다.</p>
+
+<h2 id="bsd-heirlooms">BSD HEIRLOOMS</h2>
+
+<p>XNU의 core는 명백히 Mach 이지만, user mode의 main interface는 BSD의 main interface 이다. OS X와 iOS는 둘 다 POSIX 호환 system call 과 여러 BSD system call을 제공한다.<br />
+경우에 따라 추가 기능이 덧붙여 구현된 것도 있고, 그중 일부는 BSD로 back-port 되기도 하였다.</p>
+
+<h3 id="sysctl">SYSCTL</h3>
+
+<p>kernel 내부상태에 access 하는 표준화된 방법이다. admin은 이 command로 kernel variable value를 직접 query하여 중요한 runtime diagnostics을 제공 가능하다.</p>
+
+<blockquote>
+  <p>kernel의 방대한 variable 기반 중 아주 작은 subset만 이런 방식으로 export 가능하다.</p>
+</blockquote>
+
+<p><strong>sysctl</strong> command는 <strong>sysctl</strong> library call을 wrapping 하고 이 call은 <strong>__sysctl</strong> system call을 wrapping 한다.<br />
+export한 kernel variable은 <strong>MIB(Management Information Base)</strong> naming convention에 따라 명명된다.</p>
+
+<blockquote>
+  <p><strong>MIB?</strong> <strong>(SNMP(Simple Network Management Protocol)</strong> 에서 차용. variable을 namespace별로 분류한다.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>SNMP?</strong> IP network 상의 device로부터 정보를 수집, 관리하며, 또한 정보를 수정하여 device의 동작을 변경하는 데에 사용되는 internet standard protocol</p>
+</blockquote>
+
+<p>XNU 에서는 상당히 많은 수의 hard coding 된 namespace를 지원한다.</p>
+
+<p><img src="/assets/img/macosx/tab_3_1.PNG" alt="" /></p>
+
+<p>namespace는 integer 표현으로 변환되므로 variable을 integer array로 나타낼 수 있다. <br />
+<strong>sysctlnametomib</strong> library call은 text에서 integer 표현으로 변환할 수 있지만 <strong>sysctlbyname</strong> 을 사용하여 name으로 해당하는 variable의 value를 찾을 수 있기 때문에 그다지 자주 쓰이지 않는다. <br />
+각 namespace에는 직접(i.e. <em>kern.ostype, 1.1</em>) 또는 sub-namespace(i.e. <em>kern.ipc.somaxconn, 1.32.2</em>)로 define된 variable이 있다. 두 경우 모두 fully qualified name이나 numeric <strong>MIB</strong> specifier로 해당 variable 에 access 할 수 있다.</p>
+
+<blockquote>
+  <p><strong>sysctlnametomib</strong> 를 사용하여 name으로 MIB 번호를 검색할 수 있지만 그 반대는 불가능하다.</p>
+</blockquote>
+
+<p><strong>sysctl</strong> 을 사용하면 export한 value를 examine 하고 writable한 value를 setting 할 수 있다. <strong>sysctl</strong> 변수 범위는 다양한 minor debug variable에서 전체 subsystem을 제어하는 다른 read/wright variable에 이르기까지 다양하다.</p>
+
+<blockquote>
+  <p><strong>kdebug</strong> 는 전적으로 <strong>sysctl</strong> call에 의존하며, <strong>ps</strong> , <strong>netstat</strong>  과 같은 command는 <strong>sysctl</strong> 에 의존하여 PID 및 active socket의 list를 얻지만 다른 방법을 사용할 수도 있다.</p>
+
+  <blockquote>
+    <p><strong>kdebug?</strong> XNU의 내장 debugging 기능이다. <strong>sysctl</strong> call을 통해 activate 및 control이 가능하다. <br />
+<strong>kdebug</strong> 의 가장 유용한 기능은 kernel level trace가 가능하게 하는 것 이다.</p>
+  </blockquote>
+
+  <blockquote>
+    <p><strong>ps?</strong> 현재 실행중인 process 목록을 보여주는 명령어</p>
+  </blockquote>
+
+  <blockquote>
+    <p><strong>netstat?</strong> system의 network 연결 목록(tcp, udp, socket 연결)을 보여주는 명령</p>
+  </blockquote>
+</blockquote>
+
+<h3 id="kqueues">KQUEUES</h3>
+
+<p>kernel event notification을 위한 BSD mechanism이다. 특정 type 및 category의 event가 발생할 때 까지 block된다. 하나 이상의 process synchronization을 위한 단순하고 효과적인 방법이다. <strong>kqueue</strong> 및 해당 kevent는 kernel에서 asynchronous I/O의 기초를 형성한다.</p>
+
+<p><strong>kqueue</strong> 는 argument 없이 <strong>kqueue</strong> system call을 호출하여 user mode에서 구성할 수 있다. <br />
+그 다음 <strong>EV_SET</strong> macro를 사용하여 관심있는 특정 event를 지정하면 struct kevent가 initialize 된다. <br />
+<strong>kevent</strong> 또는 <strong>kevent64</strong> system call을 호출하면 event filter가 setting 되고, satisfied 될 경우 return된다.</p>
+
+<p>system은 여러개의 _“predefined”_된 filter를 지원한다.</p>
+
+<p><img src="/assets/img/macosx/tab_3_2.PNG" alt="" /></p>
+
+<h3 id="auditingos-x">AUDITING(OS X)</h3>
+
+<p>OS X에는 <strong>BSM(Basic Security Module)</strong> 의 구현이 포함된다. user 및 process action tracking에 유용하지만 disk space와 overall performance에서 비용이 많이 든다. OS X에서는 Mach message 를 통해서 auditing이 구현되어있다.</p>
+
+<p><strong>Administrator의 관점</strong> . <br />
+기본 user-mode component는 필요에 따라 <strong>launchd</strong>에 의해 시작되는 <strong>auditd</strong>이다. audit log는 daemon이 아닌 kernel이 직접 기록한다. <br />
+하지만 결국 daemon이 kernel component를 control 하기 때문에 daemon을 control 하는 사람이 auditing을 control 한다. 이를 위해 administrator는 <strong>audit</strong> command를 사용하여 auditing을 initialize(-i), terminate(-t), 새 log 시작(-n), expire(-e)할 수 있다.<br />
+일반적으로 <strong>auditd</strong> 는 plist TimeOut key에 정의된 대로 60초 동안 아무 activity가 없을 경우 time out 된다.</p>
+
+<p><strong>Programmer의 관점 .</strong><br />
+audit이 enable 된 경우 <strong>system call #350~#359</strong>를 auditing의 enble 및 control을 위해 전용한다.</p>
+
+<p><img src="/assets/img/macosx/tab_3_4.PNG" alt="" /></p>
+
+<blockquote>
+  <p>Apple은 BSM standard에서 벗어나 3개의 proprietary system call을 통해 subsystem을 Mach system에 더욱 강하게 묶는다. standard calls와 달리 해당 call들은 undocumented 되어있다.</p>
+</blockquote>
+
+<p><img src="/assets/img/macosx/tab_3_5.PNG" alt="" /></p>
+
+<blockquote>
+  <p><strong>auditd</strong> 는 사전에 정의된 rule에 의거하여 system에서 발생하는 보안과 인증 관련 event의 log를 기록하므로 권한 없는 계정이 root 권한을 얻으려고 시도하거나 server daemon이 보안 정책에 위배되는 동작을 수행했는지 등의 system의 보안 위반 사례를 확인하고, 이를 통해 위협을 식별, 방지 하는데 사용할 수 있다.</p>
+</blockquote>
+
+<h3 id="mandatory-access-control">Mandatory Access Control</h3>
+
+<p><strong>강제적 접근통제(MAC)</strong> 란 user가 resource에 접근할 때 user의 비밀 취급 인가 label과 각 object에 부여된 민감도 label에 따라 access를 control 하는 것이다.<br />
+<strong>MAC</strong> 은 label을 준수하지 않는 모든 object에 대한 access를 deny 한다.</p>
+
+<blockquote>
+  <p>요약하면, user나 resource 모두 보안 level을 부여받고 상대 비교를 통해 access control 하는 것을 말한다.</p>
+</blockquote>
+
+<p><strong>MAC</strong> 은 kernel의 일부일 필요 없는 additional components가 system을 control 하기 위해 <em>“plug-in”</em> 할 수 있는 기반을 제공한다.<br />
+kernel 측면에서 <strong>MAC</strong> 에 대한 callout은 다양한 system call 구현에 삽입되므로 각 system call은 user mode request를 처리하기 이전에 <strong>MAC</strong> validation을 통과해야만 한다.</p>
+
+<p><strong>MAC layer</strong>는 자체적으로 결정 내리지 않고 등록된 policy module을 호출한다. kernel은 추가적으로 전용 <strong>MAC system calls</strong>를 제공한다.</p>
+
+<p><img src="/assets/img/macosx/tab_3_6.PNG" alt="" /></p>
+
+<h2 id="os-x--and-ios-specific-technologies">OS X- AND IOS-SPECIFIC TECHNOLOGIES</h2>
+
+<h3 id="user-and-group-managementos-x">User And Group management(OS X)</h3>
+
+<p>single-user mode 및 iOS에서는 아직 비밀번호 파일(/etc/passwd)을 사용한다_(/etc/maseter.passwd_를 shadow file로 사용_)._ 다른경우 에는 자체 directory service인 <strong>opendirectoryd</strong>를 선호하여 더이상 사용하지 않는다. <strong>opendirectoryd</strong> 는 <strong>OpenLDAP</strong> project의 구현이다. <strong>LDAP(Lightweight Directory Access Protocol)</strong>와 같은 standard protocol 사용시 Apple 이외의 directory service와 통합 가능하다. directory service는 user 및 group 이상의 기능을 유지한다. 즉, <em>“System Configuration”</em> chapter에서 살펴볼 바와 같이 system component의 다른 많은 aspect를 hold한다.</p>
+
+<blockquote>
+  <p><strong>Directory Service:</strong> X.500 standard에 정의된 <strong>Directory Service</strong>는 OSI 7 layer의 application layer에 속하는 protocol로, 정보 통신 service에 필요한 data를 DB화 하여 효율적으로 관리하고 user가 편리하게 access할 수 있는 기능을 제공하는 service 이다.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>LDAP?</strong> DAP는 너무 방대하고 복잡하여 구현하기 어렵다는 점 때문에 당시 일반 PC 급에서는 사용하기 힘들었고, 이에 대한 해결책으로 DAP의 경량화 버전인 <strong>LDAP</strong> 를 개발하였다. <strong>LDAP</strong> 는 DAP의 기능을 대부분 지원하며 DAP에서 복잡했던 부분이나 사용되지 않는 부분을 단순화 혹은 삭제하여 경량화 하였다.</p>
+</blockquote>
+
+<p>daemon과 interface 하기 위해 <strong>dscl</strong> command line utility 를 제공한다.  <strong>dscl</strong>로 system의 user 및 그룹을 표시할 수 있으며, directory를 update하고 새 user를 작성할 수 있다.</p>
+
+<blockquote>
+  <p>Lion OS의 초기 보안 취약점중 하나가 이 <strong>dscl</strong>을 이용한 것 이다. non-root user가 기존 user password 모르는 상태에서도 password 변경이 가능했다.</p>
+</blockquote>
+
+<h3 id="system-configuration">System Configuration</h3>
+
+<p>OS X 에서는 /etc user database files를 사용하지 않는 것과 마찬가지로 일반적으로 UN*X 에서 system “registry”로 사용되는 대부분의 다른 configuration files를 제거했다. <br />
+그 대신 System configuration을 유지하기 위해서 OS X 및 iOS는 <strong>configd</strong> 라는 daemon을 사용한다. 이 daemon은 IP 및 IPv6 configuration, logging 및 기타 bundle을 포함하여 <em>/System/Library/SystemConfiguration/</em> directory에 있는 추가 load 가능한 bundles _(“plug-ins”)_을 load할 수 있다.</p>
+
+<p>power user는 <strong>scutil</strong> 이라는 tool로 coammand line에서 system configuration을 navigate 하고 query할 수 있다. (p.67, code) <strong>SystemConfiguration.framework</strong> 를 사용하면 system configuration에 programming 방식으로 access 할 수 있다. <br />
+<strong>scutil</strong> command로 system configuration 변경 감시가 가능하며 programmming 방식으로 감시하기 위해서는 <strong>SCDynamicStore</strong> 를 사용한다. <br />
+network connectivity status 구하기 위해서는 <strong>SCNetworkReachability</strong> class를 사용한다.</p>
+
+<h3 id="logging">Logging</h3>
+
+<p>OS X는 기존 UNIX System log에 대한 지원도 이어받았다. 따라서 <strong>syslogd</strong> 와 완벽하게 호환된다.</p>
+
+<blockquote>
+  <p><strong>syslogd</strong>? 메시지의 <strong>facility</strong>와 <strong>severity</strong>에 의해 분류되는 textual message를 처리한다.</p>
+
+  <ul>
+    <li><strong>facility:</strong> 다양한 UNIX subsystems(mail, printing, cron 등등)은 모두 고유한 <strong>facilities</strong>를 가진다. =&gt; auth, authpriv, daemon, cron, ftp, lpr, kern, mail, news, syslog, user, uucp, local0~local7</li>
+    <li><strong>severity:</strong> <strong>severity</strong>는 우선 순위 / 중요도에 따라 <strong>LOG_DEBUG</strong>와 <strong>LOG_INFO</strong>, <strong>LOG_ERR</strong>, <strong>LOG_ALERT</strong>, 마지막으로 <strong>LOG_EMERG</strong> 등 다양하다. =&gt; Emergency, Alert, Critical, Error, Warning, Notice, Info or Debug</li>
+  </ul>
+</blockquote>
+
+<p>관리자는 configuration file _(/etc/syslog.conf)_를 사용하여 <strong>facility</strong>/<strong>severity</strong> 조합에 해당하는 수행 action을 결정할 수 있다.</p>
+
+<blockquote>
+  <p>actions:</p>
+
+  <ul>
+    <li>일부 지정된 user에게 message 보냄</li>
+    <li>file 또는 device(”/”로 시작하는 절대경로)에 log 기록</li>
+    <li>command에 Pipe 연결(|<em>/path/to/program</em>)해서 기록</li>
+    <li>network host로 send(@loghost)</li>
+  </ul>
+</blockquote>
+
+<p><strong>syslog API</strong>를 이용하여 <strong>syslog</strong>와 interface 가능하다. 지정된 priority를 사용하여 message를 기록하는 <strong>syslog()</strong>를 통하여 <strong>openlog()</strong> (name, facility, 기타 option을 특정)를 호출한다.<br />
+<strong>syslog</strong> daemon은 UNIX domain socket (OS X 에서는 <em>/var/run/syslog</em>)를 통해 message를 intercept 한다.</p>
+
+<p>OS X 10.4 는 <strong>Apple System Log(ASL)</strong> 이라는 새로운 logging을 선보였다. <strong>syslog</strong>를 model로 하여 facility/severity 조합을 제공하며 추가적으로 <em>filtering</em> 및 <em>search</em> 같은 더 많은 기능을 허용한다.</p>
+
+<p>ASL은 _4개의 logging interface_를 동시에 제공한다는 점에서 modular이다.</p>
+
+<ul>
+  <li><strong>Backward-compatible syslogd</strong>: syslog message를 accept하고 _/etc/syslog.conf_에 따라 처리하도록 구성 가능.</li>
+  <li><strong>Network protocol syslogd</strong>: well-known UDP port 514에서 -udp_in 1로 enable 가능한 protocol.</li>
+  <li><strong>Kernel logging interface</strong>: -klog_in 1으로 enable 할 수 있으며, default로 enable 됨.<em>/dev/log</em>(character device)의 kernel message를 accpet.</li>
+  <li><strong>new ASL interface</strong>: default로 enable 되어있는 -asl_in 1 을 사용하면 asl_log를 사용하는 asl API의 client로부터 ASL message를 얻을 수 있음. <em>/var/run/asl_input</em> socket을 통해 들어오며 syslogd socket을 통한 것과는 다른 format이므로 두개의 개별 socket이 필요함.</li>
+</ul>
+
+<p>ASL log는 _/var/log/asl_에 수집되며 <strong>lunchd</strong>(com.apple.aslmanager.plist에서)에 의해 자동으로 실행되는 <strong>aslmanger</strong> command에 의해 관리된다. <br />
+ASL log는 syslog file과 달리 text가 아니라 binary file이므로 크기는 다소 작지만 syslog 처럼 grep을 이용하기에는 불편하다. 따라서 Apple은 OS X에 log를 display 하고 보며 search 및 filter를 수행하는 <strong>syslog</strong> 명령을 포함한다.</p>
+
+<blockquote>
+  <p><strong>ASL</strong> library는 OS X 10.12 부터 더이상 사용되지 않으며, <strong>os_log</strong> library로 대체되었다.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>lunchd:</strong> BSD style init 및 SystemStarter를 대체하기 위해 OS  X의 일부로 작성된 init 및 operating system service management daemon이다. <br />
+system 및 user level 모두에서 daemon을 관리하며, init을 완전히 대체한다.</p>
+</blockquote>
+
+<h3 id="apple-events-and-applescript">Apple Events and AppleScript</h3>
+
+<p><strong>AppleScript</strong> 는 OS 7 시절로부터 내려오며 계속해서발전해 온 기능으로, <strong>osascript</strong> command 와 <strong>Automator</strong> 의 배후에 있는 강력한 mechanism이 되었다.<br />
+<strong>AppleScript</strong>를 사용하면 script 가능한 application에 <em>반 자연 언어 interface_를 사용할 수 있다. _(주어진 문법을 고수하여야 하므로 ‘반’ 자연 언어이다.)</em></p>
+
+<p><strong>AppleScript</strong>가 가능케 하는 mechanism은 <strong>AppleEvents</strong> 이다. <strong>Apple Script</strong>는 TCP/IP를 통해 remote host로 extended 될 수 있다. 이 protocol은 <strong>eppc</strong> 라고 하며, TCP port 3031을 사용하는 undoumented 독점 protocol 이다. remote 기능은 System Preferences의 Sharing applet에 Remote Apple Events가 enable 되어있어야 활성화 된다. enable 되면 <strong>launchd</strong>에게 <strong>eppc port</strong>에서 listen하도록 요청하고, request가 receive 되면 <strong>AEServer(AppleEvents server)</strong>가 시작된다.</p>
+
+<blockquote>
+  <p><strong>Apple Event?</strong> 복잡한 operation및 data를 지정할 수 있는 interprocess message type 이다. 단일 application 내, 동일한 computer의 application 간, network에 연결된 다른 computer의 application 간 에서 사용할 수 있는 data transport 및 event dispatch mechanism을 제공한다<br />
+application은 일반적으로 Apple Event를 사용하여 다른 application에게 service 및 information을 request 하거나 response 한다.<br />
+<strong>Cocoa application framework</strong>을 통해 user에게 GUI를 제공하는 모든 application은 적절한 경우 Mac OS 에서 보낸 특정 event에 응답할 수 있어야 한다.<br />
+application이 <strong>Apple Event</strong>를 send, response 하고 해당 operation과 data를 <strong>AppeScript</strong> script에 제공할 수 있는 기능은 <strong>OSA(Open Scripting Architecture)</strong>의 일부인 <strong>Apple Event Manager</strong> 에 의해 제공된다.</p>
+</blockquote>
+
+<h3 id="fsevents">FSEvents</h3>
+
+<p>모든 최신 os는 File system notification을 위한 API를 제공한다. 이를 통해 file의 addition, modification, deletion에 대한 user program의 빠르고 쉬운 response가 가능하다.</p>
+
+<ul>
+  <li>Windows =&gt; <strong>MJ_DIRECTORY_CONTROL</strong></li>
+  <li>Linux =&gt; <strong>inotify</strong></li>
+  <li>OS X =&gt; <strong>FSEvent</strong></li>
+</ul>
+
+<p>OS X의 <strong>FSEvent</strong>는 개념적으로 linux의 <strong>inotify</strong>와 다소 유사하다. <br />
+<strong>inotify</strong>와 <strong>FSEvent</strong> 둘 모두 process(또는 thread)는 file descriptor를 가져와서 read를 시도하고, system call은 일부 event 발생 시까지 block한다. 이 때 receive buffer에  event detail이 포함되어 있으면 program이 어떤 일이 발생한 것 인지 파악한 후 그에 따라 조치할 수 있다.<br />
+하지만 <strong>FSEvents</strong>는 <strong>inotify</strong>보다 약간 더 복잡하다. 그 과정은 다음과 같다.</p>
+
+<ul>
+  <li>process(or thread)가 <strong>FSEvents</strong> mechanism에 대한 handle을 얻도록 request. pseudo-device인 /dev/fsevents 를 open하여 file descriptor를 얻음.</li>
+  <li>requestor는 특수 <strong>ioctl</strong>인 FSEVENTS_CLONE을 issue함. 해당 <strong>ioctl</strong> 사용시 관심있는 event <em>(특정 file에 대한 특정 operation)</em> 만 filtering 할 수 있음. <strong>FSEvents</strong>가 kernel의 <strong>file system-handling logic(VFS, the Virtual File system Switch)</strong>에 plugged in 되어있기 때문에 가능. 지원되는 모든 event는 clone file descriptor 에 pending중인 notification을 add.</li>
+  <li>watcher는 <strong>ioctl</strong>을 사용하여 notification에 request된 정확한 event detail을 modify 가능. control code는 FSEVENTS_WANT_COMPACT_EVENTS(더 적은 information), FSEVENTS_WANT_EXTENDED_INFO(더 많은 information) 및 NEW_FSEVENTS_DEVICE_FILTER(watcher가 관심없는 device를 filtering)이 포함.</li>
+  <li>requestor(watcher 라고도 부름)는 read loop에 진입. system call이 return될 때 마다 user-provided buffer가 event record array로 채워짐. single operation으로 variable size의 multiple records가 return될 수 있어서 read가 까다로울  있음. kernel buffer가 exceed 되어 event가 drop 되면 FSE_EVENTS_DROPPED가 event record에 추가.</li>
+</ul>
+
+<p><img src="/assets/img/macosx/tab_3_7.PNG" alt="" /></p>
+
+<blockquote>
+  <p><strong>VFS?</strong> 실제 file system 위의 abstraction layer 이다.<br />
+다양한 file system set에서 같은 방법으로 file I/O를 실행할 수 있도록 상위 layer application에 standard interface set를 제공한다.  <br />
+file system은 static할 필요가 없으며 storage device의 일시적 특성에 따라 변화할 수 있다.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>ioctl?</strong> user와 kernel을 잇는 interface의 일부이다. “I/O control”의 준말로, 보통 user space의 code가 H/W device, kernel component와 communication 할 수 있게 도와주는 역할을 한다.</p>
+</blockquote>
+
+<p>FSEvents의 API가 공개되어있지만 official user가 아래 3개밖에 없어서 거의 사라진 상황이다. (Mountain Lion 이전 버전 시점)</p>
+
+<p><strong>FSEvents</strong>를 이용하는 three official users:</p>
+
+<ul>
+  <li><strong>coreservicesd</strong>: 시작 service 및 기타와 같은 핵심 service 측면을 지원하는 apple 내부 daemon.</li>
+  <li><strong>mds</strong>: Spotlight server. <strong>FSEvents</strong>의 heavy user. 새 file 찾고 indexing 하기 위해 notification에 의존.</li>
+  <li><strong>fseventsd</strong>: <em>CoreServices framework</em> 내에 묻혀있는 generic user space daemon.</li>
+</ul>
+
+<h3 id="notifications">Notifications</h3>
+
+<p>OS X는 systemwide notification mechanism을 제공하는데, 이는 process가 event를 broadcast 하거나 listen 할 수 있는 distributed IPC 의 한 형태이다. 이 mechanism의 핵심은 booting시 시작되는 <strong>notifyd</strong> daemon <em>(Darwin notificaiton server)</em> 이다. additional daemon인 <strong>distnoted</strong>는 distributed notification server로 작동한다. application은 notify API를 사용하여 daemon과 message를 주고받을 수 있다. (reverse DNS namespace의 사용이 권장됨. i.e. com.myCompany.myNotification)</p>
+
+<p>API는 매우 다양하며, 여러 방법 중 하나로 notification을 request 할 수 있다. &lt;notify.h&gt;에 UNIX signals, Mach ports, file descriptors를 사용하여 notification을 enable 하는 기능이 나열되어있다. <br />
+client는 notification을 manual하게 suspend 혹은 resume 할 수 있다.</p>
+
+<p>notifyd는 기본적으로 Mach message를 사용하며 _com.apple.system.notification_center_의 Mach port를 등록하여 대부분의 notification을 처리한다.</p>
+
+<p>command line utility인 <strong>notifyutil</strong>을 debugging에 사용 가능하다. 해당 util 사용시 임의 key에 대한 notification을 대기(-w) 및 게시(-p)할 수 있다.</p>
+
+<h3 id="additinal-apis-of-interest">Additinal APIs of interest</h3>
+
+<ol>
+  <li><strong>Grand Central Dispatch</strong>(<a href="ch.4-parts-of-the-process.md">ch.4</a>): pthread API 위에 구축된 work queue extension을 사용하여 parallelization하기 위한 system framework.</li>
+  <li><strong>Launch Daemon</strong>(ch7): Mach bootstrap server와 함께 많은 UN*X system daemon(ex: initd, at, crond 등)을 융합.</li>
+  <li><strong>kdebug</strong>(ch.5): System call 및 Mach trap의 kernel level tracing을 위해 가장 유용한 기능</li>
+  <li><strong>System socket</strong>(ch.17): kernel mode components와 communication할 수 있는 PF_SYSTEM namespace의 socket.</li>
+  <li><strong>Mach API</strong>(ch9, 10, 11): XNU의 Mach core에 대한 direct interface. 상위 level BSD/POSIX interface와 일치하는 기능을 제공하지만 일부 경우 이를 능가하기도 함.</li>
+  <li><strong>IOKit API</strong>(ch.19): device driver와 communication 하기 위한 API로, 다양한 diagnostics information과 user mode에서 driver를 control하는 강력한 기능을 제공.</li>
+</ol>
+
+<h2 id="os-x-and-ios-security-mechanisms">OS X AND iOS SECURITY MECHANISMS</h2>
+
+<p>OS X는 적은 사용자 층으로 인하여 공격자의 관심을 끌지 않아 virus와 malware가 적었다. (또 다른 이유는 UN*X가 항상 least privilege 원칙을 준수했기 때문이다. 이 경우 기본적으로 user root access를 허용하지 않는다.)</p>
+
+<p>하지만 Mac 이용자의 증가와 함께 OS X를 대상으로 한 malware들이 점차 늘어나고 있다.</p>
+
+<blockquote>
+  <p>미국에서만 60만명의 user를 감염시킨 “Flashback” 처럼 대부분의 Mac 대상 “Malware”는 Trojan 이다.</p>
+</blockquote>
+
+<p>###</p>
+
+<h3 id="code-signing">Code Signing</h3>
+
+<p>출처를 알 수 없는 application을 다운받으면 malware일 위험이 크다. 그러나 만약 출처를 확인할 수 있고 전송 중에 수정되지 않았음을 확신할 수 있다면 그 위험을 크게 완화할 수 있다. <br />
+<strong>Code Signing</strong>은 이를 위한 mechanism을 제공한다. SSL이 사용하는 것과 동일한 <strong>X.509v3</strong> 인증서를 발급하여 (발급자의 private key로 그들의 public key에 서명함으로써) 개발자가 application에 sign 하고 identity를 인증하도록 권장한다. <br />
+Digital signature의 핵심은 signer의 public key를 verifier 들이 미리 알고 있어야 하는 것 이므로 Apple은 해당 cerificate를 OS X와 iOS의 key chain에 내장한다.</p>
+
+<p>Apple은 <strong>cserq</strong> command로 표시될 수 있는 code signing requirements를 정의하기 위한 special language를 개발하였다. Apple은 developer가 application에 sign할 수 있도록 <strong>codesign</strong> command를 제공하지만 <strong>codesign</strong>은 developer가 _Apple Developer Program_에 가입하여 얻을 수 있는 valid하고 trust한 certificate 없이는 사용할 수 없다.</p>
+
+<p>code-signed application도 여전히 malware일 수도 있다. 하지만 code signing 하기 위해서는 Apple developer program에 등록해야하기 때문에 이러한 appliation의 개발자는 소송의 대상이 될 수 있다.</p>
+
+<blockquote>
+  <p>OS X에서 code signing은 optional 하지만 iOS에서는 mandatory 하다. unsinged app은 iOS 상에서 실행이 불가능하며 iOS file system으로 서명되지 않은 app을 기적적으로 옮기더라도 해당 app을 실행하려고 시도할 경우 kernel에 의해 종료당한다.</p>
+</blockquote>
+
+<h3 id="compartmentalization-sandboxing">Compartmentalization (Sandboxing)</h3>
+
+<p>원래 선진적이고 사용하기 편리한 기능으로 간주되던 Compartmentalization은 이제 Apple landscape에 필수적인 부분이 되었다. <br />
+이 idea는 간단하지만 주요한 application security 원칙이다.</p>
+
+<blockquote>
+  <p><em>“신뢰할 수 없는 application은 모든 operation이 제한되는 격리된 environment에서 실행되어야 한다.”</em></p>
+</blockquote>
+
+<h4 id="voluntary-imprisonment"><strong>Voluntary Imprisonment</strong></h4>
+
+<blockquote>
+  <p><em>OS X 10.8 Mountain Lion 부터는 AppStore를 통해 배포되는 모든 application에 대해 sandboxing이 강제되었다.</em></p>
+</blockquote>
+
+<p>OS X는 아직까지는 sand box에서의 execution을 강제하지는 않는다. process는 sandbox에 enter하기 위해서 predefined profile중 하나와 함께 <strong>sandbox_init</strong> 을 call한다. 또는 -n switch와 profile name과 함께 <strong>sandboxexec</strong> command line을 사용하여 똑같은 일을 수행할 수 있다.</p>
+
+<p><strong>sandbox_init</strong> 함수는 <strong>mac_execve</strong> system call(#380)을 호출하며, predefined profile은 MAC label에 해당한다. profile은 proccess에 predefine된 일련의 restriction을 적용하며 이러한 제한 사항을 무시하려고 할 경우 system-call level에서 error가 발생한다(보통 -EPERM을 return).</p>
+
+<p>tight한 sandbox를 사용함으로써 얻을 수 있는 benefit은, 사용자로 하여금 숨겨진 malware가 profile에 define된 범위 밖에서 어떠한 교활한 행동을 할 걱정 없이 untrust한 application을 sandbox 상에서 실행시킬 수 있다는 것이다.</p>
+
+<p>predefined profile은 시작 point로만 사용되며 application 별로 작성될 수 있다.</p>
+
+<p><img src="/assets/img/macosx/tab_3_8.PNG" alt="" /></p>
+
+<blockquote>
+  <p>Apple의 강화된 sandbox 정책에 의해 이제 AppStore를 통해 배포되는 모든 application은 sandboxing 되어야 하지만, 다른 방식으로 배포되는 application들에게는 강제되지 않는다. <br />
+다만 이러한 우회법이 큰 보안 문제가 되지 않는 이유는, 대부분의 developer 들이 AppStore를 통한 배포의 용이성과 수익성을 포기하기 보다는 sandboxing을 택하기 때문이다.<br />
+또한, 후술할 GateKeeper에 의해 이제 AppStore 외의 다른 방식으로 다운받은 application은 모두 user의 허가를 받아야 execution될 수 있다.</p>
+</blockquote>
+
+<h4 id="controlling-the-sandbox"><strong>Controlling the Sandbox</strong></h4>
+
+<p>built-in profile 외에도 .sb file에서 custom profiles을 지정할 수 있다. 해당 file들은 sandbox의 scheme와 유사한 dialect로 작성되었다. 또한 file에는 allow 또는 deny 될 action들이 명시되어 있으며, 내장 <strong>TinySCHEME library</strong>를 포함하는 <strong>libSandbox.dylib</strong>에 의해 load-time에 compile 된다. <br />
+trace directive를 사용하면 user-mode daemon인 <strong>sandboxd</strong>가 rule을 generate 하고, sandboxed application이 request 한 operation을 allow 한다. rule을 통합하고 생성된 profile을 단순화하기 위해 <strong>sandbox-simplify</strong>라는 tool을 사용할 수 있다.</p>
+
+<h3 id="entitlements-making-the-sandbox-tighter-still">Entitlements: Making the Sandbox Tighter Still</h3>
+
+<p>sandbox mechanism은 매우 강력하고 진보적이지만 완벽한 것은 아니다. 알려진 위협을 block하는 <em>“black list”</em> 방식은 목록이 제한적인 만큼만 효과적이다. <br />
+따라서 sandbox는 계속 개선되고 있으며, 특히 Mountain Lion 에서는 <em>“white list”</em> 방식 HFS+의 검역 기능을 기반으로 한 <strong>GateKeeper</strong> 와 결합하여 현재 sandboxing mechanism의 “<em>black list”</em> 방식을 더이상 사용하지 않으려고 한다.</p>
+
+<blockquote>
+  <p><strong>black list 방식의 문제:</strong> 2011년 11월 Core Labs의 연구원들은 Lion의 <strong>kSBXProfileNoNetwork</strong>(network 차단하는 sandbox profile)가 network access는 block 하지만, <strong>AppleEvents</strong>는 제한하지 않는다는 것을 찾아다. <br />
+이렇게 되면 악의적인 application이 <strong>AppleScript</strong>를 trigger 하고 non-sandboxed proxy process를 경유해서 network에 연결할 수 있게된다.<br />
+이처럼 black list 방식은  가능한  모든 방법을  막지 못하면 우회로가 존재하여 보안 위협이 생긴다는 문제가 있다.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>GateKeeper</strong>? AppStore가 아닌 다른 경로를 통하여 download 받은 application의 실행을 일단 block하고, user가 allow 해야 execution 할 수 있도록 한다. 또한 잠재적인 변조, 알려진 malware의 여부와 publisher의 id에 대해 application의 code signature를 check한다.</p>
+</blockquote>
+
+<h4 id="containers-in-lion"><strong>Containers in Lion</strong></h4>
+
+<p>Lion 에서는 sandbox mechanism을 보다 정밀하게 조정할 수 있는 새로운 command line인 <strong>asctl</strong> 이 도입되었다. 이 utility를 사용하면 application의 requirement에 따라 profile을 작성하여 application을 시작, sandbox activity를 trace할 수 있으며 application, 특히 AppStore application에 대한 <strong>“container”</strong>를 설정할 수 있다. <br />
+iOS 에서 처럼 OS X에서도 조만간 application은 특정 entitlement에 따라서만 실행되도록 바뀔 수 있다. entitlement는 개념적으로 .NET 및 Java에서 사용되는 선언적 permission mechanism과 매우 유사하다.</p>
+
+<blockquote>
+  <p><strong>Container?</strong> <em>Library/Containers</em> directory에 저장된 application 별 folder.</p>
+</blockquote>
+
+<h3 id="enforcing-the-sandbox">Enforcing the Sandbox</h3>
+
+<p>XNU는 sandboxed environment의 유지에 많은 노력을 기울인다. 수많은 hooking과 interposing 방법 때문에 user mode에서 enforce 하는 것은 선택사항에서 제외된다. <br />
+BSD MAC layer는 sandbox와 entitlement 둘 다 작용하는 mechanism이다. policy가 특정 process에 대해 적용되는 경우 policy module(i.e. specialized kernel extension)중 하나를 call 하는 것은 MAC layer의 책임이다. <br />
+sandbox를 담당하는 main kernel extension은 <strong>sandbox.kext</strong> 이며, sandbox에는 kernel extension에 대해 trace와 helper service를 제공하기 위해 demand시 시작되어 user mode로 작동되는 전용 daemon인 <strong>sandboxd</strong>도 있다.</p>
+
+<blockquote>
+  <p><strong>hooking?</strong> hooking은 software engineering 용어로, OS나 application 등의 각종 computer program에서 software component 간에 발생하는 function call, message, event 등을 중간에서 바꾸거나 가로채는 명령, 방법, 기술이나 행위를 말한다. 이때 이러한 간섭된 function call, event 또는 message를 처리하는 code를 hook라고 한다.</p>
+</blockquote>
+
+<p><img src="/assets/img/macosx/fig_3_2.PNG" alt="" /></p>
+
+<p><img src="/assets/img/macosx/sandboc.PNG" alt="" /></p>
+
+<p>sandbox 시스템의 component는 위 그림에 나온 바와 같다.</p>
+
+<ul>
+  <li>각 process의 sandbox를 initializing하고 configuring 하기 위한 user space library function set</li>
+  <li>kernel에서 logging을 처리하기 위한 Mach server</li>
+  <li>개별 정책을 시행하기 위해 MAC layer( == TrustedBSD MAC)를 사용하는 kernel extension</li>
+  <li>policy enforcement를 위한 regular expression matching을 제공하는 kernel support extension</li>
+</ul>
+
+<p><strong>sandbox 초기화</strong></p>
+
+<ol>
+  <li><strong>sandbox_init</strong> 호출로 시작 =&gt; <strong>libSandbox.dylib</strong> library를 사용하여 사람이 읽을 수 있는 policy definition(i.e. “/opt/sekret 아래 file에 대한 엑세스를 허용 안함” 과 같은 규칙)을 kernel이 읽을 수 있도록 binary format으로 변경</li>
+  <li>binary format의 policy definition은 MAC layer가 처리하는 MAC syscall system call로 전달</li>
+  <li>MAC layer는 처리를 위해 sandbox initialization request를 <strong>Sandbox.kext</strong> kernel extension으로 전달</li>
+  <li>kernel extension은 현재 process에 대한 sandbox profile rule을 install</li>
+</ol>
+
+<p><strong>sandbox 동작</strong></p>
+
+<ol>
+  <li>MAC layer로 연결된 function call은 policy enforcement를 위해 <strong>Sandbox.kext</strong> 통과</li>
+  <li>system call에 따라 <strong>Sandbox.kext</strong>는 현재 process에 대한 rule 목록 참조</li>
+  <li>일부 rule의 경우 검사하기 위해서 pattern matching support가 필요한 것이 있으므로 이런 경우 <strong>AppleMatch.kext</strong>에서 system call argument 및 검사중인 policy rule에 대해 regular expression matching을 수행하는 기능을 져옴</li>
+</ol>
+
+<blockquote>
+  <p><strong>Sandbox.kext</strong>는 logging하기 위해 user space에 Mach message를 사용하여 trace information을 전달한다.</p>
+</blockquote>
+
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/mac">mac</a>,&nbsp;<a href="/tag/osx">osx</a>,&nbsp;<a href="/tag/internals">internals</a>,&nbsp;<a href="/tag/ios">ios</a>,&nbsp;<a href="/tag/technologies">technologies</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%5BOS+X+Internals%5D+CH.3+On+The+Shoulders+of+Giants&url=https%3A%2F%2Fsungunjo.github.io%2Fmac-os-x%2F2019%2F11%2F08%2Fch.3-on-the-shoulders-of-giants.html&via="
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=%5BOS+X+Internals%5D+CH.3+On+The+Shoulders+of+Giants&u=https%3A%2F%2Fsungunjo.github.io%2Fmac-os-x%2F2019%2F11%2F08%2Fch.3-on-the-shoulders-of-giants.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsungunjo.github.io%2Fmac-os-x%2F2019%2F11%2F08%2Fch.3-on-the-shoulders-of-giants.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=%5BOS+X+Internals%5D+CH.3+On+The+Shoulders+of+Giants&url=https%3A%2F%2Fsungunjo.github.io%2Fmac-os-x%2F2019%2F11%2F08%2Fch.3-on-the-shoulders-of-giants.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=%5BOS+X+Internals%5D+CH.3+On+The+Shoulders+of+Giants&url=https%3A%2F%2Fsungunjo.github.io%2Fmac-os-x%2F2019%2F11%2F08%2Fch.3-on-the-shoulders-of-giants.html&media=https://sungunjo.github.io/assets/instacode.png"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('https://sungunjo.github.io/mac-os-x/2019/11/08/ch.3-on-the-shoulders-of-giants.html') + '&title=[OS X Internals] CH.3 On The Shoulders of Giants'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'sungunjo-github-io';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Development Stash</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:sungunjo.dev@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">sungunjo.dev@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/sungunjo" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">sungunjo</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/sungunjo" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">SungUn Jo</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">개발 공부 블로그</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-156645046-1', 'auto');
+  ga('send', 'pageview', {
+    'page': '/mac-os-x/2019/11/08/ch.3-on-the-shoulders-of-giants.html',
+    'title': '[OS X Internals] CH.3 On The Shoulders of Giants'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

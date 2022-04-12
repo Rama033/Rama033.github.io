@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[자바 ORM 표준 JPA 프로그래밍] 6장. 다양한 연관관계 매핑</title>
+  <meta name="description" content="6장. 다양한 연관관계 mapping">
+  
+  <meta name="author" content="Jo">
+  <meta name="copyright" content="&copy; Jo 2022">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="6장. 다양한 연관관계 mapping" />
+  <meta property="og:url" content="https://sungunjo.github.io/jpa-study/2022/02/05/ch.6-various-relationship-mapping.html">
+  <meta property="og:site_name" content="Development Stash" />
+  <meta property="og:title" content="[자바 ORM 표준 JPA 프로그래밍] 6장. 다양한 연관관계 매핑" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sungunjo.github.io/assets/instacode.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 6장. 다양한 연관관계 매핑">
+  <meta name="twitter:description" content="6장. 다양한 연관관계 mapping">
+  <meta name="twitter:image" content="https://sungunjo.github.io/assets/instacode.png">
+  <meta name="twitter:url" content="https://sungunjo.github.io/jpa-study/2022/02/05/ch.6-various-relationship-mapping.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://sungunjo.github.io/jpa-study/2022/02/05/ch.6-various-relationship-mapping.html">
+	<link rel="alternate" type="application/rss+xml" title="Development Stash" href="https://sungunjo.github.io/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="Development Stash">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/instacode.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">[자바 ORM 표준 JPA 프로그래밍] 6장. 다양한 연관관계 매핑</h1>
+      <p class="info">by <strong>Jo</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">February 5, 2022</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/jpa-study">Jpa-study</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h1 id="6장-다양한-연관관계-mapping">6장. 다양한 연관관계 mapping</h1>
+
+<h1 id="61-n1">6.1 N:1</h1>
+<ul>
+  <li>항상 N:1 의 반대 방향은 1:N, 1:N의 반대 방향은 N:1</li>
+  <li>1:N, N:1 관계에서 foreign key는 항상 N 쪽에 위치
+    <ul>
+      <li>∴ owner는 N 쪽</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="611-n1-단방향-n1">6.1.1 N:1 단방향 [N:1]</h2>
+
+<p><img src="/assets/img/jpa_study/ch.6/pic-6-1.png" /></p>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// member entity</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+
+  <span class="nd">@ManyToOne</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="c1">// team entity</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>member 에서는 Member.team 으로 team entity 참조 가능, team 에서는 member 참조 불가능 -&gt; N:1 단방향 연관관계
+    <ul>
+      <li>Member entity 에서 Member.team 으로 member table team_id foreign key 관리</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="612-n1-양방향-n1--1n">6.1.2 N:1 양방향 [N:1 &amp; 1:N]</h2>
+
+<p><img src="/assets/img/jpa_study/ch.6/pic-6-2.png" /></p>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// member entity</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+
+  <span class="nd">@ManyToOne</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTeam</span><span class="o">(</span><span class="nc">Team</span> <span class="n">team</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">team</span> <span class="o">=</span> <span class="n">team</span><span class="o">;</span>
+
+    <span class="c1">// 무한루프 방지</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="k">this</span><span class="o">))</span> <span class="o">{</span>
+      <span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="c1">// team entity</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;();</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMembers</span><span class="o">(</span><span class="nc">Member</span> <span class="n">member</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">members</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+    
+    <span class="c1">// 무한루프 방지</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">()</span> <span class="o">!=</span> <span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">member</span><span class="o">.</span><span class="na">setTeam</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>위 N:1 양방향 예제에서 실선이 연관관계 owner side(Member.team), 점선이 non-owning side(Team.members)</li>
+  <li><strong>양방향에선 foreign key 있는 쪽이 owner</strong>
+    <ul>
+      <li>N:1, 1:N 에선 항상 N 쪽에 foreign key 위치</li>
+      <li>여기선 N 쪽인 member 의 Member.team 이 owner</li>
+      <li>non-owning side인 Team.members 는 조회를 위한 JPQL 또는 객체 그래프 탐색 시 사용</li>
+    </ul>
+  </li>
+  <li><strong>양방향 연관관계 에선 항상 서로 참조해야 함</strong>
+    <ul>
+      <li>어느 한 쪽만 참조시 양방향 성립 X</li>
+      <li>이를 위해 연관관계 편의 method 작성하는게 좋음
+        <ul>
+          <li>위 예제에서의 setTeam, setMembers</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="62-1n">6.2 1:N</h1>
+<ul>
+  <li>1:N 에서는 entity를 하나 이상 참조할 수 있음
+    <ul>
+      <li>자바 컬렉션인 Collection, List, Set, Map 중 하나 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="621-1n-단방향-1n">6.2.1 1:N 단방향 [1:N]</h2>
+<ul>
+  <li>1:N 단방향 관계는 JPA 2.0부터 지원</li>
+  <li>1:N, N:1 관계에서는 항상 N 쪽 table에 fk 있기 때문에 1:N 단방향 관계는 좀 특수</li>
+  <li>아래 예제처럼 N쪽 table에 있는 fk를 반대쪽 entity 에서 관리하게 됨</li>
+  <li>1:N 단방향 mapping 시에는 @JoinColumn 명시해야 함
+    <ul>
+      <li>명시하지 않을 경우 JPA는 JoinTable 전략을 기본으로 사용하여 mapping
+        <ul>
+          <li>JoinTable 전략: 연결 테이블을 중간에 두고 연관관계를 관리하는 방식</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/jpa_study/ch.6/pic-6-3.png" /></p>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="n">clas</span> <span class="nc">Team</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="nd">@OneToMany</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">)</span> <span class="c1">// member table 에 있는 fk 사용</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ARrayList</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;();</span>
+  
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li><strong>1:N 단방향 mapping 단점</strong>
+    <ul>
+      <li>다른 테이블에 있는 fk를 관리하게 되기 때문에 쿼리 추가로 필요해짐
+        <ul>
+          <li>INSERT 한번으로 끝날 게 연관관계 처리를 위해 UPDATE 쿼리를 추가로 실행해야 함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Member</span> <span class="n">member1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">(</span><span class="s">"Alice"</span><span class="o">);</span>
+<span class="nc">Member</span> <span class="n">member2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">(</span><span class="s">"Bob"</span><span class="o">);</span>
+
+<span class="nc">Team</span> <span class="n">team1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Team</span><span class="o">(</span><span class="s">"Alpha"</span><span class="o">);</span>
+<span class="n">team1</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">member1</span><span class="o">);</span>
+<span class="n">team1</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">member2</span><span class="o">);</span>
+
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member1</span><span class="o">);</span>  <span class="c1">// INSERT member1</span>
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member2</span><span class="o">);</span>  <span class="c1">// INSERT member2</span>
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">team1</span><span class="o">);</span>    <span class="c1">// INSERT team1, UPDATE member1.fk, UPDATE member2.fk</span>
+
+<span class="o">...</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><br />
+<br /></p>
+
+<h2 id="622-1n-양방향-1n--n1">6.2.2 1:N 양방향 [1:N &amp; N:1]</h2>
+<ul>
+  <li>원칙적으로 1:N 양방향은 존재 X</li>
+  <li>대신 N:1 양방향 mapping 사용</li>
+  <li>굳이 1:N 양방향 mapping 구현하려면 1:N 단방향과 함께 반대편에서 같은 fk 쓰는 N:1 단방향 mapping 을 read only로 추가하면 됨</li>
+</ul>
+
+<p><img src="/assets/img/jpa_study/ch.6/pic-6-4.png" /></p>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="c1">// 1:N 단방향</span>
+  <span class="nd">@OneToMany</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ARrayList</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;();</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+
+  <span class="c1">// N:1 단방향 read only</span>
+  <span class="nd">@ManyToOne</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">,</span> <span class="n">insertable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">updatable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+  <span class="o">...</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>위 예제처럼 1:N, N:1 모두 동일한 fk 사용하게 하고 N:1 쪽에서 <code class="language-plaintext highlighter-rouge">insertable = false, updatable = false</code> 로 설정해서 read only 만들면 됨</li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="63-11">6.3 1:1</h1>
+<ul>
+  <li>1:1 관계에서는 양쪽이 서로 하나의 관계만 가짐</li>
+  <li>어느 쪽이던 fk 가질 수 있음
+    <ul>
+      <li>주 테이블이랑 대상 테이블 중 어느쪽이 fk 가질 지 선택해야 함</li>
+    </ul>
+  </li>
+  <li><strong>대상 테이블에 fk</strong></li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="631-주-테이블에-fk">6.3.1 주 테이블에 fk</h2>
+<ul>
+  <li>주 객체가 대상 객체 참조하듯 주 테이블에 fk 두고 대상 테이블을 참조</li>
+  <li>fk를 객체 참조와 유사하게 사용할 수 있음
+    <ul>
+      <li>주로 객체지향 개발자들이 선호</li>
+      <li>JPA에서도 좀 더 편리하게 mapping</li>
+    </ul>
+  </li>
+  <li>주 테이블만 확인해도 대상 테이블과 연관관계 파악 가능</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="단방향">단방향</h3>
+<p><img src="/assets/img/jpa_study/ch.6/pic-6-5.png" /></p>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="kt">long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+
+  <span class="nd">@OneToOne</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"locker_id"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Locker</span> <span class="n">locker</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Locker</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>1:1 이므로 @OneToOne 으로 객체 mapping</li>
+  <li>DB member table locker_id foregin key에 유니크 제약조건 UNI 추가</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="양방향">양방향</h3>
+<p><img src="/assets/img/jpa_study/ch.6/pic-6-6.png" /></p>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="kt">long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+
+  <span class="nd">@OneToOne</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"locker_id"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Locker</span> <span class="n">locker</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Locker</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="nd">@OneToOne</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"locker"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Member</span> <span class="n">member</span><span class="o">;</span>
+  <span class="o">...</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>양방향이므로 연관관계 owner 필요
+    <ul>
+      <li>member table이 fk 가지고 있으므로 Member entitiy의 Member.locker 가 owner</li>
+      <li>반대쪽인 Locker entity 의 Locker.member 는 mappedBy 설정</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="632-대상-테이블에-fk">6.3.2 대상 테이블에 fk</h2>
+<ul>
+  <li>테이블 관계를 1:1에서 1:N으로 변경할 때에도 테이블 구조 유지 가능</li>
+  <li>DB 개발자들이 주로 선호</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="단방향-1">단방향</h3>
+<p><img src="/assets/img/jpa_study/ch.6/pic-6-7.png" /></p>
+
+<ul>
+  <li>JPA 에서는 위와 같이 대상 테이블에 fk 있는 1:1 단방향 관계 지원 안함</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="양방향-1">양방향</h3>
+<p><img src="/assets/img/jpa_study/ch.6/pic-6-8.png" /></p>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="kt">long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+
+  <span class="nd">@OneToOne</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"member"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Locker</span> <span class="n">locker</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Locker</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="nd">@OneToOne</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"member_id"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Member</span> <span class="n">member</span><span class="o">;</span>
+  <span class="o">...</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>1:1 mapping 시 대상 테이블에 fk 두려면 이렇게 양방향으로 해야 함</li>
+</ul>
+
+<blockquote>
+  <p><strong>!!주의사항!!</strong> <br />
+proxy 사용할 때 fk 직접 관리하지 않는 1:1 관계는 lazy loading 설정이 안먹힘 <br />
+예를 들어 위 예제에서 Locker.member 는 lazy loading 가능, Member.locker 는 불가능 <br />
+proxy 대신 bytecode instrumentation 사용하면 해결할 수 있음</p>
+</blockquote>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="64-nn">6.4 N:N</h1>
+<ul>
+  <li>관계형 DB는 정규화된 테이블 2개로 N:N 표현 불가</li>
+  <li>∴ 일반적으로는 N:N을 1:N, N:1로 풀어내는 연결 테이블을 사용</li>
+</ul>
+
+<p><img src="/assets/img/jpa_study/ch.6/pic-6-9.png" /></p>
+
+<ul>
+  <li>객체의 경우엔 객체 2개만으로 N:N 관계 표현 가능</li>
+  <li>@ManyToMany 사용하여 N:N mapping</li>
+</ul>
+
+<p><img src="/assets/img/jpa_study/ch.6/pic-6-10.png" /></p>
+
+<p><br />
+<br /></p>
+
+<h2 id="641-nn-단방향">6.4.1 N:N 단방향</h2>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+
+  <span class="nd">@ManyToMany</span>
+  <span class="nd">@JoinTable</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"member_product"</span><span class="o">,</span>
+            <span class="n">joinCoulmns</span> <span class="o">=</span> <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"member_id"</span><span class="o">)</span>
+            <span class="n">inverseJoinColumns</span> <span class="o">=</span> <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"product_id"</span><span class="o">))</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Product</span><span class="o">&gt;</span> <span class="n">products</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Product</span><span class="o">&gt;();</span>
+  
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Product</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="n">priavte</span> <span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>@ManyToMany와 @JoinTable 을 사용하여 연결 테이블 매핑</li>
+  <li><strong>@JoinTable.name:</strong> 연결 테이블을 지정</li>
+  <li><strong>@JoinTable.joinColumns:</strong> 현재 방향 테이블과 매핑할 join column 정보 지정</li>
+  <li><strong>@JoinTable.inverseJoinColumns:</strong> 반대 방향 테이블과 매핑할 join column 정보 지정</li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Product</span> <span class="n">productA</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Product</span><span class="o">();</span>
+<span class="n">productA</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="s">"productA"</span><span class="o">);</span>
+<span class="n">productA</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"A"</span><span class="o">);</span>
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">productA</span><span class="o">);</span>
+
+<span class="nc">Member</span> <span class="n">member1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">();</span>
+<span class="n">member1</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="s">"member1"</span><span class="o">);</span>
+<span class="n">member1</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"Alice"</span><span class="o">);</span>
+<span class="n">member1</span><span class="o">.</span><span class="na">getProducts</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">productA</span><span class="o">);</span>    <span class="c1">// 연관관계 설정</span>
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member1</span><span class="o">);</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>sql</b></summary>
+<div>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">product</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="nv">"productA"</span><span class="p">,</span> <span class="nv">"A"</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">member</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">username</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="nv">"member1"</span><span class="p">,</span> <span class="nv">"Alice"</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">member_product</span><span class="p">(</span><span class="n">member_id</span><span class="p">,</span> <span class="n">product_id</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="nv">"productA"</span><span class="p">,</span> <span class="nv">"member1"</span><span class="p">);</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+<ul>
+  <li>위와 같이 @ManyToMany, @JoinTable 로 연관관계 설정에둔 entity 저장할 때 연결 테이블에도 같이 값이 저장됨</li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"member1"</span><span class="o">);</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Product</span><span class="o">&gt;</span> <span class="n">products</span> <span class="o">=</span> <span class="n">member</span><span class="o">.</span><span class="na">getProducts</span><span class="o">();</span>    <span class="c1">// 객체 그래프 탐색</span>
+<span class="k">for</span> <span class="o">(</span><span class="nc">Product</span> <span class="nl">product:</span> <span class="n">products</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"product.name = "</span> <span class="o">+</span> <span class="n">product</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>sql</b></summary>
+<div>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">member_product</span> <span class="n">mp</span>
+  <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">product</span> <span class="n">p</span> 
+  <span class="k">ON</span> <span class="n">mp</span><span class="p">.</span><span class="n">product_id</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span>
+<span class="k">WHERE</span> <span class="n">mp</span><span class="p">.</span><span class="n">member_id</span><span class="o">=?</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>위 예제 처럼 연관관계 설정된 Member::getProducts() 호출하면 연결 테이블을 join 하여 조회하는 쿼리가 실행됨</li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="642-nn-양방향">6.4.2 N:N 양방향</h2>
+<ul>
+  <li>N:N 양방향의 경우에도 owner 정해야 하며, 마찬가지로 mappedBy 속성을 사용한다
+    <ul>
+      <li>1:N, N:1과 마찬가지로 non-owning side entity 에 mappedB 설정</li>
+    </ul>
+  </li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+
+  <span class="nd">@ManyToMany</span>
+  <span class="nd">@JoinTable</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"member_product"</span><span class="o">,</span>
+            <span class="n">joinCoulmns</span> <span class="o">=</span> <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"member_id"</span><span class="o">)</span>
+            <span class="n">inverseJoinColumns</span> <span class="o">=</span> <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"product_id"</span><span class="o">))</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Product</span><span class="o">&gt;</span> <span class="n">products</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Product</span><span class="o">&gt;();</span>
+  
+  <span class="o">...</span>
+
+  <span class="c1">// N:N 양방향도 아래와 같이 연관관계 편의 method 추가해서 사용하는게 좋음</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addProduct</span><span class="o">(</span><span class="nc">Product</span> <span class="n">product</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="n">products</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">product</span><span class="o">);</span>
+    <span class="n">product</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Product</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="n">priavte</span> <span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="nd">@ManyToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"products"</span><span class="o">)</span>    <span class="c1">// 역방향 연관관계 설정 추가</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><br />
+<br /></p>
+
+<h2 id="643-nn-매핑의-한계와-극복-연결-엔티티-사용">6.4.3 N:N 매핑의 한계와 극복, 연결 엔티티 사용</h2>
+<ul>
+  <li>@ManyToMany 를 사용하면 편리하긴 하지만 연결 테이블에 id 외에 다른 컬럼들을 추가적으로 사용할 때 매핑이 불가능</li>
+  <li>∴ 이러한 경우엔 연결 테이블을 매핑하는 연결 엔티티를 만들고 여기에 추가 컬럼들을 매핑 후 1:N, N:1 관계로 entity 연결해야 함</li>
+</ul>
+
+<p><img src="/assets/img/jpa_study/ch.6/pic-6-11.png" /></p>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="c1">// Member 와 MemberProduct N:1 양방향 관계</span>
+  <span class="c1">// 여기선 fk (member_id) 가지고 있는 MemberProduct 가 owner</span>
+  <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"member"</span><span class="o">)</span>   <span class="c1">// 역방향</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">MemberProduct</span><span class="o">&gt;</span> <span class="n">memberProducts</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Product</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="nd">@Entity</span>
+<span class="nd">@IdClass</span><span class="o">(</span><span class="nc">MemberProductId</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>   <span class="c1">// identifier clas 설정정</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemberProduct</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@ManyToOne</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"member_id"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Member</span> <span class="n">member</span><span class="o">;</span>    <span class="c1">// MemberProductId.member와 연결 </span>
+
+  <span class="nd">@Id</span>
+  <span class="nd">@ManyToOne</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"product_id"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Product</span> <span class="n">product</span><span class="o">;</span>    <span class="c1">// MemberProductId.product와 연결</span>
+
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">orderAmount</span><span class="o">;</span>
+
+  <span class="nd">@Temporal</span><span class="o">(</span><span class="nc">TemporalType</span><span class="o">.</span><span class="na">TIMESTAMP</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Date</span> <span class="n">orderDate</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="c1">// MemberProduc 식별자 클래스</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemberProductId</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">member</span><span class="o">;</span>    <span class="c1">// MemberProduct.member 와 연결</span>
+  
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">product</span><span class="o">;</span>   <span class="c1">// MemberProduct.product 와 연결</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+<span class="o">}</span>
+
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>pk를 매핑하는 @Id와 fk를 매핑하는 @JoinColumn 을 같이 사용하여 pk + fk 한번에 매핑</li>
+  <li>@IdClass 를 사용하여 복합 기본키를 매핑</li>
+</ul>
+
+<p><br /></p>
+
+<h4 id="복합-기본키-복합키">복합 기본키 (복합키)</h4>
+<ul>
+  <li>연결 엔티티는 pk가 두 fk로 이루어진 복합 기본키임
+    <ul>
+      <li>위 예제의 경우 MemberProduct entity 의 pk는 member_id 와 product_id 로 이루어진 복합키</li>
+    </ul>
+  </li>
+  <li>JPA 에서 복합키 사용하려면 별도의 식별자 클래스 만들어야 함
+    <ul>
+      <li>식별자 클래스는 @IdClass 로 연결 엔티티에 지정</li>
+      <li>위 예제의 경우 MemberProductId 클래스가 식별자 클래스</li>
+    </ul>
+  </li>
+  <li><strong>식별자 클래스의 특징</strong>
+    <ul>
+      <li>복합 키는 별도의 식별자 클래스로 만들어야 함</li>
+      <li>Serializable 을 implement 해야 함</li>
+      <li>equals, hashCode method 구현해야 함</li>
+      <li>기본 생성자 있어야 함</li>
+      <li>식별자 클래스는 반드시 public</li>
+      <li>@IdClass 대신 @EmbeddedId 사용하는 방법도 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="식별-관계">식별 관계</h3>
+<ul>
+  <li>부모 테이블의 pk 받아서 자신의 pk &amp; fk 로 사용하는 것을 identifying relationship 이라고 함</li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">()</span> <span class="o">{</span>
+  <span class="c1">// Member save</span>
+  <span class="nc">Member</span> <span class="n">member1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">(</span><span class="s">"member1"</span><span class="o">,</span> <span class="s">"Alice"</span><span class="o">);</span>
+  <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member1</span><span class="o">);</span>
+
+
+  <span class="c1">// Product save</span>
+  <span class="nc">Product</span> <span class="n">productA</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Product</span><span class="o">(</span><span class="s">"productA"</span><span class="o">,</span> <span class="s">"A"</span><span class="o">);</span>
+  <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">productA</span><span class="o">);</span>
+
+  <span class="c1">// MemberProduct save</span>
+  <span class="nc">MemberProduct</span> <span class="n">memberProduct</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MemberProduct</span><span class="o">();</span>
+  <span class="n">memberProduct</span><span class="o">.</span><span class="na">setMember</span><span class="o">(</span><span class="n">member1</span><span class="o">);</span>
+  <span class="n">memberPRoduct</span><span class="o">.</span><span class="na">setProduct</span><span class="o">(</span><span class="n">productA</span><span class="o">);</span>
+  <span class="n">memberProduct</span><span class="o">.</span><span class="na">setOrderAmount</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+  <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">memberProduct</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">find</span><span class="o">()</span> <span class="o">{</span>
+  <span class="c1">// pk 생성</span>
+  <span class="nc">MemberProductId</span> <span class="n">memberProductId</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MemberProductId</span><span class="o">();</span>
+  <span class="n">memberProductId</span><span class="o">.</span><span class="na">setMember</span><span class="o">(</span><span class="s">"member1"</span><span class="o">);</span>
+  <span class="n">memberProductId</span><span class="o">.</span><span class="na">setProduct</span><span class="o">(</span><span class="s">"productA"</span><span class="o">);</span>
+
+  <span class="nc">MemberProduct</span> <span class="n">memberProduct</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">MemberProduct</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">memberProductId</span><span class="o">);</span>
+
+  <span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">memberProduct</span><span class="o">.</span><span class="na">getMember</span><span class="o">();</span>
+  <span class="nc">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="n">memberProduct</span><span class="o">.</span><span class="na">getProduct</span><span class="o">();</span>
+
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"member = "</span> <span class="o">+</span> <span class="n">member</span><span class="o">.</span><span class="na">getUsername</span><span class="o">());</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"product = "</span> <span class="o">+</span> <span class="n">product</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"orderAmount = "</span> <span class="o">+</span> <span class="n">memberProduct</span><span class="o">.</span><span class="na">getOrderAmount</span><span class="o">());</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>위 예제에서 MemberProduct는 member, product 의 pk 를 받아서 MemberProductId 식별자 클래스로 묶어 복합 기본 키로 사용하고, 각각 member, product 와의 관계를 위한 fk 로도 사용함</li>
+  <li>MemberProduct entity 는 DB 에 저장될 때 연관된 member 와 product 의 식별자 가져와서 자신의 pk 로 사용</li>
+  <li>조회시에는 식별자 클래스를 만들어서 사용</li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="644-nn-새로운-기본-키-사용">6.4.4 N:N 새로운 기본 키 사용</h2>
+<ul>
+  <li>6.4.3절에서 처럼 복합 기본 키를 사용하면 복잡해짐</li>
+  <li>대신 DB에서 자동으로 생성해주는 대리 키를 사용하는 방법이 있음
+    <ul>
+      <li>간편하고 비즈니스 의존성 X</li>
+      <li>ORM 매핑 시에 복합 키 만들지 않아도 돼서 매핑도 간단</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/jpa_study/ch.6/pic-6-12.png" /></p>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Order</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@Column</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="nd">@ManyToOne</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"member_id"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Member</span> <span class="n">member</span><span class="o">;</span>
+
+  <span class="nd">@ManyToOne</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"product_id"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Product</span> <span class="n">product</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">orderAmount</span><span class="o">;</span>
+
+  <span class="nd">@Temporal</span><span class="o">(</span><span class="nc">TemporalType</span><span class="o">.</span><span class="na">TIMESTAMP</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Date</span> <span class="n">orderDate</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span> 
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@Column</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"member"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Order</span><span class="o">&gt;</span> <span class="n">order</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ARrayList</span><span class="o">&lt;</span><span class="nc">Order</span><span class="o">&gt;();</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Product</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@Column</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"product"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Order</span><span class="o">&gt;</span> <span class="n">order</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Order</span><span class="o">&gt;();</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>MemberProduct 대신 Order table 을 만들고, 기본키를 member_id + product_id 복합키 대신 id 로 설정. member_id 와 product_id 는 fk 로만 활용</li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">()</span> <span class="o">{</span>
+  <span class="c1">// Member save</span>
+  <span class="nc">Member</span> <span class="n">member1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">(</span><span class="s">"member1"</span><span class="o">,</span> <span class="s">"Alice"</span><span class="o">);</span>
+  <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member1</span><span class="o">);</span>
+
+  <span class="c1">// Product save</span>
+  <span class="nc">Product</span> <span class="n">productA</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ProductA</span><span class="o">(</span><span class="s">"productA"</span><span class="o">,</span> <span class="s">"A"</span><span class="o">);</span>
+  <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">productA</span><span class="o">);</span>
+
+  <span class="c1">// Order save</span>
+  <span class="nc">Order</span> <span class="n">order</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Order</span><span class="o">();</span>
+  <span class="n">order</span><span class="o">.</span><span class="na">setMember</span><span class="o">(</span><span class="n">member1</span><span class="o">);</span>
+  <span class="n">order</span><span class="o">.</span><span class="na">setProduct</span><span class="o">(</span><span class="n">productA</span><span class="o">);</span>
+  <span class="n">order</span><span class="o">.</span><span class="na">SetOrderAmount</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+  <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>    <span class="c1">// {id: 1L, member_id: "member1", product_id: "productA", order_amount: 2}</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">find</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">Long</span> <span class="n">orderId</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+  <span class="nc">Order</span> <span class="n">order</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Order</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+
+  <span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">order</span><span class="o">.</span><span class="na">getMember</span><span class="o">();</span>
+  <span class="nc">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="n">order</span><span class="o">.</span><span class="na">getProduct</span><span class="o">();</span>
+
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"member = "</span> <span class="o">+</span> <span class="n">member</span><span class="o">.</span><span class="na">getUsername</span><span class="o">());</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"product = "</span> <span class="o">+</span> <span class="n">member</span><span class="o">.</span><span class="na">getProduct</span><span class="o">());</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"orderAmount = "</span> <span class="o">+</span> <span class="n">order</span><span class="o">.</span><span class="na">getOrderAmount</span><span class="o">());</span>
+<span class="o">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+</details>
+<ul>
+  <li>대리 키를 사용하여 N:N 관계를 매핑하면 위와 같이 좀 더 단순하게 저장 및 조회할 수 있음</li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="645-nn-연관관계-정리">6.4.5 N:N 연관관계 정리</h2>
+<ul>
+  <li>N:N 관계를 1:N &amp; N:1 관계로 풀어내기 위해 연결 테이블 만들 때 식별자 구성 방법을 선택해야 함
+    <ul>
+      <li><strong>식별 관계:</strong> 받아온 식별자를 pk(복합 기본키) &amp; fk 로 활용</li>
+      <li><strong>비식별 관계:</strong> 받아온 식별자는 단순히 fk로만 쓰고 새로운 식별자 추가해서 사용</li>
+    </ul>
+  </li>
+  <li>ORM 매핑 편리성 때문에 비식별 관계로 구성하는 게 좋음</li>
+</ul>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/jpa">jpa</a>,&nbsp;<a href="/tag/relation">relation</a>,&nbsp;<a href="/tag/relationship-mapping">relationship-mapping</a>,&nbsp;<a href="/tag/1:1">1:1</a>,&nbsp;<a href="/tag/N:N">N:N</a>,&nbsp;<a href="/tag/1:N">1:N</a>,&nbsp;<a href="/tag/N:1">N:1</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+6%EC%9E%A5.+%EB%8B%A4%EC%96%91%ED%95%9C+%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84+%EB%A7%A4%ED%95%91&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F02%2F05%2Fch.6-various-relationship-mapping.html&via="
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+6%EC%9E%A5.+%EB%8B%A4%EC%96%91%ED%95%9C+%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84+%EB%A7%A4%ED%95%91&u=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F02%2F05%2Fch.6-various-relationship-mapping.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F02%2F05%2Fch.6-various-relationship-mapping.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+6%EC%9E%A5.+%EB%8B%A4%EC%96%91%ED%95%9C+%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84+%EB%A7%A4%ED%95%91&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F02%2F05%2Fch.6-various-relationship-mapping.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+6%EC%9E%A5.+%EB%8B%A4%EC%96%91%ED%95%9C+%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84+%EB%A7%A4%ED%95%91&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F02%2F05%2Fch.6-various-relationship-mapping.html&media=https://sungunjo.github.io/assets/instacode.png"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('https://sungunjo.github.io/jpa-study/2022/02/05/ch.6-various-relationship-mapping.html') + '&title=[자바 ORM 표준 JPA 프로그래밍] 6장. 다양한 연관관계 매핑'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'sungunjo-github-io';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Development Stash</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:sungunjo.dev@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">sungunjo.dev@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/sungunjo" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">sungunjo</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/sungunjo" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">SungUn Jo</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">개발 공부 블로그</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-156645046-1', 'auto');
+  ga('send', 'pageview', {
+    'page': '/jpa-study/2022/02/05/ch.6-various-relationship-mapping.html',
+    'title': '[자바 ORM 표준 JPA 프로그래밍] 6장. 다양한 연관관계 매핑'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

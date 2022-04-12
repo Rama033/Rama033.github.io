@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[자바 ORM 표준 JPA 프로그래밍] 8장. 프록시와 연관관계 관리</title>
+  <meta name="description" content="8장. 프록시와 연관관계 관리">
+  
+  <meta name="author" content="Jo">
+  <meta name="copyright" content="&copy; Jo 2022">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="8장. 프록시와 연관관계 관리" />
+  <meta property="og:url" content="https://sungunjo.github.io/jpa-study/2022/02/22/ch.8-proxy-and-relationship-management.html">
+  <meta property="og:site_name" content="Development Stash" />
+  <meta property="og:title" content="[자바 ORM 표준 JPA 프로그래밍] 8장. 프록시와 연관관계 관리" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sungunjo.github.io/assets/instacode.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 8장. 프록시와 연관관계 관리">
+  <meta name="twitter:description" content="8장. 프록시와 연관관계 관리">
+  <meta name="twitter:image" content="https://sungunjo.github.io/assets/instacode.png">
+  <meta name="twitter:url" content="https://sungunjo.github.io/jpa-study/2022/02/22/ch.8-proxy-and-relationship-management.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://sungunjo.github.io/jpa-study/2022/02/22/ch.8-proxy-and-relationship-management.html">
+	<link rel="alternate" type="application/rss+xml" title="Development Stash" href="https://sungunjo.github.io/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="Development Stash">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/instacode.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">[자바 ORM 표준 JPA 프로그래밍] 8장. 프록시와 연관관계 관리</h1>
+      <p class="info">by <strong>Jo</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">February 22, 2022</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/jpa-study">Jpa-study</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h1 id="8장-프록시와-연관관계-관리">8장. 프록시와 연관관계 관리</h1>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="81-프록시">8.1 프록시</h1>
+<ul>
+  <li>엔티티 조회 시 연관된 엔티티가 항상 사용되는 것은 아님</li>
+  <li>∴ JPA는 엔티티가 실제 사용될 때까지 DB 조회를 지연시키는 방법을 제공 ==&gt; <strong>지연 로딩(lazy loading)</strong></li>
+  <li>지연 로딩 기능을 위해 실제 엔티티 객체 대신 DB 조회를 지연시키는 가짜 객체를 사용 ==&gt; <strong>프록시 객체</strong></li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="811-프록시-기초">8.1.1 프록시 기초</h2>
+<ul>
+  <li>JPA에서 <code class="language-plaintext highlighter-rouge">EntityManager.find()</code> 사용하여 엔티티 조회하면 바로 DB에서 조회해 옴</li>
+  <li>DB 조회를 엔티티 사용 시점까지 지연시키려면 <code class="language-plaintext highlighter-rouge">EntityManager.getReference()</code> 메소드 사용하면 됨
+    <ul>
+      <li>실제 엔티티 대신 DB 접근을 위임받은 프록시 개체가 반환되어 엔티티 사용시점에 조회할 수 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h4 id="프록시의-특징">프록시의 특징</h4>
+<ul>
+  <li><strong>실제 클래스를 상속받아 만들어져서</strong> 실제 클래스와 겉 모습 동일</li>
+  <li>사용하는 입장에서 진짜 객체인지 프록시 개체인지 구분할 필요 X</li>
+  <li>프록시 객체는 <strong>실제 객체에 대한 참조(traget)</strong> 를 보관</li>
+  <li>프록시 객체의 메소드를 호출하면 프록시 객체는 실제 객체의 메소드를 호출</li>
+</ul>
+
+<p><img src="/assets/img/jpa_study/ch.8/pic-8-1.png" /></p>
+
+<ul>
+  <li>프록시 구조</li>
+</ul>
+
+<p><br /></p>
+
+<p><img src="/assets/img/jpa_study/ch.8/pic-8-2.png" /></p>
+
+<ul>
+  <li>프록시 위임</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="프록시-객체의-초기화">프록시 객체의 초기화</h3>
+<ul>
+  <li>프록시 객체는 <code class="language-plaintext highlighter-rouge">member.getName()</code>처럼 실제 사용 시 DB 조회해서 실제 엔티티 객체 생성 =&gt; <strong>프록시의 초기화</strong></li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// MemberProxy 반환</span>
+<span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getReference</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"id1"</span><span class="o">);</span>
+<span class="n">member</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>   <span class="c1">// 1. getName();</span>
+
+<span class="o">...</span>
+
+<span class="kd">class</span> <span class="nc">MemberProxy</span> <span class="kd">extends</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nc">Member</span> <span class="n">target</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>   <span class="c1">// 실제 엔티티 참조</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">target</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">// 2. 초기화 요청</span>
+      <span class="c1">// 3. DB 조회</span>
+      <span class="c1">// 4. 실제 엔티티 생성 및 참조 보관</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="o">...;</span>
+    <span class="o">}</span>
+
+    <span class="c1">//5. target.getName();</span>
+    <span class="k">return</span> <span class="n">target</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><img src="/assets/img/jpa_study/ch.8/pic-8-3.png" /></p>
+
+<ol>
+  <li><strong>getName():</strong> 프록시 객체에 <code class="language-plaintext highlighter-rouge">member.getName()</code> 호출하여 실제 데이터 조회</li>
+  <li><strong>초기화 요청:</strong> 실제 엔티티 생성되어 있지 않으면 영속성 컨테스트에 실제 엔티티 생성을 요청</li>
+  <li><strong>DB 조회:</strong> 영속성 컨텍스트가 DB 조회해서 실제 엔티티 객체 생성</li>
+  <li><strong>실제 엔티티 생성:</strong> 프록시 객체는 생성된 실제 엔티티 객체의 참조를 Member target 멤버 변수에 보관</li>
+  <li><strong>target.getName():</strong> 프록시 객체가 실제 엔티티 객체의 getName() 호출하여 결과 반환</li>
+</ol>
+
+<p><br /></p>
+
+<h3 id="프록시의-특징-1">프록시의 특징</h3>
+<ul>
+  <li>처음 사용할 때 한 번만 초기화 됨</li>
+  <li>프록시 객체 초기화해도 프록시객체가 실제 엔티티로 바뀌지 않음
+    <ul>
+      <li>프록시 객체 초기화되면 프록시 객체 통해 실제 엔티티 접근 가능</li>
+    </ul>
+  </li>
+  <li>프록시 객체는 원본 엔티티를 상속받은 객체이므로 타입 체크시 주의</li>
+  <li>영속성 컨텍스트에 찾는 엔티티 이미 있을 경우 DB 조회 X
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">em.getReference()</code> 호출시에도 프록시가 아닌 실제 엔티티를 반환</li>
+      <li>초기화는 영속성 컨텍스트의 도움 받아야 함
+        <ul>
+          <li>∴ 준영속 상태 프록시 초기화시 문제 발생(ex. 하이버네이트에서는 <code class="language-plaintext highlighter-rouge">org.higbernate.LazyInitialzationException</code>)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p><br />
+<br /></p>
+
+<h2 id="812-프록시와-식별자">8.1.2 프록시와 식별자</h2>
+<ul>
+  <li>엔티티를 프록시로 조회 시 식별자 값을 파라미터로 전달하는데(ex. <code class="language-plaintext highlighter-rouge">em.getReverenmce(Entity.class, "pk1")</code>) 프록시 객체는 이 값을 보관</li>
+  <li>엔티티 접근 방식을 프로퍼티(<code class="language-plaintext highlighter-rouge">@Access(AccessType.PROPERTY)</code>) 로 설정한 경우 식별자 값 조회하는 메소드(ex. <code class="language-plaintext highlighter-rouge">Entity.getId()</code>) 호출해도 프록시 초기화 X</li>
+  <li>엔티티 접근 방식을 필드(<code class="language-plaintext highlighter-rouge">@Access(AccessType.FIELD)</code>) 로 설정 시 식별자 값 조회하는 메소드 호출시에도 프록시 객체를 초기화 함</li>
+  <li>연관관계르 설정할 때는 식별자 값만 사용하기 때문에 프록시를 사용하면 DB 접근 횟수 줄일 수 있음
+    <ul>
+      <li>∴ 연관관계 설정 시 프록시 유용하게 사용</li>
+      <li>연관관계 설정할 때는 엔티티 접근망식 필드여도 프록시 초기화 안함</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="813-프록시-확인">8.1.3 프록시 확인</h2>
+<ul>
+  <li>JPA가 제공하는 ```PersistenceUnitUtil.isLoaded(Object entity) 메소드 사용시 프록시 인스턴스의 초기화 여부 확인 가능
+    <ul>
+      <li>아직 초기화 안되었으면 false</li>
+      <li>초기화 완료되었거나 프록시 인스턴스 아니면 true</li>
+    </ul>
+  </li>
+  <li>조회한 엔티티가 진짜 엔티티인지 프록시로 조회한 것인지 확인하려면 클래스 명 충력해보면 됨</li>
+  <li>클래스 명 뒤에 javassist 라 되어있으면 프록시임</li>
+  <li>이건 프록시 생성 라이브러리에 따라 좀 달라질 수 있음</li>
+</ul>
+
+<blockquote>
+  <p><strong>프록시 강제 초기화</strong> <br />
+하이버네이트의 <code class="language-plaintext highlighter-rouge">initialize()</code>메소드로 프록시 강제 초기화 가능 <br />
+<code class="language-plaintext highlighter-rouge">org.hibernate.Hibernate.initilaize(order.getMember());   // 프록시 초기화</code> <br />
+JPA 표준에는 프록시 강제 초기화 메소드 없으므로 프록시 메소드 직접 호출해서 초기화하도록 해야 함</p>
+</blockquote>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="82-즉시-로딩과-지연-로딩">8.2 즉시 로딩과 지연 로딩</h1>
+<ul>
+  <li><strong>즉시 로딩(eager loading):</strong> 엔티티 조회시 연관된 엔티티도 함께 조회
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@ManyToOne(fetch = FetcyType.EAGER)</code></li>
+    </ul>
+  </li>
+  <li><strong>지연 로딩(lazy loading):</strong> 연관된 엔티티를 실제 사용할 때 조회
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@ManyToOne(fetch = FetcyType.LAZY)</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="821-즉시-로딩">8.2.1 즉시 로딩</h2>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="o">...</span>
+
+  <span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">EAGER</span><span class="o">)</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">find</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"member1"</span><span class="o">);</span>
+  <span class="nc">Team</span> <span class="n">team</span> <span class="o">=</span> <span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span>   <span class="c1">// 객체 그래프 탐색</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>sql</b></summary>
+<div>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">#</span> <span class="n">em</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">Member</span><span class="p">.</span><span class="k">class</span><span class="p">,</span> <span class="nv">"member1"</span><span class="p">);</span>
+<span class="k">SELECT</span>
+  <span class="n">m</span><span class="p">.</span><span class="n">member_id</span> <span class="k">AS</span> <span class="n">member_id</span><span class="p">,</span>
+  <span class="n">m</span><span class="p">.</span><span class="n">team_id</span> <span class="k">AS</span> <span class="n">team_id</span><span class="p">,</span>
+  <span class="n">m</span><span class="p">.</span><span class="n">username</span> <span class="k">AS</span> <span class="n">username</span><span class="p">,</span>
+  <span class="n">t</span><span class="p">.</span><span class="n">team_id</span> <span class="k">As</span> <span class="n">team_id</span><span class="p">,</span>
+  <span class="n">t</span><span class="p">.</span><span class="n">name</span> <span class="k">AS</span> <span class="n">name</span><span class="p">,</span>
+<span class="k">FROM</span>
+  <span class="n">member</span> <span class="n">m</span> 
+  <span class="k">LEFT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">team</span> <span class="n">t</span>
+  <span class="k">ON</span> <span class="n">m</span><span class="p">.</span><span class="n">team_id</span> <span class="o">=</span> <span class="n">team_id</span>
+<span class="k">WHERE</span>
+  <span class="n">m</span><span class="p">.</span><span class="n">member_id</span> <span class="o">=</span> <span class="nv">"member1"</span><span class="p">;</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><img src="/assets/img/jpa_study/ch.8/pic-8-4.png" /></p>
+
+<ul>
+  <li>즉시 로딩 사용시 엔티티 조회할 때 연관 엔티티도 함께 조회</li>
+  <li>대부분의 JPA 구현체에서는 가능하면 조인 쿼리를 사용하여 즉시 로딩함</li>
+</ul>
+
+<blockquote>
+  <p><strong>NULL 제약 조건과 JPA 조인 전략</strong> <br />
+위 예제의 경우 즉시 로딩 쿼리에서 LEFT OUTER JOIN 을 사용함 <br />
+=&gt; fk가 nullable 하기 때문에 외부 조인을 한 것임 <br />
+내부 조인 사용하게 하려면 DB와 Entity 모두 not null 설정 해줘야 함 <br />
+<code class="language-plaintext highlighter-rouge">@JoinColumn(nullalbe = true); // nullable, 외부 조인 사용 (default)</code> <br />
+<code class="language-plaintext highlighter-rouge">@JoinColumn(nullalbe = false); // not null, 내부 조인 사용</code> <br />
+또는 <code class="language-plaintext highlighter-rouge">@ManyToOne(optional = false)</code> 설정해도 됨</p>
+</blockquote>
+
+<p><br />
+<br /></p>
+
+<h2 id="822-지연-로딩">8.2.2 지연 로딩</h2>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="o">...</span>
+
+  <span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>
+  <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">find</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"member1"</span><span class="o">);</span>
+  <span class="nc">Team</span> <span class="n">team</span> <span class="o">=</span> <span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span>   <span class="c1">// 객체 그래프 탐색</span>
+  <span class="n">team</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>   <span class="c1">// 팀 객체 실제 사용</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>sql</b></summary>
+<div>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">#</span> <span class="n">em</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">Member</span><span class="p">.</span><span class="k">class</span><span class="p">,</span> <span class="nv">"member1"</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="o">*</span> 
+<span class="k">FROM</span> <span class="n">member</span>
+<span class="k">WHERE</span> <span class="n">member_id</span> <span class="o">=</span> <span class="nv">"member1"</span><span class="p">;</span>
+
+<span class="p">...</span>
+
+<span class="o">#</span> <span class="n">team</span><span class="p">.</span><span class="n">getName</span><span class="p">();</span>
+<span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">team</span>
+<span class="k">WHERE</span> <span class="n">team_id</span> <span class="o">=</span> <span class="nv">"team1"</span><span class="p">;</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><img src="/assets/img/jpa_study/ch.8/pic-8-5.png" /></p>
+
+<ul>
+  <li>지연 로딩 설정시 ```em.find(Member.class, “member1”) 호출하면 멤버만 조회되고 팀은 조회 X</li>
+  <li>team 에는 프록시 객체 넣고 이후 <code class="language-plaintext highlighter-rouge">team.getName()</code> 처럼 팀 사용할 때 실제로 조회함</li>
+  <li>만약 대상이 이미 영속성 컨텍스트에 있으면 프록시가 아닌 실제 객체를 사용</li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="83-지연-로딩-활용-예제-분석">8.3 지연 로딩 활용 (예제 분석)</h1>
+
+<p><img src="/assets/img/jpa_study/ch.8/pic-8-2.png" /></p>
+
+<ul>
+  <li>Member는 Team 하나에만 소속 (N:1)
+    <ul>
+      <li>자주 함께 쓰여서 <strong>즉시 로딩</strong></li>
+    </ul>
+  </li>
+  <li>Member는 여러 Order 가짐 (1:N)
+    <ul>
+      <li>가끔 사용되어서 <strong>지연 로딩</strong></li>
+    </ul>
+  </li>
+  <li>Order는 Product 가짐 (N:1)
+    <ul>
+      <li>자주 함께 쓰여서 <strong>즉시 로딩</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">age</span><span class="o">;</span>
+
+  <span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">EAGER</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+
+  <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"member"</span><span class="o">,</span> <span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Order</span><span class="o">&gt;</span> <span class="n">orders</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>sql</b></summary>
+<div>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+  <span class="n">member</span><span class="p">.</span><span class="n">id</span> <span class="k">AS</span> <span class="n">memberid</span><span class="p">,</span>
+  <span class="n">member</span><span class="p">.</span><span class="n">age</span> <span class="k">AS</span> <span class="n">age</span><span class="p">,</span>
+  <span class="n">member</span><span class="p">.</span><span class="n">team_id</span> <span class="k">as</span> <span class="n">team_id</span>
+  <span class="n">member</span><span class="p">.</span><span class="n">username</span> <span class="k">AS</span> <span class="n">username</span><span class="p">,</span>
+  <span class="n">team</span><span class="p">.</span><span class="n">id</span> <span class="k">AS</span> <span class="n">teamid</span><span class="p">,</span>
+  <span class="n">team</span><span class="p">.</span><span class="n">name</span> <span class="k">as</span> <span class="n">name</span>
+<span class="k">FROM</span>
+  <span class="n">member</span> <span class="n">member</span>
+  <span class="k">LEFT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">team</span> <span class="n">team</span>
+  <span class="k">ON</span> <span class="n">member</span><span class="p">.</span><span class="n">team_id</span> <span class="o">=</span> <span class="n">team</span><span class="p">.</span><span class="n">team_id</span>
+<span class="k">WHERE</span>
+  <span class="n">member</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="nv">"member1"</span><span class="p">;</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><img src="/assets/img/jpa_study/ch.8/pic-8-7.png" /></p>
+
+<ul>
+  <li>회원 엔티티 조회시 위 그림과 같이
+    <ul>
+      <li>회원 -&gt; 팀은 실제 엔티티</li>
+      <li>회원 -&gt; 오더 리스트는 프록시로 조회됨</li>
+      <li>∴ 쿼리에서도 order 관련한 내용은 나타나지 않음</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="831-프록시와-컬렉션-래퍼">8.3.1 프록시와 컬렉션 래퍼</h2>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"member1"</span><span class="o">);</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Order</span><span class="o">&gt;</span> <span class="n">orders</span> <span class="o">=</span> <span class="n">member</span><span class="o">.</span><span class="na">getOrders</span><span class="o">();</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"orders = "</span> <span class="o">+</span> <span class="n">orders</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+<span class="c1">// result: orders = org.hibernate.collection.internal.PersistentBag</span>
+
+<span class="nc">Order</span> <span class="n">order1</span> <span class="o">=</span> <span class="n">orders</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>   <span class="c1">// 실제 DB 조회 및 초기화 이뤄짐</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><img src="/assets/img/jpa_study/ch.8/pic-8-8.png" /></p>
+
+<ul>
+  <li>하이버네이트는 엔티티를 영속상태 만들 때 엔티티에 컬렉션 있으면 이걸 하이버네이트 내장 컬렉션으로 변경함 =&gt; <strong>컬렉션 래퍼</strong>
+    <ul>
+      <li>컬렉션 추적 및 관리 목적</li>
+      <li><code class="language-plaintext highlighter-rouge">org.hibernate.collection.internal.PersistentBag</code></li>
+    </ul>
+  </li>
+  <li>엔티티 지연 로딩시 프록시 객체로 지연 로딩 수행하듯 컬렉션은 컬렉션 래퍼가 지연 로딩 처리
+    <ul>
+      <li>컬렉션 래퍼가 컬렉션에 대한 프록시 역할을 함</li>
+    </ul>
+  </li>
+  <li>위 예제에서 <code class="language-plaintext highlighter-rouge">member.getOrders()</code> 를 호출해도 컬렉션은 초기화 되지 않고 DB 조회도 되지 않음
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">member.getOrders().get(0)</code> 처럼 실제 데이터 조회해야 DB 조회해서 초기화함</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Order order1 = orders.get(0)</code> 로 지연상태인 주문 내역 초기화하면 연관된 Product는 즉시 로딩이므로 함께 조회됨</li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="832-jpa-default-fetch-전략">8.3.2 JPA default fetch 전략</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@ManyToOne</code>, <code class="language-plaintext highlighter-rouge">@OneToOne</code>: 즉시 로딩</li>
+  <li><code class="language-plaintext highlighter-rouge">@OneToMany</code>, <code class="language-plaintext highlighter-rouge">@ManyToMany</code>: 지연 로딩</li>
+  <li>JPA는 기본적으로 연관된 엔티티가 하나면 즉시 로딩, 컬렉션이면 지연 로딩을 사용
+    <ul>
+      <li>컬렉션은 로딩 비용이 많이 들고 자칫 대량의 데이터를 로딩하게 될 수도 있기 때문</li>
+    </ul>
+  </li>
+  <li>기왕이면 전부 지연 로딩 쓰고 나중에 최적화 하면서 필요한 곳만 즉시 로딩 사용하도록 하는게 좋음</li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="833-컬렉션에-fetchtypeeager-사용시-주의점">8.3.3 컬렉션에 FetchType.EAGER 사용시 주의점</h2>
+<ul>
+  <li><strong>컬렉션 하나 이상 즉시 로딩하는 것은 권장 X</strong>
+    <ul>
+      <li>컬렉션과의 조인은 1:N 조인이기 때문에 조회되는 데이터 너무 많아져서 성능 저하 발생할 수 있음</li>
+    </ul>
+  </li>
+  <li><strong>컬렉션 즉시 로딩은 항상 OUTER JOIN 사용됨</strong>
+    <ul>
+      <li>단건이면 not null 제약조건 걸면 되지만 컬렉션의 경우엔 어떻게 처리할 수가 없기 때문에 항상 외부 조인이 사용됨</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="fetchtypeeager-설정-및-조인-전략">FetchType.EAGER 설정 및 조인 전략</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@ManyToOne</code>, <code class="language-plaintext highlighter-rouge">@OneToOne</code>
+    <ul>
+      <li>(optional = false): 내부 조인</li>
+      <li>(optional = true): 외부 조인</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">@OneToMany</code>, <code class="language-plaintext highlighter-rouge">@ManyToMany</code>
+    <ul>
+      <li>(optional = false): 외부 조인</li>
+      <li>(optional = true): 외부 조인</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="84-영속성-전이-cascade">8.4 영속성 전이: CASCADE</h1>
+<ul>
+  <li>특정 엔티티를 영속 상태로 만들 때 연관된 엔티티도 함께 영속 상태로 만들려면 <strong>영속성 전이(transitive persistence)</strong>  기능 사용</li>
+  <li>JPA는 CASCADE 옵션으로 영속성 전이 제공</li>
+</ul>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <p><img src="/assets/img/jpa_study/ch.8/pic-8-9.png" /></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Parent</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"parent"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Child</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Child</span><span class="o">&gt;();</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Child</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="nd">@ManyToOne</span>
+  <span class="kd">private</span> <span class="nc">Parent</span> <span class="n">parent</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="c1">// parent 하나에 child 두개 저장하는 경우</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">saveNoCascade</span><span class="o">(</span><span class="nc">EntityManager</span> <span class="n">em</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// parent 저장</span>
+  <span class="nc">Parent</span> <span class="n">parent</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Parent</span><span class="o">();</span>
+  <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">parent</span><span class="o">);</span>
+  
+  <span class="c1">// child1 저장</span>
+  <span class="nc">Child</span> <span class="n">child1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Child</span><span class="o">();</span>
+  <span class="n">child1</span><span class="o">.</span><span class="na">setParent</span><span class="o">(</span><span class="n">parent</span><span class="o">);</span>         <span class="c1">// child -&gt; parent 연관관계 설정</span>
+  <span class="n">parent</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">child1</span><span class="o">);</span> <span class="c1">// parent -&gt; child 연관관계 설정</span>
+  <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="nc">Child1</span><span class="o">);</span>
+
+  <span class="c1">// child2 저장</span>
+  <span class="nc">Child</span> <span class="n">child2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Child</span><span class="o">();</span>
+  <span class="n">child2</span><span class="o">.</span><span class="na">setParent</span><span class="o">(</span><span class="n">parent</span><span class="o">);</span>         <span class="c1">// child -&gt; parent 연관관계 설정</span>
+  <span class="n">parent</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">child2</span><span class="o">);</span> <span class="c1">// parent -&gt; child 연관관계 설정</span>
+  <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="nc">Child2</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>JPA에서 엔티티를 저장할 때 연관된 모든 엔티티는 영속 상태여야 함</li>
+  <li>∴ 위 예제에서 parent 를 영속 상태로 만든 이후 추가한 child 엔티티들도 각각 영속상태로 만들어줌</li>
+  <li>영속성 전이를 사용하면 parent만 영속 상태로 만들어도 연관된 child 엔티티들도 한번에 영속 상태로 만들 수 있음</li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="841-영속성-전이-저장">8.4.1 영속성 전이: 저장</h2>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Parent</span> <span class="o">{</span>
+  <span class="o">...</span>
+
+  <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"parent"</span><span class="o">,</span> <span class="n">cascade</span> <span class="o">=</span> <span class="nc">CascadeType</span><span class="o">.</span><span class="na">PERSIST</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Child</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Child</span><span class="o">&gt;();</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">saveWithCascade</span><span class="o">(</span><span class="nc">EntityManager</span> <span class="n">em</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Child</span> <span class="n">child1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Child</span><span class="o">();</span>
+  <span class="nc">Child</span> <span class="n">child2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Child</span><span class="o">();</span>
+
+  <span class="nc">Parent</span> <span class="n">parent</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Parent</span><span class="o">();</span>
+  <span class="n">child1</span><span class="o">.</span><span class="na">setParent</span><span class="o">(</span><span class="n">parent</span><span class="o">);</span>     <span class="c1">// child1 연관관계 추가</span>
+  <span class="n">child2</span><span class="o">.</span><span class="na">setParent</span><span class="o">(</span><span class="n">parent</span><span class="o">);</span>     <span class="c1">// child2 연관관계 추가</span>
+  <span class="n">parent</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">child1</span><span class="o">);</span>
+  <span class="n">parent</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">child2</span><span class="o">);</span>
+
+  <span class="c1">// parent 저장, 연관된 child 들도 같이 저장</span>
+  <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">parent</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<p><img src="/assets/img/jpa_study/ch.8/pic-8-10.png" /></p>
+
+<ul>
+  <li>parent에 child 엔티티들을 <code class="language-plaintext highlighter-rouge">@OneToMany(cascade = CascadeType.PERSIST)</code>로 영속성 전이 설정해줘서 parent 영속화시 child들도 같이 영속화해서 저장됨</li>
+  <li>영속성 전이는 연관 관계 매핑과는 관련 X
+    <ul>
+      <li>엔티티 영속화 시 연관된 엔티티도 함께 영속화되는 편리함을 제공할 뿐</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="842-영속성-전이-삭제">8.4.2 영속성 전이: 삭제</h2>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Parent</span> <span class="o">{</span>
+  <span class="o">...</span>
+
+  <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"parent"</span><span class="o">,</span> <span class="n">cascade</span> <span class="o">=</span> <span class="nc">CascadeType</span><span class="o">.</span><span class="na">REMOVE</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Child</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Child</span><span class="o">&gt;();</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">removeNoCascade</span><span class="o">(</span><span class="nc">EntityManager</span> <span class="n">em</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Parent</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Parent</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">1L</span><span class="o">);</span>
+  <span class="nc">Child</span> <span class="n">child1</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Child</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">1L</span><span class="o">);</span>
+  <span class="nc">Child</span> <span class="n">child2</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Child</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">2L</span><span class="o">);</span>
+
+  <span class="n">em</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">child1</span><span class="o">);</span>
+  <span class="n">em</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">child2</span><span class="o">);</span>
+  <span class="n">em</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">parent</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">removeWithCascade</span><span class="o">(</span><span class="nc">EntityManager</span> <span class="n">em</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Parent</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Parent</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">1L</span><span class="o">);</span>
+
+  <span class="n">em</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">parent</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>default로는 삭제 시 위 예시의 <code class="language-plaintext highlighter-rouge">removeNoCascade()</code> 처럼 각각 엔티티를 하나씩 제거해야 함</li>
+  <li><code class="language-plaintext highlighter-rouge">@OneToManyu(cascade = CascadeType.REMOVE)</code> 로 삭제에 대한 영속성 전이 설정해 주면 <code class="language-plaintext highlighter-rouge">removeWithCascade()</code> 처럼 parent 만 지워도 연관된 child 엔티티들 함께 삭제됨
+    <ul>
+      <li>이 때 알아서 fk 제약조건 고려하여 child 먼저 삭제하고 parent 삭제해줌</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="843-cascade의-종류">8.4.3 CASCADE의 종류</h2>
+
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">CascadeType</span> <span class="o">{</span>
+  <span class="no">ALL</span>         <span class="c1">// 모두 적용</span>
+  <span class="o">,</span> <span class="no">PERSIST</span>   <span class="c1">// 영속</span>
+  <span class="o">,</span> <span class="no">MERGE</span>     <span class="c1">// 병합</span>
+  <span class="o">,</span> <span class="no">REMOVE</span>    <span class="c1">// 삭제</span>
+  <span class="o">,</span> <span class="no">REFRESH</span>   <span class="c1">// refresh</span>
+  <span class="o">,</span> <span class="no">DETACH</span>    <span class="c1">// detach</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li>위 코드에 나와있는 다양한 CascadeType 을 적용하여 상황에 따라 사용 가능</li>
+  <li><code class="language-plaintext highlighter-rouge">cascade = (CascadeType.PERSIST, CascadeType.REMOVE)</code> 처럼 여러 옵션 같이 적용할 수도 있음</li>
+  <li><code class="language-plaintext highlighter-rouge">CascadeType.PERSIST</code>, <code class="language-plaintext highlighter-rouge">CascadeType.REMOVE</code>는 각각 <code class="language-plaintext highlighter-rouge">em.persist()</code>, <code class="language-plaintext highlighter-rouge">em.remove()</code>실행할 때 바로 전이 발생 X
+    <ul>
+      <li>flush 호출 시 전이 발생함</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="85-고아-객체">8.5 고아 객체</h1>
+<ul>
+  <li>JPA에서는 parent 엔티티와 연관관계 끊어진 child 엔티티 자동 삭제 기능을 제공 =&gt; <strong>고아 객체 제거(ORPHAN REMOVAL)</strong></li>
+  <li></li>
+</ul>
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Parent</span> <span class="o">{</span>
+  <span class="nd">@ID</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"parent"</span><span class="o">,</span> <span class="n">orphanRemoval</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Child</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Child</span><span class="o">&gt;();</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">removeChild</span><span class="o">(</span><span class="nc">EntityManager</span> <span class="n">em</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Parent</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Parent</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">1L</span><span class="o">);</span>
+
+  <span class="n">parent</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">remove</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>   <span class="n">child</span> <span class="n">엔티티를</span> <span class="n">컬렉션에서</span> <span class="n">제거</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">removeAllChild</span><span class="o">(</span><span class="nc">EntityManager</span> <span class="n">em</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Parent</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Parent</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">1L</span><span class="o">);</span>
+
+  <span class="n">parent</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">clear</span><span class="o">();</span>   <span class="n">child</span> <span class="n">엔티티</span> <span class="n">전부를</span> <span class="n">컬렉션에서</span> <span class="n">제거</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@OneToMany(orphanRemoval = true)</code> 로 설정해주면 연관관계 끊어질 때 child 엔티티도 자동으로 제거됨</li>
+  <li>고아 객체 제거 기능도 영속성 컨텍스트 flush 시 적용되므로 flush 시점에 DELETE 쿼리가 수행되어 제거</li>
+  <li>고아 객체 제거는 <strong>참조가 제거된 엔티티는 다른 곳에서 참조하지 않는 고아 객체로 보고 삭제하는 기능</strong>이므로 참조하는 곳이 하나일 때만 사용해야 함
+    <ul>
+      <li>삭제한 엔티티를 다른 곳에서도 참조중이면 문제 발생할 수 있음</li>
+      <li>∴ orphanRemoval은 <code class="language-plaintext highlighter-rouge">@OneToOne</code>, <code class="language-plaintext highlighter-rouge">@OneToMany</code> 에서만 사용 가능</li>
+    </ul>
+  </li>
+  <li>또한 parent를 제거해버리면 child도 고아가 되는거나 마찬가지라 parent 제거시 child도 같이 제거됨
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">CascadeType.REMOVE</code> 설정한 것과 동일함</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="86-영속성-전이--고아-객체-생명주기">8.6 영속성 전이 + 고아 객체, 생명주기</h1>
+<ul>
+  <li>일반적으로 엔티티는 <code class="language-plaintext highlighter-rouge">EntityManager::persist()</code> 를 통해 영속화, <code class="language-plaintext highlighter-rouge">EntityManager::remove()</code> 를 통해 제거됨
+    <ul>
+      <li>엔티티 스스로 생명주기를 관리한다는 의미</li>
+    </ul>
+  </li>
+  <li>만약 <code class="language-plaintext highlighter-rouge">CascadeType.ALL</code>과 <code class="language-plaintext highlighter-rouge">oprhanRemoval = true</code> 를 통시에 사용할 경우
+    <ul>
+      <li>parent 엔티티를 통해 child의 생명주기 관리 가능</li>
+      <li>child 저장하려면 parent에 등록만 하면 됨(CASCADE)</li>
+      <li>child 삭제하려면 parent에서 제거만 하면 됨(orphanRemoval)</li>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+<details>
+<summary style="color:rgb(200, 50, 50)"><b>코드</b></summary>
+<div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">(</span><span class="nc">EntityManager</span> <span class="n">em</span><span class="o">,</span> <span class="n">parentId</span><span class="o">,</span> <span class="n">child</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// parent 엔티티에 등록하여 child도 저장</span>
+  <span class="nc">Parent</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Parent</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">parentId</span><span class="o">);</span>
+  <span class="n">parent</span><span class="o">.</span><span class="na">addChild</span><span class="o">(</span><span class="nc">Child</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="nc">EntityManager</span> <span class="n">em</span><span class="o">,</span> <span class="n">parentId</span><span class="o">,</span> <span class="n">child</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// parent에서 제거하여 child도 삭제</span>
+  <span class="nc">Parent</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Parent</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">parentId</span><span class="o">);</span>
+  <span class="n">parent</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">remove</span><span class="o">(</span><span class="n">child</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+  </div>
+</details>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/jpa">jpa</a>,&nbsp;<a href="/tag/proxy">proxy</a>,&nbsp;<a href="/tag/lazy-loading">lazy-loading</a>,&nbsp;<a href="/tag/loading">loading</a>,&nbsp;<a href="/tag/lifecycle">lifecycle</a>,&nbsp;<a href="/tag/transitive">transitive</a>,&nbsp;<a href="/tag/persistence">persistence</a>,&nbsp;<a href="/tag/orphan">orphan</a>,&nbsp;<a href="/tag/collection-wrapper">collection-wrapper</a>,&nbsp;<a href="/tag/collection">collection</a>,&nbsp;<a href="/tag/wrapper">wrapper</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+8%EC%9E%A5.+%ED%94%84%EB%A1%9D%EC%8B%9C%EC%99%80+%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84+%EA%B4%80%EB%A6%AC&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F02%2F22%2Fch.8-proxy-and-relationship-management.html&via="
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+8%EC%9E%A5.+%ED%94%84%EB%A1%9D%EC%8B%9C%EC%99%80+%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84+%EA%B4%80%EB%A6%AC&u=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F02%2F22%2Fch.8-proxy-and-relationship-management.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F02%2F22%2Fch.8-proxy-and-relationship-management.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+8%EC%9E%A5.+%ED%94%84%EB%A1%9D%EC%8B%9C%EC%99%80+%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84+%EA%B4%80%EB%A6%AC&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F02%2F22%2Fch.8-proxy-and-relationship-management.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+8%EC%9E%A5.+%ED%94%84%EB%A1%9D%EC%8B%9C%EC%99%80+%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84+%EA%B4%80%EB%A6%AC&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F02%2F22%2Fch.8-proxy-and-relationship-management.html&media=https://sungunjo.github.io/assets/instacode.png"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('https://sungunjo.github.io/jpa-study/2022/02/22/ch.8-proxy-and-relationship-management.html') + '&title=[자바 ORM 표준 JPA 프로그래밍] 8장. 프록시와 연관관계 관리'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'sungunjo-github-io';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Development Stash</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:sungunjo.dev@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">sungunjo.dev@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/sungunjo" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">sungunjo</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/sungunjo" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">SungUn Jo</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">개발 공부 블로그</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-156645046-1', 'auto');
+  ga('send', 'pageview', {
+    'page': '/jpa-study/2022/02/22/ch.8-proxy-and-relationship-management.html',
+    'title': '[자바 ORM 표준 JPA 프로그래밍] 8장. 프록시와 연관관계 관리'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

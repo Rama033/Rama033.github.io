@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Development Stash</title>
+    <description>개발 공부 블로그</description>
+    <link>https://sungunjo.github.io/</link>
+    <atom:link href="https://sungunjo.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 12 Apr 2022 22:29:19 +0900</pubDate>
+    <lastBuildDate>Tue, 12 Apr 2022 22:29:19 +0900</lastBuildDate>
+    <generator>Jekyll v3.9.1</generator>
+    
+      <item>
+        <title>[자바 ORM 표준 JPA 프로그래밍] 16장. 트랜잭션과 락, 2차 캐시</title>
+        <description>&lt;h1 id=&quot;16장-트랜잭션과-락-2차-캐시&quot;&gt;16장. 트랜잭션과 락, 2차 캐시&lt;/h1&gt; &lt;p&gt;&lt;br /&gt;&lt;/p&gt; &lt;h1 id=&quot;161-트랜잭션과-락&quot;&gt;16.1 트랜잭션과 락&lt;/h1&gt; &lt;p&gt;&lt;br /&gt; &lt;br /&gt;&lt;/p&gt; &lt;h2 id=&quot;1611-트랜잭션과-격리-수준&quot;&gt;16.1.1 트랜잭션과 격리 수준&lt;/h2&gt; &lt;ul&gt; &lt;li&gt;트랜잭션은 ACID를 보장해야 함 &lt;ul&gt; &lt;li&gt;&lt;strong&gt;원자성 (Atomicity):&lt;/strong&gt; 트랜잭션...</description>
+        <pubDate>Thu, 07 Apr 2022 21:14:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/jpa-study/2022/04/07/ch.16-transaction-and-lock-2nd-cache.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/jpa-study/2022/04/07/ch.16-transaction-and-lock-2nd-cache.html</guid>
+        
+        <category>jpa</category>
+        
+        <category>transaction</category>
+        
+        <category>lock</category>
+        
+        <category>2nd-cache</category>
+        
+        <category>cache</category>
+        
+        
+        <category>jpa-study</category>
+        
+      </item>
+    
+      <item>
+        <title>[자바 ORM 표준 JPA 프로그래밍] 15장. 고급 주제와 성능 최적화</title>
+        <description>&lt;h1 id=&quot;15장-고급-주제와-성능-최적화&quot;&gt;15장. 고급 주제와 성능 최적화&lt;/h1&gt; &lt;p&gt;&lt;br /&gt;&lt;/p&gt; &lt;h1 id=&quot;151-예외-처리&quot;&gt;15.1 예외 처리&lt;/h1&gt; &lt;p&gt;&lt;br /&gt;&lt;/p&gt; &lt;h2 id=&quot;1511-jpa-표준-예외-정리&quot;&gt;15.1.1 JPA 표준 예외 정리&lt;/h2&gt; &lt;ul&gt; &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeException&lt;/code&gt; &lt;ul&gt; &lt;li&gt;ㄴ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;javax.persistence.PersistenceException&lt;/code&gt; &lt;ul&gt;...</description>
+        <pubDate>Thu, 31 Mar 2022 23:20:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/jpa-study/2022/03/31/ch.15-advanced-topics-and-performance-optimization.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/jpa-study/2022/03/31/ch.15-advanced-topics-and-performance-optimization.html</guid>
+        
+        <category>jpa</category>
+        
+        <category>performance-optimization</category>
+        
+        <category>performance</category>
+        
+        <category>optimization</category>
+        
+        <category>exception</category>
+        
+        <category>compare</category>
+        
+        <category>proxy</category>
+        
+        
+        <category>jpa-study</category>
+        
+      </item>
+    
+      <item>
+        <title>[자바 ORM 표준 JPA 프로그래밍] 14장. 컬렉션과 부가 기능</title>
+        <description>&lt;h1 id=&quot;14장-컬렉션과-부가-기능&quot;&gt;14장. 컬렉션과 부가 기능&lt;/h1&gt; &lt;p&gt;&lt;br /&gt;&lt;/p&gt; &lt;h1 id=&quot;141-컬렉션&quot;&gt;14.1 컬렉션&lt;/h1&gt; &lt;ul&gt; &lt;li&gt;자바에서 기본 제공하는 컬렉션 클래스들은 JPA에서 다음과 같은 경우 사용할 수 있음 &lt;ul&gt; &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@OneToMany&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ManyToMany&lt;/code&gt;...</description>
+        <pubDate>Mon, 28 Mar 2022 21:43:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/jpa-study/2022/03/28/ch.14-collection-and-additional-function.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/jpa-study/2022/03/28/ch.14-collection-and-additional-function.html</guid>
+        
+        <category>jpa</category>
+        
+        <category>collection</category>
+        
+        <category>converter</category>
+        
+        <category>entity-graph</category>
+        
+        <category>entity</category>
+        
+        <category>grpah</category>
+        
+        <category>listener</category>
+        
+        
+        <category>jpa-study</category>
+        
+      </item>
+    
+      <item>
+        <title>[자바 ORM 표준 JPA 프로그래밍] 13장. 웹 애플리케이션과 영속성 관리</title>
+        <description>&lt;h1 id=&quot;13장-웹-애플리케이션과-영속성-관리&quot;&gt;13장. 웹 애플리케이션과 영속성 관리&lt;/h1&gt; &lt;p&gt;&lt;br /&gt;&lt;/p&gt; &lt;h1 id=&quot;131-트랜잭션-범위의-영속성-컨텍스트&quot;&gt;13.1 트랜잭션 범위의 영속성 컨텍스트&lt;/h1&gt; &lt;ul&gt; &lt;li&gt;순수 J2SE 환경에선 개발자가 직접 엔티티 매니저 생성하고 트랜잭션 관리&lt;/li&gt; &lt;li&gt;스프링, J2EE 컨테이너 환경에서 JPA...</description>
+        <pubDate>Wed, 23 Mar 2022 00:00:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/jpa-study/2022/03/23/ch.13.web-application-and-persistence-management.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/jpa-study/2022/03/23/ch.13.web-application-and-persistence-management.html</guid>
+        
+        <category>jpa</category>
+        
+        <category>web-application</category>
+        
+        <category>persistence-management</category>
+        
+        <category>web</category>
+        
+        <category>application</category>
+        
+        <category>persistence</category>
+        
+        <category>management</category>
+        
+        <category>lazy-loading</category>
+        
+        <category>osiv</category>
+        
+        
+        <category>jpa-study</category>
+        
+      </item>
+    
+      <item>
+        <title>[자바 ORM 표준 JPA 프로그래밍] 12장. 스프링 데이터 JPA</title>
+        <description>&lt;h1 id=&quot;12장-스프링-데이터-jpa&quot;&gt;12장. 스프링 데이터 JPA&lt;/h1&gt; &lt;p&gt;&lt;br /&gt;&lt;/p&gt; &lt;h1 id=&quot;121-스프링-데이터-jpa-소개&quot;&gt;12.1 스프링 데이터 JPA 소개&lt;/h1&gt; &lt;ul&gt; &lt;li&gt;CRUD 처리를 위한 공통 인터페이스 제공&lt;/li&gt; &lt;li&gt;리포지토리 개발 시 인터페이스만 작성하면 실행 시점에 구현 객체를 동적으로...</description>
+        <pubDate>Tue, 22 Mar 2022 19:26:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/jpa-study/2022/03/22/ch.12-spring-data-jpa.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/jpa-study/2022/03/22/ch.12-spring-data-jpa.html</guid>
+        
+        <category>jpa</category>
+        
+        <category>spring-data-jpa</category>
+        
+        <category>spring</category>
+        
+        <category>data</category>
+        
+        <category>interface</category>
+        
+        <category>query-method</category>
+        
+        <category>query</category>
+        
+        <category>method</category>
+        
+        <category>repository</category>
+        
+        <category>web</category>
+        
+        <category>query-dsl</category>
+        
+        
+        <category>jpa-study</category>
+        
+      </item>
+    
+      <item>
+        <title>[자바 ORM 표준 JPA 프로그래밍] 10장. 객체지향 쿼리 언어</title>
+        <description>&lt;h1 id=&quot;10장-객체지향-쿼리-언어&quot;&gt;10장. 객체지향 쿼리 언어&lt;/h1&gt; &lt;p&gt;&lt;br /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt; &lt;h1 id=&quot;101-객체지향-쿼리-소개&quot;&gt;10.1 객체지향 쿼리 소개&lt;/h1&gt; &lt;ul&gt; &lt;li&gt;JPQL 특징 &lt;ul&gt; &lt;li&gt;DB 테이블이 아닌 엔티티 객체를 대상으로 검색하는 객체지향 쿼리&lt;/li&gt; &lt;li&gt;SQL을...</description>
+        <pubDate>Tue, 01 Mar 2022 21:03:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/jpa-study/2022/03/01/ch.10-object-oriented-query-language.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/jpa-study/2022/03/01/ch.10-object-oriented-query-language.html</guid>
+        
+        <category>jpa</category>
+        
+        <category>object-oriented</category>
+        
+        <category>query</category>
+        
+        <category>language</category>
+        
+        <category>jpql</category>
+        
+        <category>criteria</category>
+        
+        <category>querydsl</category>
+        
+        <category>nativesql</category>
+        
+        
+        <category>jpa-study</category>
+        
+      </item>
+    
+      <item>
+        <title>[자바 ORM 표준 JPA 프로그래밍] 9장. 값 타입</title>
+        <description>&lt;h1 id=&quot;9장-값-타입&quot;&gt;9장. 값 타입&lt;/h1&gt; &lt;ul&gt; &lt;li&gt;JPA의 데이터 타입은 크게 엔티티 타입, 값 타입 두개로 분류 가능&lt;/li&gt; &lt;li&gt;엔티티 타입 &lt;ul&gt; &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Entity&lt;/code&gt; 로 정의하는 객체&lt;/li&gt; &lt;li&gt;식별자 있음 &lt;ul&gt; &lt;li&gt;식별자로 구별하고...</description>
+        <pubDate>Mon, 28 Feb 2022 20:46:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/jpa-study/2022/02/28/ch.9-value-type.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/jpa-study/2022/02/28/ch.9-value-type.html</guid>
+        
+        <category>jpa</category>
+        
+        <category>value</category>
+        
+        <category>embeded-type</category>
+        
+        <category>value-type</category>
+        
+        <category>immutable-object</category>
+        
+        <category>collection</category>
+        
+        
+        <category>jpa-study</category>
+        
+      </item>
+    
+      <item>
+        <title>[자바 ORM 표준 JPA 프로그래밍] 8장. 프록시와 연관관계 관리</title>
+        <description>&lt;h1 id=&quot;8장-프록시와-연관관계-관리&quot;&gt;8장. 프록시와 연관관계 관리&lt;/h1&gt; &lt;p&gt;&lt;br /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt; &lt;h1 id=&quot;81-프록시&quot;&gt;8.1 프록시&lt;/h1&gt; &lt;ul&gt; &lt;li&gt;엔티티 조회 시 연관된 엔티티가 항상 사용되는 것은 아님&lt;/li&gt; &lt;li&gt;∴ JPA는 엔티티가 실제 사용될 때까지...</description>
+        <pubDate>Tue, 22 Feb 2022 21:35:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/jpa-study/2022/02/22/ch.8-proxy-and-relationship-management.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/jpa-study/2022/02/22/ch.8-proxy-and-relationship-management.html</guid>
+        
+        <category>jpa</category>
+        
+        <category>proxy</category>
+        
+        <category>lazy-loading</category>
+        
+        <category>loading</category>
+        
+        <category>lifecycle</category>
+        
+        <category>transitive</category>
+        
+        <category>persistence</category>
+        
+        <category>orphan</category>
+        
+        <category>collection-wrapper</category>
+        
+        <category>collection</category>
+        
+        <category>wrapper</category>
+        
+        
+        <category>jpa-study</category>
+        
+      </item>
+    
+      <item>
+        <title>[자바 ORM 표준 JPA 프로그래밍] 7장. 고급 매핑</title>
+        <description>&lt;h1 id=&quot;7장-고급-매핑&quot;&gt;7장. 고급 매핑&lt;/h1&gt; &lt;h1 id=&quot;71-상속-관계-매핑&quot;&gt;7.1 상속 관계 매핑&lt;/h1&gt; &lt;ul&gt; &lt;li&gt;관계형 DB에는 상속이라는 개념 X&lt;/li&gt; &lt;li&gt;ORM 에서 얘기하는 상속 관계 매핑은 &lt;strong&gt;객체의 상속구조&lt;/strong&gt;와 &lt;strong&gt;DB의 슈퍼타입 서브타입 관계&lt;/strong&gt;를 매핑하는 것&lt;/li&gt; &lt;/ul&gt;...</description>
+        <pubDate>Sat, 05 Feb 2022 17:45:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/jpa-study/2022/02/05/ch.7-advanced-mapping.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/jpa-study/2022/02/05/ch.7-advanced-mapping.html</guid>
+        
+        <category>jpa</category>
+        
+        <category>relation</category>
+        
+        <category>relationship-mapping</category>
+        
+        <category>mapped-superclass</category>
+        
+        <category>join</category>
+        
+        <category>join-table</category>
+        
+        <category>inheritance</category>
+        
+        <category>discriminator</category>
+        
+        
+        <category>jpa-study</category>
+        
+      </item>
+    
+      <item>
+        <title>[자바 ORM 표준 JPA 프로그래밍] 6장. 다양한 연관관계 매핑</title>
+        <description>&lt;h1 id=&quot;6장-다양한-연관관계-mapping&quot;&gt;6장. 다양한 연관관계 mapping&lt;/h1&gt; &lt;h1 id=&quot;61-n1&quot;&gt;6.1 N:1&lt;/h1&gt; &lt;ul&gt; &lt;li&gt;항상 N:1 의 반대 방향은 1:N, 1:N의 반대 방향은 N:1&lt;/li&gt; &lt;li&gt;1:N, N:1 관계에서 foreign key는 항상 N 쪽에 위치 &lt;ul&gt; &lt;li&gt;∴...</description>
+        <pubDate>Sat, 05 Feb 2022 17:45:00 +0900</pubDate>
+        <link>https://sungunjo.github.io/jpa-study/2022/02/05/ch.6-various-relationship-mapping.html</link>
+        <guid isPermaLink="true">https://sungunjo.github.io/jpa-study/2022/02/05/ch.6-various-relationship-mapping.html</guid>
+        
+        <category>jpa</category>
+        
+        <category>relation</category>
+        
+        <category>relationship-mapping</category>
+        
+        <category>1:1</category>
+        
+        <category>N:N</category>
+        
+        <category>1:N</category>
+        
+        <category>N:1</category>
+        
+        
+        <category>jpa-study</category>
+        
+      </item>
+    
+  </channel>
+</rss>

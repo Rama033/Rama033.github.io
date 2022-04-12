@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[자바 ORM 표준 JPA 프로그래밍] 16장. 트랜잭션과 락, 2차 캐시</title>
+  <meta name="description" content="16장. 트랜잭션과 락, 2차 캐시">
+  
+  <meta name="author" content="Jo">
+  <meta name="copyright" content="&copy; Jo 2022">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="16장. 트랜잭션과 락, 2차 캐시" />
+  <meta property="og:url" content="https://sungunjo.github.io/jpa-study/2022/04/07/ch.16-transaction-and-lock-2nd-cache.html">
+  <meta property="og:site_name" content="Development Stash" />
+  <meta property="og:title" content="[자바 ORM 표준 JPA 프로그래밍] 16장. 트랜잭션과 락, 2차 캐시" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sungunjo.github.io/assets/instacode.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 16장. 트랜잭션과 락, 2차 캐시">
+  <meta name="twitter:description" content="16장. 트랜잭션과 락, 2차 캐시">
+  <meta name="twitter:image" content="https://sungunjo.github.io/assets/instacode.png">
+  <meta name="twitter:url" content="https://sungunjo.github.io/jpa-study/2022/04/07/ch.16-transaction-and-lock-2nd-cache.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://sungunjo.github.io/jpa-study/2022/04/07/ch.16-transaction-and-lock-2nd-cache.html">
+	<link rel="alternate" type="application/rss+xml" title="Development Stash" href="https://sungunjo.github.io/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="Development Stash">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/instacode.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">[자바 ORM 표준 JPA 프로그래밍] 16장. 트랜잭션과 락, 2차 캐시</h1>
+      <p class="info">by <strong>Jo</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">April 7, 2022</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/jpa-study">Jpa-study</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h1 id="16장-트랜잭션과-락-2차-캐시">16장. 트랜잭션과 락, 2차 캐시</h1>
+
+<p><br /></p>
+
+<h1 id="161-트랜잭션과-락">16.1 트랜잭션과 락</h1>
+
+<p><br />
+<br /></p>
+
+<h2 id="1611-트랜잭션과-격리-수준">16.1.1 트랜잭션과 격리 수준</h2>
+<ul>
+  <li>트랜잭션은 ACID를 보장해야 함
+    <ul>
+      <li><strong>원자성 (Atomicity):</strong> 트랜잭션 내에서 실행한 작업들은 하나의 작업인것 처럼 모두 성공하거나 모두 실패해야 함</li>
+      <li><strong>일관성 (Consistencey):</strong> 모든 트랜잭션은 일관성 있는 DB 상태 유지해야 함(ex. DB에서 정한 무결성 제약 조건을 항상 만족)</li>
+      <li><strong>격리성 (Isolation):</strong> 동시에 실행되는 트랜잭션들이 서로 영향 미치지 않도록 격리해야 함. 격리 수준은 선택 가능 (ex. 동시에 같은 데이터 수정 불가)</li>
+      <li><strong>지속성 (Durability):</strong> 트랜잭션 성공적으로 종료시 결과가 항상 기록되어야 함. 중간에 시스템 문제 발생해도 DB 로그 등으로 성공한 트랜잭션 내용을 복구</li>
+    </ul>
+  </li>
+  <li>이 중에서 격리성을 완벽히 보장하려면 트랜잭션을 거의 차례대로 실행해야 하는데, 이럴 경우 동시성 처리 성능이 나빠져서 ANSI 표준에선 트랜잭션 격리 수준을 4단계로 정의
+    <ul>
+      <li><strong>READ UNCOMMITTED:</strong> 커밋되지 않은 읽기 (격리 수준 가장 낮음)</li>
+      <li><strong>READ COMMITTED:</strong> 커밋된 읽기</li>
+      <li><strong>REPEATABLE READ:</strong> 반복 가능한 읽기</li>
+      <li><strong>SERIALIZABLE:</strong> 직렬화 가능 (격리 수준 가장 높음)</li>
+    </ul>
+  </li>
+  <li>격리 수준 낮을수록 동시성 증가하지만 더 많은 문제가 발생하게 됨
+    <ul>
+      <li><strong>DIRTY READ:</strong> 커밋하지 않은 데이터 읽을 수 있음</li>
+      <li><strong>NON-REPEATABLE READ:</strong> 반복해서 같은 데이터 읽을 수 없음</li>
+      <li><strong>PHANTOM READ:</strong> 반복 조회 시 결과 집합이 달라짐</li>
+    </ul>
+  </li>
+  <li>애플리케이션 대부분 동시성 처리가 중요하므로 보통 READ COMMITED 격리 수준을 기본으로 사용
+    <ul>
+      <li>중요한 비즈니스 로직 등에서 더 높은 격리 수준 필요할 경우 DB 트랜잭션이 제공하는 락 기능 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">격리 수준</th>
+      <th style="text-align: center">DIRTY READ</th>
+      <th style="text-align: center">NON-REPEATABLE READ</th>
+      <th style="text-align: center">PAHNTOM READ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">READ UNCOMMITTED</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">READ COMMITTED</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">REPEATABLE READ</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SERIALIZABLE</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="read-uncommitted">READ UNCOMMITTED</h4>
+<ul>
+  <li>DIRTY READ 까지 허용하는 격리 수준</li>
+  <li>예시
+    <ul>
+      <li>트랜잭션 1이 수정중인 데이터를 트랜잭션 2가 조회할 경우 DIRTY READ</li>
+      <li>이 때 트랜잭션 1이 롤백하면 데이터 정합성에 문제 발생할 수 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="read-committed">READ COMMITTED</h4>
+<ul>
+  <li>DIRTY READ 는 허용 안함</li>
+  <li>NON-REPEATABLE READ 까지는 허용하는 격리 수준</li>
+  <li>예시
+    <ul>
+      <li>트랜잭션 1이 회원 A 조회 중 트랜잭션 2가 회원 A 수정, 커밋</li>
+      <li>트랜잭션 1이 회원 A 다시 조회하면 수정된 데이터 조회됨</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="repeatable-read">REPEATABLE READ</h4>
+<ul>
+  <li>DIRTY READ, NON-REPEATABLE READ 허용 안함</li>
+  <li>PHANTOM READ 까지는 허용하는 격리 수준</li>
+  <li>예시
+    <ul>
+      <li>트랜잭션 1이 10살 이하의 회원 조회</li>
+      <li>트랜잭션 2가 5살 회원 추가, 커밋</li>
+      <li>트랜잭션 1이 다시 10살 이하 회원 조회 시 회원 하나가 추가된 상태로 조회됨</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="serializable">SERIALIZABLE</h4>
+<ul>
+  <li>DIRTY READ, NON-REPEATABLE READ, PHANTOM READ 모두 허용 안함</li>
+  <li>가장 엄격한 트랜잭션 격리 수준</li>
+  <li>동시성 처리 성능이 급격히 떨어질 수 있음</li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="1612-낙관적-락과-비관적-락-기초">16.1.2 낙관적 락과 비관적 락 기초</h2>
+<ul>
+  <li>JPA 영속성 컨텍스트(1차 캐시) 활용시 READ COMMITTED 격리 수준이어도 애플리케이션 레벨에서 REPEATABLE READ 가능함</li>
+  <li>JPA는 DB 트랜잭션 격리 수준을 READ COMMITTED 정도로 가정하며 더 높은 격리 수준 필요할 경우 낙관적 락, 비관적 락 중 하나를 사용하면 됨
+    <ul>
+      <li><strong>낙관적 락</strong>
+        <ul>
+          <li>트랜잭션 대부분은 충돌 발생하지 않는다고 가정하는 방법</li>
+          <li>DB 락 대신 JPA 버전 관리 기능을 사용</li>
+          <li>트랜잭션 커밋 전까지는 충돌 여부 알 수 없음</li>
+        </ul>
+      </li>
+      <li><strong>비관적 락</strong>
+        <ul>
+          <li>트랜잭션 충돌 발생을 가정하고 락을 걸고 보는 방법</li>
+          <li>DB 제공 락 기능을 사용</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>두 번의 갱신 분실 문제 (second loast updates problem):</strong> DB 트랜잭션의 범위를 넘어서는 문제로 트랜잭션 만으로는 해결 불가능
+    <ul>
+      <li>A와 B가 같은 데이터를 동시에 수정중인 상황</li>
+      <li>A가 먼저 커밋한 후 이어서 B가 커밋하면 A의 수정사항은 사라지고 B 의 수정사항만 남게됨</li>
+      <li>해결 방법은 3가지
+        <ul>
+          <li><strong>마지막 커밋만 인정하기:</strong> A의 수정 내용 무시하고 마지막 커밋인 A 의 수정 사항만 인정
+            <ul>
+              <li>기본적으로 사용되는 방법</li>
+            </ul>
+          </li>
+          <li><strong>최초 커밋만 인정하기:</strong> A가 이미 수정 끝냈으므로 B가 커밋할 때 오류 발생
+            <ul>
+              <li>JPA 버전 관리 기능으로 구현할 수 있음</li>
+            </ul>
+          </li>
+          <li><strong>충돌하는 갱신 내용 병합하기:</strong> A, B 의 수정사항을 병함
+            <ul>
+              <li>개발자가 직접 병합 방법 제공해야 함</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="1613-version">16.1.3 @Version</h2>
+<ul>
+  <li>엔티티에 버전 관리용 필드 추가후 <code class="language-plaintext highlighter-rouge">@Version</code> 어노테이션 붙이면 버전 관리 기능 적용됨</li>
+  <li><code class="language-plaintext highlighter-rouge">@Version</code> 적용 가능 타입은 아래와 같음
+    <ul>
+      <li>Long</li>
+      <li>Integer</li>
+      <li>Short</li>
+      <li>Timestamp</li>
+    </ul>
+  </li>
+  <li>이후 엔티티 수정할 때마다 버전이 자동으로 증가하며 조회 시점 버전과 수정 시점 버전이 다르면 예외 발생
+    <ul>
+      <li>최초 커밋만 인정하기 적용</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 버전 관리 추가</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Board</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">title</span><span class="o">;</span>
+
+  <span class="nd">@Version</span>
+  <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">version</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="o">...</span>
+
+<span class="c1">// 버전 관리 사용</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">versionTest</span><span class="o">()</span> <span class="o">{</span>
+  <span class="c1">// 트랜잭션 1 조회 title="제목A", version=1</span>
+  <span class="nc">Board</span> <span class="n">board</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Board</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+
+  <span class="c1">// 트랜잭션 2에서 게시물 수정하여 title="제목C', version=2로 증가</span>
+
+  <span class="n">board</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"제목B"</span><span class="o">);</span>  <span class="c1">// 트랜잭션 1 데이터 수정</span>
+  <span class="n">save</span><span class="o">(</span><span class="n">board</span><span class="o">);</span>
+  <span class="n">tx</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>  <span class="c1">// DB version=2, entity version=1이라 에외 발생</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/jpa_study/ch.16/pic-16-1.png" /></p>
+
+<ol>
+  <li>트랜잭션 1에서 title=제목A, version=1 인 데이터 조회</li>
+  <li>트랜잭션 2에서 title=제목A, version=1 인 데이터 조회</li>
+  <li>트랜잭션 2에서 title=제목C로 수정 후 커밋</li>
+  <li>DB에서 title=제목C로 변경, version=2로 증가됨</li>
+  <li>트랜잭션 1에서 title=제목B로 수정 후 커밋</li>
+  <li>DB의 version과 트랜잭션 1의 엔티티 버전이 달라서 예외가 발생함</li>
+</ol>
+
+<p><br /></p>
+
+<h3 id="버전-정보-비교-방법">버전 정보 비교 방법</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">UPDATE</span> <span class="n">board</span>
+<span class="k">SET</span>
+  <span class="n">title</span><span class="o">=?</span><span class="p">,</span>
+  <span class="k">version</span><span class="o">=?</span> <span class="p">(</span><span class="err">버전</span> <span class="o">+</span><span class="mi">1</span> <span class="err">증가</span><span class="p">)</span>
+<span class="k">WHERE</span>
+  <span class="n">id</span><span class="o">=?</span>
+  <span class="k">AND</span> <span class="k">version</span><span class="o">=?</span> <span class="p">(</span><span class="err">버전</span> <span class="err">비교</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>엔티티 수정, 트랜잭션 커밋 시 위와 같은 UPDATE 쿼리 실행</li>
+  <li>DB 버전과 엔티티 버전 같으면 데이터 수정하며 버전 하나 증가시킴</li>
+  <li>DB 버전과 엔티티 버전 다르면 WHERE 절 조건의 version 비교때문에 조회되는 값 없음
+    <ul>
+      <li>이미 버전이 증가한 것으로 판단해 JPA 에서 예외 발생시킴</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<ul>
+  <li>버전은 엔티티 값 변경시 증가함</li>
+  <li>값 타입인 임베디드 타입, 값 타입 컬렉션 수정시에도 버전 증가</li>
+  <li>연관관계 필드는 연관관계 주인 필드를 수정할 때만 버전 증가</li>
+  <li>버전 관리 필드는 JPA가 직접 관리하므로 임의로 수정하면 안됨
+    <ul>
+      <li>벌크 연산은 제외. 벌크 연산은 버전 무시해서 증가시키려면 강제로 값 올려줘야 함</li>
+    </ul>
+  </li>
+  <li>버전 값 강제로 증가하려면 특별한 락 옵션이 필요</li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="1614-jpa-락-사용">16.1.4 JPA 락 사용</h2>
+<ul>
+  <li>락은 다음 위치에 적용 가능
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">EntityManager.lock()</code>, <code class="language-plaintext highlighter-rouge">EntityManager.find()</code>, <code class="language-plaintext highlighter-rouge">EntityManager.refresh()</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Query.setLockMode()  // TypeQuery 포함</code></li>
+      <li><code class="language-plaintext highlighter-rouge">@NamedQuery</code></li>
+    </ul>
+  </li>
+  <li>조회하면서 즉시 락 걸 수 있음
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Board board = em.find(Board.class, id, LockModeType.OPTIMISTIC);</code></li>
+    </ul>
+  </li>
+  <li>나중에 필요할 때 락 걸 수도 있음
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">em.lock(board, LockModeType.OPTIMISTIC);</code></li>
+    </ul>
+  </li>
+  <li>LockModeType 은 아래 표와 같음</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">락 모드</th>
+      <th style="text-align: left">타입</th>
+      <th style="text-align: left">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">낙관적 락</td>
+      <td style="text-align: left">OPTIMISTIC</td>
+      <td style="text-align: left">낙관적 락 사용</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">낙관적 락</td>
+      <td style="text-align: left">OPTIMISTIC_FORCE_INCREMENT</td>
+      <td style="text-align: left">낙관적 락 + 버전 정보 강제 증가</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">비관적 락</td>
+      <td style="text-align: left">PESSIMISTIC_READ</td>
+      <td style="text-align: left">비관적 락, 읽기 락 사용</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">비관적 락</td>
+      <td style="text-align: left">PESSIMISTIC_WRITE</td>
+      <td style="text-align: left">비관적 락, 쓰기 락 사용</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">비관적 락</td>
+      <td style="text-align: left">PESSIMISTIC_FORCE_INCREMENT</td>
+      <td style="text-align: left">비관적 락 + 버전 정보 강제 증가</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">기타</td>
+      <td style="text-align: left">NONE</td>
+      <td style="text-align: left">락 걸지 않음</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">기타</td>
+      <td style="text-align: left">READ</td>
+      <td style="text-align: left">JPA 1.0 호환 기능<br />OPTIMISITC 과 동일</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">기타</td>
+      <td style="text-align: left">WRITE</td>
+      <td style="text-align: left">JPA 1.0 호환 기능<br />OPTIMISTIC_FORCE_INCREMENT와 동일</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+<br /></p>
+
+<h2 id="1615-jpa-낙관적-락">16.1.5 JPA 낙관적 락</h2>
+<ul>
+  <li>JPA 낙관적 락은 <code class="language-plaintext highlighter-rouge">@Version</code> 사용</li>
+  <li>트랜잭션 커밋 시점에 충돌 알 수 있음</li>
+  <li>낙관적 락에서는 다음과 같은 예외들이 발생함
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">javax.persistence.OptimisticLockException</code>: JPA 예외</li>
+      <li><code class="language-plaintext highlighter-rouge">org.hibernate.StaleObjectStateException</code>: 하이버네이트 예외</li>
+      <li><code class="language-plaintext highlighter-rouge">org.springframework.orm.ObjectOptimisticLockingFailureException</code>: 스프링 예외 추상화</li>
+    </ul>
+  </li>
+  <li>락 옵션 없어도 <code class="language-plaintext highlighter-rouge">@Version</code> 만 있으면 낙관적 락 적용됨
+    <ul>
+      <li>옵션 있을 경우 더 세밀하게 제어가 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="none">NONE</h3>
+<ul>
+  <li>락 옵션 없이 <code class="language-plaintext highlighter-rouge">@Version</code> 적용된 필드만으로 낙관적 락 사용</li>
+  <li>엔티티 수정해야 버전 체크함</li>
+  <li><strong>용도</strong>
+    <ul>
+      <li>조회한 엔티티를 수정할 때 다른 트랜잭션에 의해 변경, 삭제 되지 않아야 함</li>
+      <li>조회 시점부터 수정 시점까지 보장</li>
+    </ul>
+  </li>
+  <li><strong>동작</strong>
+    <ul>
+      <li>엔티티 수정 시 버전 체크하면서 증가시킴(UPDATE 쿼리 사용)</li>
+      <li>DB 버전 값 현재 버전 아니면 예외 발생</li>
+    </ul>
+  </li>
+  <li><strong>이점</strong>
+    <ul>
+      <li>두 번의 갱신 분실 문제 예방</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="optimistic">OPTIMISTIC</h3>
+<ul>
+  <li>이 옵션 추가시 엔티티 조회만 해도 버전을 체크함</li>
+  <li><strong>용도</strong>
+    <ul>
+      <li>조회한 엔티티는 트랜잭션 끝날 때 까지 다른 트랜잭션에 의해 변경되지 않아야 함</li>
+      <li>조회 시점부터 트랜잭션 끝날 때까지 조회한 엔티티가 변경 되지 않음을 보장</li>
+    </ul>
+  </li>
+  <li><strong>동작</strong>
+    <ul>
+      <li>트랜잭션 커밋할 때 버전 정보 조회(SELECT 쿼리 사용)</li>
+      <li>현재 엔티티 버전과 같은지 검증해서 다르면 예외 발생</li>
+    </ul>
+  </li>
+  <li><strong>이점</strong>
+    <ul>
+      <li>DIRTY READ, NON-REPEATABLE READ 방지</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// OPTIMISTIC 예제</span>
+
+<span class="c1">// 트랜잭션 1 조회 title="제목A", version=1</span>
+<span class="nc">Board</span> <span class="n">board</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Board</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">id</span><span class="o">,</span> <span class="nc">LockModeType</span><span class="o">.</span><span class="na">OPTIMISTIC</span><span class="o">);</span>
+
+<span class="c1">// 중간에 트랜잭션 2에서 해당 게시물 수정해서 title="제목C", version=2로 증가</span>
+
+<span class="c1">// 트랜잭션 1 커밋 시점에서 버전 정보 검증, 예외 발생</span>
+<span class="c1">// DB version=2, 엔티티 version=1</span>
+<span class="n">tx</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/jpa_study/ch.16/pic-16-2.png" /></p>
+
+<ol>
+  <li>트랜잭션 1에서 OPTIMISTIC 락으로 데이터 조회 (title=제목A, version=1)</li>
+  <li>트랜잭션 2에서 해당 데이터 수정, version 증가 (title=제목C, version=2)</li>
+  <li>트랜잭션 1에서 트랜잭션 커밋 시 DB에 있는 버전 정보를 SELECT 쿼리로 조회해서 처음 조회한 엔티티 버전과 비교
+    <ul>
+      <li>버전 정보 다르면 예외 발생</li>
+    </ul>
+  </li>
+</ol>
+
+<p><br /></p>
+
+<h3 id="optimistic_force_increment">OPTIMISTIC_FORCE_INCREMENT</h3>
+<ul>
+  <li>낙관적 락 사용하며 버전 정보를 강제로 증가시킴</li>
+  <li><strong>용도</strong>
+    <ul>
+      <li>논리적 단위의 엔티티 묶음 관리</li>
+      <li>ex. 게시물과 첨부파일이 일대다, 다대일 양방향 연관관계, 첨부파일이 연관관계 주인인 경우
+        <ul>
+          <li>게시물 수정시 첨부파일 추가만 하면 게시물 버전은 증가하지 않음</li>
+          <li>게시물은 물리적으로 변경되지 않았으나 논리적으로는 변경됨</li>
+          <li>이럴 때 게시물 버전 강제 증가시키기 위해서 사용함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>동작</strong>
+    <ul>
+      <li>엔티티 수정 안해도 트랜잭션 커밋 시 버전 정보 강제로 증가(UPDATE 쿼리 사용)</li>
+      <li>DB 버전과 엔티티 버전 다르면 예외 발생</li>
+      <li>추가로 엔티티 수정하면 수정 시 버전 UPDATE 쿼리 발생해서 총 2 번의 버전 증가 나타날 수 있음</li>
+    </ul>
+  </li>
+  <li><strong>이점</strong>
+    <ul>
+      <li>논리적 단위의 엔티티 묶음 버전 관리할 수 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// OPTIMISTIC_FORCE_INCREMENT</span>
+
+<span class="c1">// 트랜잭션 1 조회 title="제목A", version=1</span>
+<span class="nc">Board</span> <span class="n">board</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Board</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">id</span><span class="o">,</span> <span class="nc">LockModeType</span><span class="o">.</span><span class="na">OPTIMISTIC_FORCE_INCREMENT</span><span class="o">);</span>
+
+<span class="c1">// 트랜잭션 1 커밋 시 버전 강제 증가</span>
+<span class="n">tx</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/jpa_study/ch.16/pic-16-3.png" style="max-width:50%" /></p>
+
+<p><br />
+<br /></p>
+
+<h2 id="1616-jpa-비관적-락">16.1.6 JPA 비관적 락</h2>
+<ul>
+  <li>DB 트랜잭션 락 메커니즘에 의존하는 방법</li>
+  <li>주로 쿼리에 <code class="language-plaintext highlighter-rouge">SELECT FOR UPDATE</code> 구문 사용하며 시작, 버전 정보는 안씀</li>
+  <li>주로 PESSIMISTIC_WRITE 모드 사용함</li>
+  <li>특징은 다음과 같음
+    <ul>
+      <li>엔티티가 아닌 스칼라 타입 조회 시에도 사용 가능</li>
+      <li>데이터 수정 즉시 트랜잭션 충돌 감지 가능</li>
+    </ul>
+  </li>
+  <li>발생하는 예외는 다음과 같음
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">javax.persistence.PessimisticLockException</code>: JPA 예외</li>
+      <li><code class="language-plaintext highlighter-rouge">org.springframework.dao.PessimisticLockingFailureException</code>: 스프링 예외 추상화</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="pessimistic_write">PESSIMISTIC_WRITE</h3>
+<ul>
+  <li>일반적으로 말하는 비관적 락 옵션</li>
+  <li><strong>용도</strong>
+    <ul>
+      <li>DB에 쓰기 락 검</li>
+    </ul>
+  </li>
+  <li><strong>동작</strong>
+    <ul>
+      <li>DB <code class="language-plaintext highlighter-rouge">SELECT FOR UPDATE</code> 사용</li>
+    </ul>
+  </li>
+  <li><strong>이점</strong>
+    <ul>
+      <li>NON-REPEATABLE READ 방지</li>
+      <li>락이 걸린 row는 다른 트랜잭션이 수정 불가</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="pessimistic_read">PESSIMISTIC_READ</h3>
+<ul>
+  <li>데이터 반복 읽기만 하고 수정 안하는 용도로 락 걸때 사용</li>
+  <li>대부분 DB에서 방언에 의해 PESSIMISTIC_WRITE 로 동작</li>
+  <li><strong>MySQL:</strong> lock in share mode</li>
+  <li><strong>PostgreSQL:</strong> for share</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="pessimistic_force_increment">PESSIMISTIC_FORCE_INCREMENT</h3>
+<ul>
+  <li>버전 정보를 사용하는 유일한 비관적 락</li>
+  <li>버전 정보를 강제로 증가시킴</li>
+  <li>하이버네이트는 nowait 지원 DB에 한해서 for update nowait 옵션을 적용</li>
+  <li><strong>오라클:</strong> for update nowait</li>
+  <li><strong>PostgreSQL:</strong> for update nowait</li>
+  <li>nowait 지원 안하면 for update 사용</li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h2 id="1617-비관적-락과-타임아웃">16.1.7 비관적 락과 타임아웃</h2>
+<ul>
+  <li>비관적 락 사용하면 락 획득시까지 트랜잭션이 대기하는데 이 때 타임아웃 시간을 설정할 수 있음</li>
+  <li>지정한 타임아웃 시간 지나면 <code class="language-plaintext highlighter-rouge">javax.persistence.LockTimeoutException</code> 예외 발생</li>
+  <li>DB 특성 따라 동작 안할 수도 있으므로 주의</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 타임아웃 설정 예제</span>
+<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">properties</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;();</span>
+
+<span class="c1">// timeout 10초 설정</span>
+<span class="n">properties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"javax.persistence.lock.timeout"</span><span class="o">,</span> <span class="mi">10000</span><span class="o">);</span>  <span class="c1">// ms 단위로 설정</span>
+
+<span class="c1">// 10초 안에 락 획득 못하면 예외 발생함</span>
+<span class="nc">Board</span> <span class="n">board</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Board</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"boardId"</span><span class="o">,</span> <span class="nc">LockModeType</span><span class="o">.</span><span class="na">PESSIMISTIC_WRITE</span><span class="o">,</span> <span class="n">properties</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1 id="162-2차-캐시">16.2 2차 캐시</h1>
+
+<p><br /></p>
+
+<h2 id="1621-1차-캐시와-2차-캐시">16.2.1 1차 캐시와 2차 캐시</h2>
+<ul>
+  <li>네트워크로 DB 접근 시간 비용은 애플리케이션 서버에서 내부 메모리 접근 시간 비용에 비해 수만, 수십배 이상 비쌈</li>
+  <li>따라서 조회한 데이터 메모리 캐시해 DB 접근 횟수 줄이면 성능 개선 가능</li>
+  <li>영속성 컨텍스트 내부 1차 캐시는 트랜잭션 시작 -&gt; 종료 까지만 유효함</li>
+  <li>OSIV 사용해도 클라이언트 요청 끝날 때 까지만 유효해서 전체적으로 DB 접근 횟수를 많이 줄일 수는 없음</li>
+  <li>∴ 대부분의 JPA 구현체들에서 애플리케이션 범위의 캐시를 지원 =&gt; <strong>공유 캐시(2차 캐시)</strong></li>
+</ul>
+
+<p><img src="/assets/img/jpa_study/ch.16/pic-16-4.png" /></p>
+
+<p><br /></p>
+
+<h3 id="1차-캐시">1차 캐시</h3>
+<ul>
+  <li>영속성 컨텍스트 내부에 존재하며 엔티티 매니저로 조회, 변경하는 모든 엔티티가 저장됨</li>
+  <li>트랜잭션 커밋하거나 플러시 호출시 1차 캐시에 있는 엔티티의 변경 내역이 DB에 동기화 됨</li>
+  <li>같은 엔티티가 있으면 해당 엔티티 그대로 반환 =&gt; 객체 동일성 보장</li>
+  <li>기본적으로 영속성 컨텍스트 범위의 캐시
+    <ul>
+      <li>컨테이너 환경: 트랜잭션 시작시 영속성 컨텍스트 생성, 트랜잭션 종료시 영속성 컨텍스트도 종료 =&gt; 트랜잭션 범위의 캐시</li>
+      <li>OSIV 적용: 요청 들어올 때 영속성 컨텍스트 생성, 요청 종료시 영속성 컨텍스트도 종료 =&gt; 요청 범위의 캐시</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/jpa_study/ch.16/pic-16-5.png" /></p>
+
+<ol>
+  <li>최초 조회시 1차 캐시에 엔티티 없음</li>
+  <li>DB에서 엔티티 조회</li>
+  <li>1차 캐시에 보관</li>
+  <li>1차 캐시 보관 결과 반환</li>
+  <li>같은 엔티티 조회</li>
+  <li>DB 조회 없이 앞서 1차 캐시에 보관한 엔티티 반환</li>
+</ol>
+
+<p><br /></p>
+
+<h3 id="2차-캐시">2차 캐시</h3>
+<ul>
+  <li>애플리케이션에서 공유하는 캐시</li>
+  <li>JPA에서는 공유 캐시(shared cache), 일반적으로는 2차 캐시라고 부름(second level cache. L2 cache)</li>
+  <li>애플리케이션 종료시 까지 유지되며 분산 캐시, 클러스터링 환경의 캐시는 애플리케이션보다 더 오래 유지될 수 있음</li>
+  <li>2차 캐시 적용 시 DB 조회 전에 2차 캐시부터 찾음</li>
+  <li>동시성 극대화를 위해 캐시한 객체 복사본을 만들어 반환함
+    <ul>
+      <li>원본 반환 시 여러 곳에서 같은 객체 동시에 수정할 수 있는 문제 생김</li>
+      <li>락 거는 것 보다 복사본 만드는게 비용 저렴</li>
+    </ul>
+  </li>
+  <li>영속성 유닛 범위의 캐시</li>
+  <li>DB 기본 키를 기준으로 캐시하지만 영속성 컨텍스트 다르면 객체 동일성 보장 안함</li>
+</ul>
+
+<p><img src="/assets/img/jpa_study/ch.16/pic-16-6.png" /></p>
+
+<ol>
+  <li>영속성 컨텍스트가 엔티티 필요하면 2차 캐시 조회</li>
+  <li>2차 캐시에 엔티티 없으면 DB 조회</li>
+  <li>결과를 2차 캐시에 보관</li>
+  <li>2차 캐시는 자신이 보관하고 있던 엔티티 복사해서 반환</li>
+  <li>같은 엔티티 조회</li>
+  <li>2차 캐시에 저장되어 있는 엔티티 복사본 만들어서 반환</li>
+</ol>
+
+<p><br />
+<br /></p>
+
+<h2 id="1622-jpa-2차-캐시-기능">16.2.2 JPA 2차 캐시 기능</h2>
+
+<p><br /></p>
+
+<h3 id="캐시-모드-설정">캐시 모드 설정</h3>
+<ul>
+  <li>2차 캐시 사용하려면 엔티티에 <code class="language-plaintext highlighter-rouge">javax.persistence.Cacheable</code> 어노테이션 사용
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@Cacheable</code>의 기본값은 true</li>
+    </ul>
+  </li>
+  <li>또한 persistence.xml 에 shared-cache-mode 설정해서 애플리케이션 전체(==영속성 유닛 단위) 캐시를 어떻게 적용할 지 옵션 설정해야 함
+    <ul>
+      <li>스프링은 entityManagerFacotry 빈 프로퍼티에 sharedCacheMode 설정</li>
+    </ul>
+  </li>
+  <li>캐시 모드는 아래 표 참조</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">캐시 모드</th>
+      <th style="text-align: left">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">ALL</td>
+      <td style="text-align: left">모든 엔티티를 캐시</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">NONE</td>
+      <td style="text-align: left">캐시 사용 안함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ENABLE_SELECTIVE</td>
+      <td style="text-align: left">Cacheable(true)로 설정된 엔티티만 캐시 적용</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">DISABLE_SELECTIVE</td>
+      <td style="text-align: left">Cacheable(false)로 설정된 엔티티만 빼고 캐시 적용</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">UNSPECIFIED</td>
+      <td style="text-align: left">JPA 구현체가 정의한 설정 따름</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 엔티티에 캐시 사용 옵션 적용</span>
+<span class="nd">@Cacheable</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- persistence.xml 캐시 모드 설정 --&gt;</span>
+<span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">"test"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;shared-cache-mode&gt;</span>ENABLE_SELECTIVE<span class="nt">&lt;/shared-cache-mode&gt;</span>
+<span class="nt">&lt;/persistence-unit&gt;</span>
+</code></pre></div></div>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 스프링 xml 캐시 모드 설정 --&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"entityManagerFactory"</span> <span class="na">class=</span><span class="s">"org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"sharedCacheMode"</span> <span class="na">value=</span><span class="s">"ENABLE_SELECTIVE"</span><span class="nt">/&gt;</span>
+  ...
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="캐시-조회-저장-방식-설정">캐시 조회, 저장 방식 설정</h3>
+<ul>
+  <li>캐시 무시하고 DB 직접 조회 또는 캐시 갱신하려면 캐시 조회 모드, 캐시 보관 모드 사용</li>
+  <li><strong>캐시 조회 모드</strong>
+    <ul>
+      <li>프로퍼티 이름: <code class="language-plaintext highlighter-rouge">javax.persistence.cache.retrieveMode</code></li>
+      <li>설정 옵션: <code class="language-plaintext highlighter-rouge">javax.persistence.CacheRetrieveMode</code>
+        <ul>
+          <li>USE: 캐시에서 조회. default 값</li>
+          <li>BYPASS: 캐시 무시하고 DB 직접 접근</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>캐시 보관 모드</strong>
+    <ul>
+      <li>프로퍼티 이름: <code class="language-plaintext highlighter-rouge">javax.persistence.cache.storeMode</code></li>
+      <li>설정 옵션: <code class="language-plaintext highlighter-rouge">javax.persistnce.CacheStoreMode</code>
+        <ul>
+          <li>USE: 조회한 데이터 캐시에 저장. 이미 있으면 최신 상태로 갱신 안함. 트랜잭션 커밋 시 등록 수정한 엔티티도 캐시에 저장. 기본값</li>
+          <li>BYPASS: 캐시 저장 안함</li>
+          <li>REFRESH: USE 전략 + DB 에서 조회한 엔티티를 최신 상태로 갱신</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>캐시 모드는 <code class="language-plaintext highlighter-rouge">Entity.setProperty()</code>로 엔티티 매니저 단위로 설정 가능</li>
+  <li>좀더 세밀하게 하려면 <code class="language-plaintext highlighter-rouge">EntityManager.find()</code>, <code class="language-plaintext highlighter-rouge">EntityManager.refresh()</code> 에 설정</li>
+  <li><code class="language-plaintext highlighter-rouge">Query.setHint()  // TypeQuery 포함</code> 에 설정할 수도 있음</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 엔티티 매니저 범위 예제</span>
+<span class="n">em</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">"javax.persistence.cache.retrieveMode"</span><span class="o">,</span> <span class="nc">CacheRetrieveMode</span><span class="o">.</span><span class="na">BYPASS</span><span class="o">);</span>
+<span class="n">em</span><span class="o">.</span><span class="na">setPRoperty</span><span class="o">(</span><span class="s">"javax.persistence.cache.storeMode"</span><span class="o">,</span> <span class="nc">CacheStoreMode</span><span class="o">.</span><span class="na">BYPASS</span><span class="o">);</span>
+
+<span class="o">...</span>
+
+<span class="c1">// find() 에 적용 예제</span>
+<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;()</span> <span class="o">{</span>
+  <span class="o">{</span>
+    <span class="n">put</span><span class="o">(</span><span class="s">"javax.persistence.cache.retrieveMode"</span><span class="o">,</span> <span class="nc">CacheRetrieveMode</span><span class="o">.</span><span class="na">BYPASS</span><span class="o">);</span>
+    <span class="n">put</span><span class="o">(</span><span class="s">"javax.persistence.cache.storeMode"</span><span class="o">,</span> <span class="nc">CacheStoreMode</span><span class="o">.</span><span class="na">BYPASS</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">TestEntity</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">id</span><span class="o">,</span> <span class="n">param</span><span class="o">);</span>
+
+<span class="o">...</span>
+
+<span class="c1">// setHint() 에 적용 예제</span>
+<span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="s">"SELECT e FROM TestEntity e WHERE e.id = :id"</span><span class="o">,</span> <span class="nc">TestEntity</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="n">id</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">setHint</span><span class="o">(</span><span class="s">"javax.persistence.cache.retrieveMode"</span><span class="o">,</span> <span class="nc">CacheRetrieveMode</span><span class="o">.</span><span class="na">BYPASS</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">setHint</span><span class="o">(</span><span class="s">"javax.persistence.cache.storeMode"</span><span class="o">,</span> <span class="nc">CacheStoreMode</span><span class="o">.</span><span class="na">BYPASS</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">getSingleResult</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="jpa-캐시-관리-api">JPA 캐시 관리 API</h3>
+<ul>
+  <li>JPA는 캐시 관리를 위해  <code class="language-plaintext highlighter-rouge">javax.persistence.cache</code> 인터페이스 제공
+    <ul>
+      <li>EntityManagerFactory 에서 구해서 사용할 수 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Cache 사용 예제</span>
+<span class="nc">Cache</span> <span class="n">cache</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">getCache</span><span class="o">();</span>
+<span class="kt">boolean</span> <span class="n">contains</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="nc">TestEntity</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">TestEntity</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"contains = "</span> <span class="o">+</span> <span class="n">contains</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Cache 인터페이스</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Cache</span> <span class="o">{</span>
+  <span class="c1">// 해당 엔티티 캐시에 있는지 여부 확인</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">contains</span><span class="o">(</span><span class="nc">Class</span> <span class="n">cls</span><span class="o">,</span> <span class="nc">Object</span> <span class="n">primaryKey</span><span class="o">);</span>
+
+  <span class="c1">// 해당 엔티티중 특정 식별자 가진 엔티티를 캐시에서 제거</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">evict</span><span class="o">(</span><span class="nc">Class</span> <span class="n">cls</span><span class="o">,</span> <span class="nc">Object</span> <span class="n">primaryKey</span><span class="o">);</span>
+
+  <span class="c1">// 해당 엔티티 전체를 캐시에서 제거</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">evict</span><span class="o">(</span><span class="nc">Class</span> <span class="n">cls</span><span class="o">);</span>
+
+  <span class="c1">// 모든 캐시 데이터 제거 </span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">evictAll</span><span class="o">();</span>
+
+  <span class="c1">// JPA Cache 구현체 조회</span>
+  <span class="kd">public</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="no">T</span> <span class="nf">unwrap</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">cls</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br />
+<br /></p>
+
+<h2 id="1623-하이버네이트와-ehcache-적용">16.2.3 하이버네이트와 EHCACHE 적용</h2>
+<ul>
+  <li>하이버네이트가 지원하는 캐시는 크게 3가지
+    <ul>
+      <li><strong>엔티티 캐시</strong>
+        <ul>
+          <li>엔티티 단위로 캐시</li>
+          <li>식별자로 엔티티 조회 또는 컬렉션이 아닌 연관된 엔티티 로딩 시 사용</li>
+          <li>JPA 표준</li>
+        </ul>
+      </li>
+      <li><strong>컬렉션 캐시</strong>
+        <ul>
+          <li>엔티티와 연관된 컬렉션을 캐시</li>
+          <li>컬렉션이 엔티티를 담고 있으면 식별자 값만 캐시</li>
+          <li>하이버네이트 기능</li>
+        </ul>
+      </li>
+      <li><strong>쿼리 캐시</strong>
+        <ul>
+          <li>쿼리와 파라미터 정보를 키로 사용해서 캐시</li>
+          <li>결과가 엔티티면 식별자 값만 캐시</li>
+          <li>하이버네이트 기능</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="환경설정">환경설정</h3>
+<ul>
+  <li>하이버네이트에서 EHCACHE 사용하기 위해 pom.xml에 hibernate-ehcache 라이브러리 추가</li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.hibernate<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>hibernate-ehcache<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>EHCACHE 용 설정파일 ehcache.xml 생성
+    <ul>
+      <li>보관할 캐시 양, 보관 기간 등 정책 설정용 파일</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- src/main/resources/ehcache.xml --&gt;</span>
+<span class="nt">&lt;ehcache&gt;</span>
+  <span class="nt">&lt;defaultCache</span>
+    <span class="na">maxElementsInMemory=</span><span class="s">"10000"</span>
+    <span class="na">eternal=</span><span class="s">"false"</span>
+    <span class="na">timeToIdleSecons=</span><span class="s">"1200"</span>
+    <span class="na">timeToLiveSeconds=</span><span class="s">"1200"</span>
+    <span class="na">diskExpiryThreadIntervalSeconds=</span><span class="s">"1200"</span>
+    <span class="na">memoryStoreEvictionPolicy=</span><span class="s">"LRU"</span>
+  <span class="nt">/&gt;</span>
+<span class="nt">&lt;/ehcache&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>하이버네이트에 캐시 사용정보 설정하기 위해 persistence.xml에 캐시 정보 추가
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">hibernate.cache.use_second_level_cache</code>: 2차 캐시 활성화. 엔티티 캐시 &amp; 컬렉션 캐시 사용 가능</li>
+      <li><code class="language-plaintext highlighter-rouge">hibernate.cache.use_query_cache</code>: 쿼리 캐시 활성화</li>
+      <li><code class="language-plaintext highlighter-rouge">hibernate.cache.region.factory_class</code>: 2차 캐시 처리할 클래스 지정</li>
+      <li><code class="language-plaintext highlighter-rouge">hibernate.generate_statistics</code>: true 설정 시 통계 정보 출력해줘서 캐시 적용 여부 확인 가능. 성능 악영향 주므로 개발에만 적용 추천</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- persistence.xml --&gt;</span>
+<span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">"test"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;sahred-cache-mode&gt;</span>ENABLE_SELECTIVE<span class="nt">&lt;/shared-cache-mode&gt;</span>
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.cache.user_second_level_cache"</span> <span class="na">value=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.cache.use_query_cache"</span> <span class="na">value=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.cache.region.factory_class"</span> <span class="na">value=</span><span class="s">"org.hibernate.cache.ehcache.EhCacheRegionFactory"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.generate_statistics"</span> <span class="na">value=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+  ...
+<span class="nt">&lt;/persistence-unit&gt;</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="엔티티-캐시와-컬렉션-캐시">엔티티 캐시와 컬렉션 캐시</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Cacheable</span>  <span class="c1">// 엔티티에 캐시 적용 설정</span>
+<span class="nd">@Cache</span><span class="o">(</span><span class="n">usage</span> <span class="o">=</span> <span class="nc">CacheConcurrencyStrategy</span><span class="o">.</span><span class="na">READ_WRITE</span><span class="o">)</span> <span class="c1">// 하이버네이트 전용. 좀 더 세밀한 캐시 설정할 때 사용</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ParentMember</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="nd">@GeneratedValue</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="nd">@Cache</span><span class="o">(</span><span class="n">usage</span> <span class="o">=</span> <span class="nc">CacheConcurrencyStrategy</span><span class="o">.</span><span class="na">READ_WRITE</span><span class="o">)</span> <span class="c1">// 하이버네이트 전용. 여기처럼 컬렉션 캐시 적용할 때도 사용</span>
+  <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"parentMember"</span><span class="o">,</span> <span class="n">cascade</span> <span class="o">=</span> <span class="nc">CascadeType</span><span class="o">.</span><span class="na">ALL</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ChildMember</span><span class="o">&gt;</span> <span class="n">childMembers</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">ChildMember</span><span class="o">&gt;();</span>
+
+  <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위 예제의 경우 <code class="language-plaintext highlighter-rouge">ParentMember</code> 는 엔티티 캐시, <code class="language-plaintext highlighter-rouge">ParentMember.childMembers</code> 는 컬렉션 캐시가 적용됨</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="cache">@Cache</h3>
+<ul>
+  <li>앞서 얘기한 것 처럼 <code class="language-plaintext highlighter-rouge">org.hibernate.annotations.Cache</code> 어노테이션으로 세밀한 캐시 설정이 가능</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">속성</th>
+      <th style="text-align: left">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">usage</td>
+      <td style="text-align: left">CacheConcurrencyStrategy 사용해서 캐시 동시성 전략 설정</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">region</td>
+      <td style="text-align: left">캐시 지역 설정 (Cache Region)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">include</td>
+      <td style="text-align: left">연관 객체를 캐시에 포함할지 선택 (all, non-lazy)<br />default는 all</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<ul>
+  <li>usage 속성 설정에 사용되는 <code class="language-plaintext highlighter-rouge">org.hibernate.annotations.CacheConcurrencyStrategy</code> 속성은 다음과 같음</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">속성</th>
+      <th style="text-align: left">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">NONE</td>
+      <td style="text-align: left">캐시 설정 안함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">READ_ONLY</td>
+      <td style="text-align: left">일기 전용 설정<br />등록, 삭제는 가능, 수정 불가능<br />읽기 전용 불변 객체는 수정되지 않으므로 이 설정 해두면 2차 캐시 조회시 원본 객체 반환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">NONSTRICT_READ_WRITE</td>
+      <td style="text-align: left">엄격하지 않은 읽고 쓰기 전략<br />동시에 같은 엔티티 수정시 데이터 일관성 깨질 수 있음<br />EHCACHE는 데이터 수정하면 캐시 데이터 무효화함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">READ_WRITE</td>
+      <td style="text-align: left">읽기 쓰기 가능하고 READ_COMMITED 정도 격리 수준 보장<br />EHCACHE는 데이터 수정하면 캐시 데이터도 같이 수정함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">TRANSACTIONAL</td>
+      <td style="text-align: left">컨테이너 관리 환경에서 사용 가능<br />설정에 따라 REPEATABLE_READ 정도 경리 수준 보장 가능</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="캐시-영역">캐시 영역</h3>
+<ul>
+  <li>엔티티 캐시 영역은 기본값으로 [패키지명 + 클래스명] 사용
+    <ul>
+      <li>위 예제의 <code class="language-plaintext highlighter-rouge">ParentMember</code> 엔티티 캐시의 경우 <code class="language-plaintext highlighter-rouge">jpabook.jpashop.domain.test.cache.ParentMember</code>에 저장</li>
+    </ul>
+  </li>
+  <li>컬렉션 캐시 영역은 [엔티티 캐시 영역 이름 + 캐시한 컬렉션의 필드명] 사용
+    <ul>
+      <li>위 예제의 <code class="language-plaintext highlighter-rouge">ParentMember.childMembers</code> 컬렉션 캐시의 경우 <code class="language-plaintext highlighter-rouge">jpabook.jpashop.domain.test.cache.ParentMember.childMembers</code>에 저장</li>
+    </ul>
+  </li>
+  <li>필요시 <code class="language-plaintext highlighter-rouge">@Cache</code>어노테이션의 region 속성으로 직접 지정할 수도 있음</li>
+  <li>캐시 영역 접두사 설정은 persistence.xml에 <code class="language-plaintext highlighter-rouge">hibernate.cache.region_prefix</code> 설정해주면 됨</li>
+  <li>캐시 영역이 지정되어있으므로 아래 예제와 같이 ehcahce.xml에서 영역별 세부 설정이 가능</li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- ehchache.xml --&gt;</span>
+<span class="c">&lt;!-- ParentMember를 600초마다 캐시에서 제거하는 설정 예제 --&gt;</span>
+
+<span class="nt">&lt;ehcache&gt;</span>
+  <span class="nt">&lt;defaultCache</span>
+    <span class="na">maxElementsInMemory=</span><span class="s">"10000"</span>
+    <span class="na">eternal=</span><span class="s">"false"</span>
+    <span class="na">timeToIdleSecons=</span><span class="s">"1200"</span>
+    <span class="na">timeToLiveSeconds=</span><span class="s">"1200"</span>
+    <span class="na">diskExpiryThreadIntervalSeconds=</span><span class="s">"1200"</span>
+    <span class="na">memoryStoreEvictionPolicy=</span><span class="s">"LRU"</span>
+  <span class="nt">/&gt;</span>
+  <span class="nt">&lt;cache</span>
+    <span class="na">name=</span><span class="s">"jpabook.jpashop.domain.test.cache.ParentMember"</span>
+    <span class="na">maxElementsInMemory=</span><span class="s">"10000"</span>
+    <span class="na">eternal=</span><span class="s">"false"</span>
+    <span class="na">timeToIdleSeconds=</span><span class="s">"600"</span>
+    <span class="na">timeToLiveSeconds=</span><span class="s">"600"</span>
+    <span class="na">overflowToDisk=</span><span class="s">"false"</span>
+  <span class="nt">/&gt;</span>
+<span class="nt">&lt;/ehcache&gt;</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="쿼리-캐시">쿼리 캐시</h3>
+<ul>
+  <li>쿼리와 파라미터 정보를 키로 사용해서 쿼리 결과를 캐시하는 방법</li>
+  <li>적용을 위해서는 <code class="language-plaintext highlighter-rouge">hibernate.cache.use_query_cache</code> 옵션 true 설정해야 함</li>
+  <li>또한 쿼리 캐시 적용할 쿼리마다 힌트에  <code class="language-plaintext highlighter-rouge">org.hibernate.cacheable</code> true 로 설정</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 쿼리 캐시 적용</span>
+<span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="s">"SELECT i FROM Item i"</span><span class="o">,</span> <span class="nc">Item</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">setHint</span><span class="o">(</span><span class="s">"org.hibernate.cacheable"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// NamedQuery에 쿼리 캐시 적용</span>
+<span class="nd">@Entity</span>
+<span class="nd">@namedQuery</span><span class="o">(</span>
+  <span class="n">hints</span> <span class="o">=</span> <span class="nd">@QueryHint</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"org.hibernate.cacheable"</span><span class="o">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">"true"</span><span class="o">),</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">"Member.findByUsername"</span>
+  <span class="n">query</span> <span class="o">=</span> <span class="s">"SELECT m.address FROM Member m WHERE m.name = :username"</span>
+<span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="쿼리-캐시-영역">쿼리 캐시 영역</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">hibernate.cache.use_query_cache</code> 옵션 true 설정해서 쿼리 캐시 활성화 시 다음 두 캐시 영역 추가됨
+    <ul>
+      <li><strong>org.hibernate.cache.internal.StandardQueryCache</strong>
+        <ul>
+          <li>쿼리 캐시 저장하는 영역</li>
+          <li>쿼리, 쿼리 결과 집합, 쿼리 실행 시점의 타임 스탬프 보관</li>
+        </ul>
+      </li>
+      <li><strong>org.hibernate.cache.spi.UpdateTimestampsCache</strong>
+        <ul>
+          <li>쿼리 캐시 유효성 여부 체크를 위해 쿼리 대상 테이블의 가장 최근 변경(등록, 수정, 삭제) 시간 저장하는 영역</li>
+          <li>테이블 명과 해당 테이블이 최근 변경된 시점의 타임스탬프 보관</li>
+          <li>이 영역 만료되면 모든 쿼리 캐시 무효화 되므로 만료되지 않도록 설정 필요
+            <ul>
+              <li>ehcache.xml에서 <code class="language-plaintext highlighter-rouge">org.hibernate.cache.spi.UpdateTimestampsCache</code> 영역에 대해 <code class="language-plaintext highlighter-rouge">eternal="true"</code> 옵션 주면 됨</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>쿼리 캐시 적용 후 엔티티 변경하면 <code class="language-plaintext highlighter-rouge">org.hibernate.cache.spi.UpdateTimestampsCache</code> 영역에 해당 엔티티가 매핑한 테이블 이름으로 타임스탬프 갱신</li>
+  <li>쿼리 캐시는 캐시한 데이터 집합을 최신으로 유지하기 위해 쿼리 캐시 실행 시점과 쿼리 캐시가 사용하는 테이블들의 가장 최근 변경 시점을 비교</li>
+  <li>만약 쿼리 캐시 적용 후 테이블에 조금이라도 변경 있으면 DB에서 다시 데이터 읽어와서 쿼리 결과 캐시함</li>
+  <li>따라서 변경이 잦은 테이블에 쿼리 캐시 사용하면 성능 저하될 수 있으므로 수정 적은 테이블에 적용하는게 좋음</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="쿼리-캐시와-컬렉션-캐시의주의점">쿼리 캐시와 컬렉션 캐시의주의점</h3>
+<ul>
+  <li><strong>엔티티 캐시</strong>를 사용해서 엔티티 캐시하면 <strong>엔티티 정보 모두 캐시</strong></li>
+  <li><strong>쿼리 캐시와 컬랙션 캐시</strong>는 <strong>결과 집합의 실별자 값만 캐시</strong>
+    <ul>
+      <li>쿼리 캐시, 컬렉션 캐시 조회하면 실제 엔티티가 아닌 식별자 값만 들어있음</li>
+      <li>이 식별자 값으로 다시 엔티티 캐시에서 조회해서 실제 엔티티 찾는 것</li>
+    </ul>
+  </li>
+  <li>따라서 쿼리 캐시나 컬렉션 캐시만 쓰고 엔티티 캐시 안쓰면 성능 문제 발생할 수 있음
+    <ul>
+      <li>예시
+        <ol>
+          <li>쿼리 캐시가 적용되어있는 <code class="language-plaintext highlighter-rouge">SELECT m FROM Member m</code> 쿼리 실행. 결과 집합은 100건</li>
+          <li>100건에 대해 한 건씩 엔티티 캐시 영역에서 식별자 값으로 조회</li>
+          <li>엔티티 캐시 적용 안되어 있으면 다시 한 건씩 DB에서 조회</li>
+          <li>결과적으로 DB에서 100번 쿼리 실행됨</li>
+        </ol>
+      </li>
+      <li>이런 문제 방지하기 위해서는 <strong>쿼리 캐시, 컬렉션 캐시 사용할 때 결과 대상 엔티티에 꼭 엔티티 캐시 적용</strong>해야 함</li>
+    </ul>
+  </li>
+</ul>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/jpa">jpa</a>,&nbsp;<a href="/tag/transaction">transaction</a>,&nbsp;<a href="/tag/lock">lock</a>,&nbsp;<a href="/tag/2nd-cache">2nd-cache</a>,&nbsp;<a href="/tag/cache">cache</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+16%EC%9E%A5.+%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC+%EB%9D%BD%2C+2%EC%B0%A8+%EC%BA%90%EC%8B%9C&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F04%2F07%2Fch.16-transaction-and-lock-2nd-cache.html&via="
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+16%EC%9E%A5.+%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC+%EB%9D%BD%2C+2%EC%B0%A8+%EC%BA%90%EC%8B%9C&u=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F04%2F07%2Fch.16-transaction-and-lock-2nd-cache.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F04%2F07%2Fch.16-transaction-and-lock-2nd-cache.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+16%EC%9E%A5.+%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC+%EB%9D%BD%2C+2%EC%B0%A8+%EC%BA%90%EC%8B%9C&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F04%2F07%2Fch.16-transaction-and-lock-2nd-cache.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=%5B%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%5D+16%EC%9E%A5.+%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC+%EB%9D%BD%2C+2%EC%B0%A8+%EC%BA%90%EC%8B%9C&url=https%3A%2F%2Fsungunjo.github.io%2Fjpa-study%2F2022%2F04%2F07%2Fch.16-transaction-and-lock-2nd-cache.html&media=https://sungunjo.github.io/assets/instacode.png"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('https://sungunjo.github.io/jpa-study/2022/04/07/ch.16-transaction-and-lock-2nd-cache.html') + '&title=[자바 ORM 표준 JPA 프로그래밍] 16장. 트랜잭션과 락, 2차 캐시'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'sungunjo-github-io';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Development Stash</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:sungunjo.dev@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">sungunjo.dev@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/sungunjo" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">sungunjo</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/sungunjo" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">SungUn Jo</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">개발 공부 블로그</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-156645046-1', 'auto');
+  ga('send', 'pageview', {
+    'page': '/jpa-study/2022/04/07/ch.16-transaction-and-lock-2nd-cache.html',
+    'title': '[자바 ORM 표준 JPA 프로그래밍] 16장. 트랜잭션과 락, 2차 캐시'
+  });
+</script>
+
+
+
+  </body>
+
+</html>
